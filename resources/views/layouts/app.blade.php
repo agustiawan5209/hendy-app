@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>SPK - {{ config('app.name', 'Laravel') }}</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -33,7 +33,7 @@
 
 <body class="overflow-x-hidden overflow-y-auto h-screen">
     @include('sweetalert::alert')
-    <div class="md:w-1/4 lg:w-[15%] h-full flex items-start pt-20 bg-info absolute left-0 shadow-sm shadow-white">
+    <div class="md:w-1/4 lg:w-[15%] h-full flex items-start pt-20 bg-info absolute left-0 shadow-sm shadow-white z-20">
         @include('layouts.sidebar')
     </div>
     <main class=" md:ml-[25%] lg:ml-[15%] overflow-x-hidden overflow-y-auto h-screen">
