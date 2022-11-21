@@ -15,139 +15,68 @@
     <meta name="author" content="">
     <!-- site icon -->
     <link rel="icon" href="{{ asset('aset/images/fevicon.png') }}" type="image/png" />
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="{{ asset('aset/css/bootstrap.min.css') }}" />
-    <!-- site css -->
-    <link rel="stylesheet" href="{{ asset('aset/style.css') }}" />
-    <!-- responsive css -->
-    <link rel="stylesheet" href="{{ asset('aset/css/responsive.css') }}" />
-    <!-- color css -->
-    <link rel="stylesheet" href="{{ asset('aset/css/color_2.css') }}" />
-    <!-- select bootstrap -->
-    <link rel="stylesheet" href="{{ asset('aset/css/bootstrap-select.css') }}" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="{{ asset('aset/css/perfect-scrollbar.css') }}" />
-    <!-- custom css -->
-    <link rel="stylesheet" href="{{ asset('aset/css/custom.css') }}" />
     <!--[if lt IE 9]>
       <script src="aset/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="aset/https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!--Regular Datatables CSS-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!--Responsive Extension Datatables CSS-->
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
 
 </head>
 
-<body class="dashboard dashboard_1">
-    <div class="full_container">
-        <div class="inner_container">
-            <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar_blog_1">
-                    <div class="sidebar-header">
-                        <div class="logo_section">
-                            <a href="aset/index.html"><img class="logo_icon img-responsive"
-                                    src="aset/images/logo/logo_icon.png" alt="#" /></a>
-                        </div>
-                    </div>
-                    <div class="sidebar_user_info">
-                        <div class="icon_setting"></div>
-                        <div class="user_profle_side">
-                            <div class="user_img"><img class="img-responsive" src="aset/images/layout_img/user_img.jpg"
-                                    alt="#" /></div>
-                            <div class="user_info">
-                                <h6>{{ Auth::user()->name }}</h6>
-                                <p><span class="online_animation"></span> Online</p>
-                            </div>
-                        </div>
-                    </div>
+<body class="overflow-x-hidden overflow-y-auto h-screen">
+    @include('sweetalert::alert')
+    <div class="md:w-1/4 lg:w-[15%] h-full flex items-start pt-20 bg-info absolute left-0 shadow-sm shadow-white">
+        @include('layouts.sidebar')
+    </div>
+    <main class=" md:ml-[25%] lg:ml-[15%] overflow-x-hidden overflow-y-auto h-screen">
+        <div class="navbar bg-info">
+            <div class="flex-1">
+                <a class="btn btn-ghost normal-case text-xl text-white">{{ $page }}</a>
+            </div>
+            <div class="flex-none gap-2">
+                <div class="form-control">
+                    <input type="text" placeholder="Search" class="input input-bordered" />
                 </div>
-                <div class="sidebar_blog_2">
-                    <h4>General</h4>
-                    @include('layouts.sidebar')
-                </div>
-            </nav>
-            <!-- end sidebar -->
-            <!-- right content -->
-            <div id="content">
-                <!-- topbar -->
-                <div class="topbar">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <div class="full">
-                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
-                                    class="fa fa-bars"></i></button>
-                            <div class="logo_section">
-                                <a href="aset/index.html"><img class="img-responsive" src="aset/images/logo/logo.png"
-                                        alt="#" /></a>
-                            </div>
-                            <div class="right_topbar">
-                                <div class="icon_info">
-                                    <ul>
-                                        <li><a href="aset/#"><i class="fa fa-bell-o"></i><span
-                                                    class="badge">2</span></a></li>
-                                        <li><a href="aset/#"><i class="fa fa-question-circle"></i></a></li>
-                                        <li><a href="aset/#"><i class="fa fa-envelope-o"></i><span
-                                                    class="badge">3</span></a></li>
-                                    </ul>
-                                    <ul class="user_profile_dd">
-                                        <li>
-                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
-                                                    class="img-responsive rounded-circle"
-                                                    src="aset/images/layout_img/user_img.jpg" alt="#" /><span
-                                                    class="name_user">John David</span></a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="aset/profile.html">My Profile</a>
-                                                <a class="dropdown-item" href="aset/settings.html">Settings</a>
-                                                <a class="dropdown-item" href="aset/help.html">Help</a>
-                                                <a class="dropdown-item" href="aset/#"><span>Log Out</span> <i
-                                                        class="fa fa-sign-out"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                <div class="dropdown dropdown-end">
+                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="https://placeimg.com/80/80/people" />
                         </div>
-                    </nav>
+                    </label>
+                    <ul tabindex="0"
+                        class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                        <li>
+                            <a class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                        <li><a>Settings</a></li>
+                        <li><a>Logout</a></li>
+                    </ul>
                 </div>
-                <!-- end topbar -->
-                <!-- dashboard inner -->
-                <div class="midde_cont">
-                    <div class="container-fluid mt-10">
-                        {{ $slot }}
-                    </div>
-                    <!-- footer -->
-                    <div class="container-fluid">
-                        <div class="footer">
-                            <p>Copyright © 2018 Designed by html.design. All rights reserved.<br><br>
-                                Distributed By: <a href="aset/https://themewagon.com/">ThemeWagon</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- end dashboard inner -->
             </div>
         </div>
-    </div>
+        <div class="container mx-auto px-2 py-4 w-full relative box-border">
+            {{ $slot }}
+        </div>
+    </main>
     <!-- jQuery -->
-    <script src="{{ asset('aset/js/popper.min.js') }}"></script>
-    <script src="{{ asset('aset/js/bootstrap.min.js') }}"></script>
     <!-- wow animation -->
     <script src="{{ asset('aset/js/animate.js') }}"></script>
-    <!-- select country -->
-    <script src="{{ asset('aset/js/bootstrap-select.js') }}"></script>
     <!-- owl carousel -->
     <script src="{{ asset('aset/js/owl.carousel.js') }}"></script>
     <!-- chart js -->
     <script src="{{ asset('aset/js/Chart.min.js') }}"></script>
     <script src="{{ asset('aset/js/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('aset/js/utils.js') }}"></script>
-    <script src="{{ asset('aset/js/analyser.js') }}"></script>
-    <!-- nice scrollbar -->
-    <script src="{{ asset('aset/js/perfect-scrollbar.min.js') }}"></script>
-    <script>
-        var ps = new PerfectScrollbar('#sidebar');
-    </script>
-    <!-- custom js -->
-    <script src="{{ asset('aset/js/custom.js') }}"></script>
 </body>
 
 </html>

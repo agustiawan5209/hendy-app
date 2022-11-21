@@ -6,6 +6,12 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
+    public $page;
+
+    public function __contruct($page = null)
+    {
+        $this->page = $page;
+    }
     /**
      * Get the view / contents that represents the component.
      *
