@@ -5,48 +5,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKRIPSI</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
+    @vite(['resources/css/app.css', 'resources/css/app.css'])
 
 </head>
 
-<body style="background-image: url('img/3.png'); ">
-    <div>
-        <div class="header-dark"style="background-color:darkslategray;">
-            <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-                <div class="container"><img src="img/18.png" width="80" height="80" role="img"
-                        border-radius="50%" style="
-                    border-radius: 50%;"><button
-                        class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
-                            class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navcol-1">
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="/">Home</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('Usaha.index')}}">Info
-                                    Usaha</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('artikel')}}">Minuman
-                                    Boba</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('profile.index')}}">Profile</a>
-                            </li>
-                        </ul>
-                        <form class="form-inline mr-auto" target="_self">
-                            <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input
-                                    class="form-control search-field" type="search" name="search" id="search-field">
-                            </div>
-                        </form><span class="navbar-text"><a class="btn btn-light action-button" role="button"
-                                href="{{route('login')}}">Masuk</a></span>
-                    </div>
-                </div>
-            </nav>
+<body style="background-image: url('img/3.png'); " class="overflow-y-auto overflow-x-hidden">
+    <div class="navbar bg-info">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </label>
+                <ul tabindex="0"
+                    class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ url('/') }}">Home</a></li>
+                    <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ route('artikel') }}">Artikel</a></li>
+                    <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ route('Usaha.index') }}">Info Usaha</a></li>
+
+                </ul>
+            </div>
+            <a class="btn btn-ghost normal-case text-xl text-white">SPK</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal p-0">
+                <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ url('/') }}">Home</a></li>
+                <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ route('artikel') }}">Artikel</a></li>
+                <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ route('Usaha.index') }}">Info Usaha</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a href="{{ route('login') }}" class="btn btn-primary text-white">Masuk</a>
         </div>
     </div>
-    <br>
-
-   <main>
-    @yield('content')
-   </main>
+    <main class="contents">
+        @yield('content')
+    </main>
     <br>
 
     <footer class="bg-light text-center text-lg-start">
