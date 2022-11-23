@@ -14,4 +14,10 @@ class NilaiBobotKriteria extends Model
     public function prefensi(){
         return $this->hasOne(NilaiPrefensi::class, 'id', 'nilai_banding');
     }
+    public function datakriteria1(){
+        return $this->hasone(Kriteria::class, 'id' ,'kriteria1');
+    }
+    public function datakriteria2(){
+        return $this->hasone(Kriteria::class, 'id' ,'kriteria2');
+    }
 }

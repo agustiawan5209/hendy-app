@@ -1,27 +1,79 @@
 <x-app-layout>
 
     <x-slot name="page">Table Perbandingan Kriteria</x-slot>
-
+    <div class="card w-full bg-info text-gray-800">
+        <div class="card-body">
+            <div class="flex justify-around">
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text text-white text-2xl">Kriteria 1</span>
+                    </label>
+                    <select class="select select-bordered">
+                        @foreach ($bobot as $item)
+                            <option class="text-gray-800" value="{{ $item->datakriteria1->id }}">{{ $item->datakriteria1->kode }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text text-white text-2xl">Nilai Perbandingan</span>
+                    </label>
+                    <select class="select select-bordered">
+                        @foreach ($prefensi as $item)
+                            <option class="text-gray-800" value="{{ $item->id }}">{{ $item->kode }} - {{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text text-white text-2xl">Kriteria 2</span>
+                    </label>
+                    <select class="select select-bordered">
+                        @foreach ($bobot as $item)
+                            <option class="text-gray-800" value="{{ $item->datakriteria1->id }}">{{ $item->datakriteria1->kode }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text text-white text-2xl">-</span>
+                    </label>
+                    <button type="submit" class="btn btn-accent">Ganti</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {{-- Table --}}
-    <table class="table w-full">
+    <div class="px-4 py-5">
+        <div class="overflow-auto box-border">
+            @php
+                $batas = count($kriteria);
+            @endphp
+            <table class="table w-full">
+                <tr>
+                    <x-th class="bg-info text-info-content">Kode</x-th>
+                    @for ($i = 0; $i < $batas; $i++)
+                        <x-th class="bg-info text-info-content">{{ $kriteria[$i]['kode'] }}</x-th>
+                    @endfor
+                </tr>
 
-        <thead >
-            <x-th data-priority="1">kode</x-th>
-            <x-th data-priority="2">Prefensi</x-th>
-            <x-th data-priority="3">Kriteria1</x-th>
-            <x-th data-priority="3">Kriteria2</x-th>
-        </thead>
-        <tbody>
-            @foreach ($bobot as $item)
-                <x-tr>
-                    <x-td>{{ $item->kode }}</x-td>
-                    <x-td>{{ $item->nilai_banding }}</x-td>
-                    <x-td>{{ $item->kriteria1 }}</x-td>
-                    <x-td>{{ $item->kriteria2 }}</x-td>
-                </x-tr>
-            @endforeach
-        </tbody>
-    </table>
+                @for ($i = 0; $i < $batas; $i++)
+                    <tr>
+                        <x-td class="bg-info text-info-content">{{ $kriteria[$i]['kode'] }}</x-td>
+
+                        @for ($b = 0; $b < $batas; $b++)
+                            @if ($kriteria[$i]['kriteria1']['nilai_banding'] != null || $kriteria[$i]['kriteria2']['nilai_banding'] != null)
+                                <x-td class="bg-info text-info-content">
+                                    {{ $kriteria[$i]['kriteria1']['nilai_banding'] }}</x-td>
+                            @else
+                                <x-td class="bg-info text-info-content">Nilai Banding</x-td>
+                            @endif
+                        @endfor
+                    </tr>
+                @endfor
+            </table>
+        </div>
+    </div>
     <script>
         $(document).ready(function() {
             $(".deleteKriteria").click(function(e) {

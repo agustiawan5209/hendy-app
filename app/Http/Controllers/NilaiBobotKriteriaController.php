@@ -6,6 +6,8 @@ use App\Models\NilaiBobotKriteria;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreNilaiBobotKriteriaRequest;
 use App\Http\Requests\UpdateNilaiBobotKriteriaRequest;
+use App\Models\Kriteria;
+use App\Models\NilaiPrefensi;
 
 class NilaiBobotKriteriaController extends Controller
 {
@@ -16,9 +18,14 @@ class NilaiBobotKriteriaController extends Controller
      */
     public function index()
     {
-        $bobot = NilaiBobotKriteria::orderBy('kode', 'asc')->get();
+        $bobot = NilaiBobotKriteria::all();
+        $kriteria = Kriteria::with(['kriteria1', 'kriteria2'])->get()->toArray();
+        // dd($kriteria);
+        $prefensi = NilaiPrefensi::all();
         return view('admin.nilaibobotkriteria.index', [
             'bobot' => $bobot,
+            'kriteria'=> $kriteria,
+            'prefensi'=> $prefensi,
         ]);
     }
 

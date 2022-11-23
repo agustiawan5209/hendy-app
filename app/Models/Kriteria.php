@@ -11,4 +11,10 @@ class Kriteria extends Model
     protected $table = 'kriterias';
     protected $fillable =['kode','name'];
 
+    public function kriteria1(){
+        return $this->hasOne(NilaiBobotKriteria::class, 'kriteria1', 'id');
+    }
+    public function kriteria2(){
+        return $this->hasOne(NilaiBobotKriteria::class, 'kriteria1', 'id');
+    }
 }
