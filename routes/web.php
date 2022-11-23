@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AlternatifController;
-use App\Http\Controllers\KriteriaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\NilaiPrefensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,15 @@ Route::group(['auth', 'verified'], function () {
     });
     Route::group(['prefix' => 'Alternatif', 'as' => 'Alternatif.'], function () {
         Route::controller(AlternatifController::class)->group(function () {
+            Route::get("/", 'index')->name('index');
+            Route::post("/create", 'store')->name('store');
+            Route::get("/edit/{id}", 'edit')->name('edit');
+            Route::put("/update/{id}", 'update')->name('update');
+            Route::get("/destroy/{id}", 'destroy')->name('destroy');
+        });
+    });
+    Route::group(['prefix' => 'nilaiPrefensi', 'as' => 'nilaiPrefensi.'], function () {
+        Route::controller(NilaiPrefensiController::class)->group(function () {
             Route::get("/", 'index')->name('index');
             Route::post("/create", 'store')->name('store');
             Route::get("/edit/{id}", 'edit')->name('edit');

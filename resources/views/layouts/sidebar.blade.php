@@ -1,5 +1,5 @@
 <ul class="menu bg-info text-white w-full p-2 rounded-box">
-    <li>
+    <li class="border-b border-white">
         <a href="{{ route('dashboard') }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -9,7 +9,13 @@
             Dashboard
         </a>
     </li>
-    <li>
+    <li class="border-b border-white">
+        <a href="{{ route('nilaiPrefensi.index') }}">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Data Nilai
+        </a>
+    </li>
+    <li class="border-b border-white">
         <a href="{{ route('Alternatif.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -19,7 +25,7 @@
             Alternatif
         </a>
     </li>
-    <li>
+    <li class="border-b border-white">
         <a href="{{ route('Kriteria.index') }}">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
@@ -30,19 +36,19 @@
             Kriteria
         </a>
     </li>
-    <li tabindex="0" class="relative">
+    <li tabindex="0" class="relative border-b border-white">
         <span> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                 </path>
-            </svg>Nilai Bobots</span>
+            </svg>Nilai Bobots  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></span>
         <ul class="bg-base-100 absolute left-[80%] shadow-lg text-black">
-            <li><a>Nilai Bobot Kriteria</a></li>
-            <li><a>Nilai Bobot Alternatif</a></li>
+            <li class="border-b border-white"><a>Nilai Bobot Kriteria</a></li>
+            <li class="border-b border-white"><a>Nilai Bobot Alternatif</a></li>
         </ul>
     </li>
-    <li>
+    <li class="border-b border-white">
         <a>
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
