@@ -27,9 +27,18 @@ class NilaiBobotKriteriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createKode()
     {
-        //
+        $nilai = NilaiBobotKriteria::max('kode');
+        $kode = "B";
+        if($nilai == null){
+            $kode= "B01";
+        }else{
+            $spr = substr($nilai, 1,2);
+            $spr++;
+            $kode = sprintf($kode. '%02s', $spr);
+        }
+        return $kode;
     }
 
     /**
@@ -38,16 +47,14 @@ class NilaiBobotKriteriaController extends Controller
      * @param  \App\Http\Requests\StoreNilaiBobotKriteriaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNilaiBobotKriteriaRequest $request)
+    public function store($kriteria_id)
     {
         NilaiBobotKriteria::create([
-            'kode' => $request->kode,
-            'nilai_banding' => $request->nilai_banding,
-            'kriteria1' => $request->kriteria1,
-            'kriteria2' => $request->kriteria2,
+            'kode' => $this->createKode(),
+            'nilai_banding' => '1',
+            'kriteria1' => $kriteria_id,
+            'kriteria2' => $kriteria_id,
         ]);
-        Alert::success('Info', 'Berhasil Di Tambah');
-        return redirect()->route('NilaiBobotKriteria.index');
     }
 
     /**

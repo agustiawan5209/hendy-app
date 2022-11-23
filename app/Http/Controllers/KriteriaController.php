@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreKriteriaRequest;
 use App\Http\Requests\UpdateKriteriaRequest;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\NilaiBobotKriteriaController;
 
 class KriteriaController extends Controller
 {
@@ -40,10 +41,12 @@ class KriteriaController extends Controller
      */
     public function store(StoreKriteriaRequest $request)
     {
-        Kriteria::create([
+        $kriteria = Kriteria::create([
             'kode'=> $request->kode,
             'name'=> $request->name,
         ]);
+        $tbKriteria = new NilaiBobotKriteriaController();
+        $tbKriteria->store($kriteria->id, );
         Alert::success('Info', 'Berhasil Di Tambah');
         return redirect()->route('Kriteria.index');
     }
