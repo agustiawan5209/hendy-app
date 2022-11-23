@@ -8,11 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
-    @vite(['resources/css/app.css', 'resources/css/app.css'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script>
+        new WOW().init();
+    </script>
 </head>
 
-<body style="background-image: url('img/3.png'); " class="overflow-y-auto overflow-x-hidden">
+<body  class="overflow-y-auto overflow-x-hidden">
     <div class="navbar bg-info">
         <div class="navbar-start">
             <div class="dropdown">
