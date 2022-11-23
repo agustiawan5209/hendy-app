@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\KriteriaController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,15 @@ Route::get('/dashboard', function () {
 Route::group(['auth', 'verified'], function () {
     Route::group(['prefix' => 'Kriteria', 'as' => 'Kriteria.'], function () {
         Route::controller(KriteriaController::class)->group(function () {
+            Route::get("/", 'index')->name('index');
+            Route::post("/create", 'store')->name('store');
+            Route::get("/edit/{id}", 'edit')->name('edit');
+            Route::put("/update/{id}", 'update')->name('update');
+            Route::get("/destroy/{id}", 'destroy')->name('destroy');
+        });
+    });
+    Route::group(['prefix' => 'Alternatif', 'as' => 'Alternatif.'], function () {
+        Route::controller(AlternatifController::class)->group(function () {
             Route::get("/", 'index')->name('index');
             Route::post("/create", 'store')->name('store');
             Route::get("/edit/{id}", 'edit')->name('edit');

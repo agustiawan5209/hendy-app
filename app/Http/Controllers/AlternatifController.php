@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alternatif;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAlternatifRequest;
 use App\Http\Requests\UpdateAlternatifRequest;
 
@@ -15,7 +16,10 @@ class AlternatifController extends Controller
      */
     public function index()
     {
-        //
+        $alternatif = Alternatif::all();
+        return view('admin.alternatif.index', [
+            'alternatif'=> $alternatif
+        ]);
     }
 
     /**
@@ -36,7 +40,12 @@ class AlternatifController extends Controller
      */
     public function store(StoreAlternatifRequest $request)
     {
-        //
+        Alternatif::create([
+            'kode'=> $request->kode,
+            'nama'=> $request->nama,
+        ]);
+        Alert::success('Info', 'Berhasil Di Tambah');
+        return redirect()->route('Alternatif.index');
     }
 
     /**
@@ -56,9 +65,12 @@ class AlternatifController extends Controller
      * @param  \App\Models\Alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alternatif $alternatif)
+    public function edit(Alternatif $alternatif, $id)
     {
-        //
+        $data = $alternatif->find($id);
+        return view('admin.alternatif.form', [
+            'alternatif'=> $data,
+        ]);
     }
 
     /**
@@ -68,9 +80,14 @@ class AlternatifController extends Controller
      * @param  \App\Models\Alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAlternatifRequest $request, Alternatif $alternatif)
+    public function update(UpdateAlternatifRequest $request, Alternatif $alternatif, $id)
     {
-        //
+        $alternatif->find($id)->update([
+            'kode'=> $request->kode,
+            'nama'=> $request->nama,
+        ]);
+        Alert::success('Info', 'Berhasil Di Update');
+        return redirect()->route('Alternatif.index');
     }
 
     /**
@@ -79,8 +96,9 @@ class AlternatifController extends Controller
      * @param  \App\Models\Alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alternatif $alternatif)
+    public function destroy(Alternatif $alternatif, $id)
     {
-        //
+        $data = $alternatif->find($id);
+        $data->delete();
     }
 }

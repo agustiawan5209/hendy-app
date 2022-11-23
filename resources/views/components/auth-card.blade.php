@@ -7,13 +7,14 @@
     <div class="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
         <div class="self-start hidden lg:flex flex-col  text-gray-300">
 
-            <h1 class="my-3 font-semibold text-4xl">Selamat Datang!</h1>
-            <p class="pr-3 text-sm opacity-75">Sistem Pendukung Keputusan Pemilihan Lahan Usaha Strategis Minuman Boba</p>
+            <h1 class="my-3 font-semibold text-4xl wow fadeInLeftBig">Selamat Datang!</h1>
+            <p class="pr-3 text-sm opacity-75 wow fadeInUp">Sistem Pendukung Keputusan Pemilihan Lahan Usaha Strategis Minuman Boba
+            </p>
         </div>
     </div>
     <div class="flex justify-center self-center  z-10">
-        <div class="p-12 bg-white mx-auto rounded-3xl w-96 shadow-lg ">
-{{ $slot }}
+        <div class="p-12 bg-white mx-auto rounded-3xl w-96 shadow-lg wow fadeInRightBig" data-wow-delay="500ms">
+            {{ $slot }}
         </div>
     </div>
 </div>

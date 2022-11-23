@@ -13,7 +13,7 @@ class UpdateAlternatifRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateAlternatifRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode'=> ['required', 'exists:alternatifs,kode'],
+            'nama'=> ['required', 'unique:alternatifs,nama']
         ];
     }
 }
