@@ -44,7 +44,7 @@
                 </path>
             </svg>Nilai Bobots  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></span>
         <ul class="bg-base-100 absolute left-[80%] shadow-lg text-black">
-            <li class="border-b border-white"><a>Nilai Bobot Kriteria</a></li>
+            <li class="border-b border-white"><a href="{{ route('NilaiBobotKriteria.index') }}">Nilai Bobot Kriteria</a></li>
             <li class="border-b border-white"><a>Nilai Bobot Alternatif</a></li>
         </ul>
     </li>
