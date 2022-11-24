@@ -1,69 +1,106 @@
 <x-app-layout>
 
-    <x-slot name="page">Kriteria</x-slot>
-    {{-- Modal Tambah Kriteria --}}
-    <!-- Put this part before </body> tag -->
-    <input type="checkbox" id="my-modal" class="modal-toggle" />
-    <div class="modal">
-        <div class="modal-box max-w-md">
-            <form action="{{ route('Kriteria.store') }}" method="POST" class="flex flex-col justify-center items-center">
+    <x-slot name="page">Table Perbandingan alternatif</x-slot>
+    <div class="card w-full bg-info text-gray-800">
+        <div class="card-body">
+            <x-validation-errors />
+            <form action="{{ route('NilaiBobotAlternatif.update') }}" method="POST" class="flex justify-around">
                 @csrf
-                @method('POST')
-                <div class="form-control">
+                @method('PUT')
+                <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-kode">Kode Kriteria</span>
+                        <span class="label-text text-white text-2xl">alternatif 1</span>
                     </label>
-                    <label class="input-group">
-                        <span>Kode</span>
-                        <input type="text" placeholder="....." name="kode" class="input input-bordered" />
-                    </label>
+                    <select class="select select-bordered" name="alternatif1">
+                        @for ($z = 0; $z < count($alternatif); $z++)
+                            <option class="text-gray-800" value="{{ $alternatif[$z]['kode'] }}">
+                                {{ $alternatif[$z]['kode'] }}</option>
+                        @endfor
+                    </select>
                 </div>
-                <div class="form-control">
+                <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-nama">Nama Kriteria</span>
+                        <span class="label-text text-white text-2xl">Nilai Perbandingan</span>
                     </label>
-                    <label class="input-group">
-                        <span>Nama</span>
-                        <input type="text" placeholder="....." name="name" class="input input-bordered" />
-                    </label>
+                    <select class="select select-bordered" name="nilai_banding">
+                        @foreach ($prefensi as $item)
+                            <option class="text-gray-800" value="{{ $item->id }}">{{ $item->kode }} -
+                                {{ $item->nama }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="modal-action flex justify-between">
-                    <button type="submit" for="my-modal" class="btn btn-success">Simpan!</button>
-                    <label for="my-modal" class="btn btn-error">Tutup!</label>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text text-white text-2xl">alternatif 2</span>
+                    </label>
+                    <select class="select select-bordered" name="alternatif2">
+                        @for ($l = 0; $l < count($alternatif); $l++)
+                            <option class="text-gray-800" value="{{ $alternatif[$l]['kode'] }}">
+                                {{ $alternatif[$l]['kode'] }}</option>
+                        @endfor
+                    </select>
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text text-white text-2xl">-</span>
+                    </label>
+                    <button type="submit" class="btn btn-accent">Ganti</button>
                 </div>
             </form>
         </div>
     </div>
     {{-- Table --}}
-    <x-table>
-        <x-slot name="input">
-            <label for="my-modal" class="btn">Tambah</label>
+    <div class="px-4 py-5">
+        <div class="overflow-auto box-border">
+            @php
+                $batas = count($alternatif);
+                $hasil = [];
+                $var = 0;
+                $alternatif_arr = [];
+            @endphp
+            <table class="table w-full">
+                <tr>
+                    <x-th class="bg-info text-info-content">Kode</x-th>
+                    @for ($i = 0; $i < $batas; $i++)
+                        <x-th class="bg-info text-info-content">{{ $alternatif[$i]['kode'] }}</x-th>
+                    @endfor
+                </tr>
 
-
-        </x-slot>
-        <x-slot name="head">
-            <x-th data-priority="1">No.</x-th>
-            <x-th data-priority="1">Name</x-th>
-            <x-th data-priority="2">Kriteria</x-th>
-            <x-th data-priority="3">Aksi</x-th>
-        </x-slot>
-        <x-slot name="body">
-            @foreach ($kriteria as $item)
-                <x-tr>
-                    <x-td>{{ $loop->iteration }}</x-td>
-                    <x-td>{{ $item->kode }}</x-td>
-                    <x-td>{{ $item->name }}</x-td>
-                    <x-td>
-                        <x-tdaction :edit="true" :delete="true" :routeEdit="route('Kriteria.edit', ['id' => $item->id])" routeDelete="deleteKriteria "
-                            :idDelete="$item->id" />
-                    </x-td>
-                </x-tr>
-            @endforeach
-        </x-slot>
-    </x-table>
+                @for ($i = 0; $i < $batas; $i++)
+                    <tr>
+                        <x-td class="bg-info text-info-content">{{ $alternatif[$i]['kode'] }}</x-td>
+                        @for ($b = 0; $b < $batas; $b++)
+                            <x-td class="bg-info text-info-content">
+                                @php
+                                    $NB;
+                                    if ($i == $b) {
+                                        $NB = 1;
+                                    } else {
+                                        if ($i < $b) {
+                                            $NB = $alternatif[$i]['kode'] . $alternatif[$b]['kode'];
+                                            $NilaiBobot = \App\Models\NilaiBobotAlternatif::where('alternatif1', $alternatif[$i]['kode'])
+                                                ->where('alternatif2', $alternatif[$b]['kode'])
+                                                ->first();
+                                            $NB = $NilaiBobot->nilai_banding;
+                                        } else {
+                                            $NilaiBobot = \App\Models\NilaiBobotAlternatif::where('alternatif2', $alternatif[$i]['kode'])
+                                                ->where('alternatif1', $alternatif[$b]['kode'])
+                                                ->first();
+                                            $NB = number_format($bobot[$b]['nilai_banding'] / $NilaiBobot->nilai_banding,2);
+                                        }
+                                    }
+                                @endphp
+                                {{ $NB }}
+                            </x-td>
+                        @endfor
+                    </tr>
+                @endfor
+            </table>
+        </div>
+    </div>
     <script>
         $(document).ready(function() {
-            $(".deleteKriteria").click(function(e) {
+            $(".deletealternatif").click(function(e) {
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-success',
@@ -86,7 +123,7 @@
                     console.log(id)
                     $.ajax({
                         type: "GET",
-                        url: "/Kriteria/destroy/" + id,
+                        url: "/alternatif/destroy/" + id,
                         success: function(response, status, data) {
                             if (status == "success") {
                                 if (result.isConfirmed) {

@@ -5,6 +5,7 @@ use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\NilaiPrefensiController;
 use App\Http\Controllers\NilaiBobotKriteriaController;
+use App\Http\Controllers\NilaiBobotAlternatifController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,15 @@ Route::group(['auth', 'verified'], function () {
     });
     Route::group(['prefix' => 'NilaiBobotKriteria', 'as' => 'NilaiBobotKriteria.'], function () {
         Route::controller(NilaiBobotKriteriaController::class)->group(function () {
+            Route::get("/", 'index')->name('index');
+            Route::post("/create", 'store')->name('store');
+            Route::get("/edit/{id}", 'edit')->name('edit');
+            Route::put("/update", 'update')->name('update');
+            Route::get("/destroy/{id}", 'destroy')->name('destroy');
+        });
+    });
+    Route::group(['prefix' => 'NilaiBobotAlternatif', 'as' => 'NilaiBobotAlternatif.'], function () {
+        Route::controller(NilaiBobotAlternatifController::class)->group(function () {
             Route::get("/", 'index')->name('index');
             Route::post("/create", 'store')->name('store');
             Route::get("/edit/{id}", 'edit')->name('edit');
