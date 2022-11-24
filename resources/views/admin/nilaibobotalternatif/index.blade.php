@@ -4,47 +4,63 @@
     <div class="card w-full bg-info text-gray-800">
         <div class="card-body">
             <x-validation-errors />
-            <form action="{{ route('NilaiBobotAlternatif.update') }}" method="POST" class="flex justify-around">
+            <form action="#" method="POST" class="flex flex-col">
                 @csrf
                 @method('PUT')
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text text-white text-2xl">alternatif 1</span>
+                        <span class="label-text text-white text-2xl">Pilih Kriteria</span>
                     </label>
-                    <select class="select select-bordered" name="alternatif1">
-                        @for ($z = 0; $z < count($alternatif); $z++)
-                            <option class="text-gray-800" value="{{ $alternatif[$z]['kode'] }}">
-                                {{ $alternatif[$z]['kode'] }}</option>
+                    <select class="select select-bordered kriteria_id" name="kriteria_id" id="kriteria_id">
+                        <option value="">---</option>
+                        @for ($z = 0; $z < count($kriteria); $z++)
+                            <option class="text-gray-800" value="{{ $kriteria[$z]['kode'] }}">
+                                {{ $kriteria[$z]['kode'] }} - {{ $kriteria[$z]['name'] }}</option>
                         @endfor
                     </select>
                 </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text text-white text-2xl">Nilai Perbandingan</span>
-                    </label>
-                    <select class="select select-bordered" name="nilai_banding">
-                        @foreach ($prefensi as $item)
-                            <option class="text-gray-800" value="{{ $item->id }}">{{ $item->kode }} -
-                                {{ $item->nama }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text text-white text-2xl">alternatif 2</span>
-                    </label>
-                    <select class="select select-bordered" name="alternatif2">
-                        @for ($l = 0; $l < count($alternatif); $l++)
-                            <option class="text-gray-800" value="{{ $alternatif[$l]['kode'] }}">
-                                {{ $alternatif[$l]['kode'] }}</option>
-                        @endfor
-                    </select>
-                </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text text-white text-2xl">-</span>
-                    </label>
-                    <button type="submit" class="btn btn-accent">Ganti</button>
+                @csrf
+                @method('PUT')
+                <div class="flex justify-around">
+                    <div class="form-control w-full max-w-xs">
+                        <label class="label">
+                            <span class="label-text text-white text-2xl">alternatif 1</span>
+                        </label>
+                        <select class="select select-bordered" name="alternatif1">
+                            @for ($z = 0; $z < count($alternatif); $z++)
+                                <option class="text-gray-800" value="{{ $alternatif[$z]['kode'] }}">
+                                    {{ $alternatif[$z]['kode'] }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div class="form-control w-full max-w-xs">
+                        <label class="label">
+                            <span class="label-text text-white text-2xl">Nilai Perbandingan</span>
+                        </label>
+                        <select class="select select-bordered" name="nilai_banding">
+                            @foreach ($prefensi as $item)
+                                <option class="text-gray-800" value="{{ $item->id }}">{{ $item->kode }} -
+                                    {{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-control w-full max-w-xs">
+                        <label class="label">
+                            <span class="label-text text-white text-2xl">alternatif 2</span>
+                        </label>
+                        <select class="select select-bordered" name="alternatif2">
+                            @for ($l = 0; $l < count($alternatif); $l++)
+                                <option class="text-gray-800" value="{{ $alternatif[$l]['kode'] }}">
+                                    {{ $alternatif[$l]['kode'] }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div class="form-control w-full max-w-xs">
+                        <label class="label">
+                            <span class="label-text text-white text-2xl">-</span>
+                        </label>
+                        <button type="submit" class="btn btn-accent">Ganti</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -77,16 +93,9 @@
                                         $NB = 1;
                                     } else {
                                         if ($i < $b) {
-                                            $NB = $alternatif[$i]['kode'] . $alternatif[$b]['kode'];
-                                            $NilaiBobot = \App\Models\NilaiBobotAlternatif::where('alternatif1', $alternatif[$i]['kode'])
-                                                ->where('alternatif2', $alternatif[$b]['kode'])
-                                                ->first();
-                                            $NB = $NilaiBobot->nilai_banding;
+                                            $NB = '0';
                                         } else {
-                                            $NilaiBobot = \App\Models\NilaiBobotAlternatif::where('alternatif2', $alternatif[$i]['kode'])
-                                                ->where('alternatif1', $alternatif[$b]['kode'])
-                                                ->first();
-                                            $NB = number_format($bobot[$b]['nilai_banding'] / $NilaiBobot->nilai_banding,2);
+                                            $NB = '2';
                                         }
                                     }
                                 @endphp

@@ -24,8 +24,8 @@ class UpdateAlternatifRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode'=> ['required', 'exists:alternatifs,kode'],
-            'nama'=> ['required', 'unique:alternatifs,nama']
+            'kode'=> ['required'],
+            'nama'=> ['required', 'exists:alternatifs,nama']
         ];
     }
 }

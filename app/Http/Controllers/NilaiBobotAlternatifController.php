@@ -6,7 +6,9 @@ use App\Models\NilaiBobotAlternatif;
 use App\Http\Requests\StoreNilaiBobotAlternatifRequest;
 use App\Http\Requests\UpdateNilaiBobotAlternatifRequest;
 use App\Models\Alternatif;
+use App\Models\Kriteria;
 use App\Models\NilaiPrefensi;
+use Illuminate\Http\Request;
 
 class NilaiBobotAlternatifController extends Controller
 {
@@ -19,9 +21,11 @@ class NilaiBobotAlternatifController extends Controller
     {
         $alternatif = Alternatif::all()->toArray();
         $prefensi = NilaiPrefensi::all();
+        $kriteria = Kriteria::all()->toArray();
         return view('admin.nilaibobotalternatif.index', [
-            'alternatif'=> $alternatif,
-            'prefensi'=> $prefensi,
+            'alternatif' => $alternatif,
+            'prefensi' => $prefensi,
+            'kriteria' => $kriteria
         ]);
     }
 
@@ -30,9 +34,18 @@ class NilaiBobotAlternatifController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createKode()
     {
-        //
+        $nilai = NilaiBobotAlternatif::max('kode');
+        $kode = "NBA";
+        if ($nilai == null) {
+            $kode = "NBA01";
+        } else {
+            $spr = substr($nilai, 1, 2);
+            $spr++;
+            $kode = sprintf($kode . '%02s', $spr);
+        }
+        return $kode;
     }
 
     /**
@@ -41,9 +54,40 @@ class NilaiBobotAlternatifController extends Controller
      * @param  \App\Http\Requests\StoreNilaiBobotAlternatifRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNilaiBobotAlternatifRequest $request)
+    public function store($kode)
     {
-        //
+        $alternatif = Alternatif::all()->toArray();
+        // dd($alternatif);
+        if (count($alternatif) > 0) {
+            for ($k = 0; $k < count($alternatif); $k++) {
+                for ($i = 0; $i < count($alternatif); $i++) {
+                    // dd($alternatif[$k]);
+                    $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
+                        ->where('alternatif1', '=', $alternatif[$k]['kode'])
+                        ->where('alternatif2', '=', $alternatif[$i]['kode'])
+                        ->get();
+                    if ($bobot1->count() < 1) {
+                        NilaiBobotAlternatif::insert([
+                            [
+                                'kode' => $this->createKode(),
+                                'kriteria_id' => $kode,
+                                'nilai_banding' => '1',
+                                'alternatif1' => $alternatif[$k]['kode'],
+                                'alternatif2' => $alternatif[$i]['kode'],
+                            ],
+                        ]);
+                    }
+                }
+            }
+        } else {
+            NilaiBobotAlternatif::create([
+                'kode' => $this->createKode(),
+                'kriteria_id' => $kriteria_id,
+                'nilai_banding' => '1',
+                'alternatif1' => $request->alternatif1,
+                'alternatif2' => $request->alternatif2,
+            ]);
+        }
     }
 
     /**
@@ -75,9 +119,11 @@ class NilaiBobotAlternatifController extends Controller
      * @param  \App\Models\NilaiBobotAlternatif  $nilaiBobotAlternatif
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateNilaiBobotAlternatifRequest $request, NilaiBobotAlternatif $nilaiBobotAlternatif)
+    public function update(Request $request, $kode)
     {
-        //
+        $this->store($kode);
+        $bobot = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)->get();
+        return response()->json($bobot);
     }
 
     /**

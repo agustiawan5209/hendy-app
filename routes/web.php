@@ -68,7 +68,7 @@ Route::group(['auth', 'verified'], function () {
             Route::get("/", 'index')->name('index');
             Route::post("/create", 'store')->name('store');
             Route::get("/edit/{id}", 'edit')->name('edit');
-            Route::put("/update", 'update')->name('update');
+            Route::get("/update/{kode}", 'update')->name('update');
             Route::get("/destroy/{id}", 'destroy')->name('destroy');
         });
     });
