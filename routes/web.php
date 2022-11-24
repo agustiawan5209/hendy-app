@@ -67,7 +67,7 @@ Route::group(['auth', 'verified'], function () {
         Route::controller(NilaiBobotAlternatifController::class)->group(function () {
             Route::get("/", 'index')->name('index');
             Route::post("/create", 'store')->name('store');
-            Route::get("/edit/{id}", 'edit')->name('edit');
+            Route::put("/edit", 'edit')->name('edit');
             Route::get("/update/{kode}", 'update')->name('update');
             Route::get("/destroy/{id}", 'destroy')->name('destroy');
         });

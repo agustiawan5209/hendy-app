@@ -59,6 +59,7 @@ class NilaiBobotKriteriaController extends Controller
         $kriteria = Kriteria::all()->toArray();
         // dd($kriteria);
         if (count($kriteria) > 0) {
+            $nilai_kode = $this->createKode();
             for ($k = 0; $k < count($kriteria); $k++) {
                 for ($i = 0; $i < count($kriteria); $i++) {
                     // dd($kriteria[$k]);
@@ -68,7 +69,7 @@ class NilaiBobotKriteriaController extends Controller
                     if($bobot1->count() < 1){
                         NilaiBobotKriteria::insert([
                             [
-                                'kode' => $this->createKode(),
+                                'kode' => $nilai_kode,
                                 'nilai_banding' => '1',
                                 'kriteria1' => $kriteria[$k]['kode'],
                                 'kriteria2' => $kriteria[$i]['kode'],

@@ -4,7 +4,7 @@
     <div class="card w-full bg-info text-gray-800">
         <div class="card-body">
             <x-validation-errors />
-            <form action="#" method="POST" class="flex flex-col">
+            <form action="{{ route('NilaiBobotAlternatif.edit') }}" method="POST" class="flex flex-col">
                 @csrf
                 @method('PUT')
                 <div class="form-control w-full max-w-xs">
@@ -74,7 +74,7 @@
                 $var = 0;
                 $alternatif_arr = [];
             @endphp
-            <table class="table w-full">
+            <table class="table w-full" >
                 <tr>
                     <x-th class="bg-info text-info-content">Kode</x-th>
                     @for ($i = 0; $i < $batas; $i++)
@@ -82,7 +82,8 @@
                     @endfor
                 </tr>
 
-                @for ($i = 0; $i < $batas; $i++)
+                <tbody id="table_banding_alternatif">
+                    @for ($i = 0; $i < $batas; $i++)
                     <tr>
                         <x-td class="bg-info text-info-content">{{ $alternatif[$i]['kode'] }}</x-td>
                         @for ($b = 0; $b < $batas; $b++)
@@ -104,6 +105,7 @@
                         @endfor
                     </tr>
                 @endfor
+                </tbody>
             </table>
         </div>
     </div>

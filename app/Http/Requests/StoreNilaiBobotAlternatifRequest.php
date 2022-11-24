@@ -24,7 +24,6 @@ class StoreNilaiBobotAlternatifRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode' => ['required', 'unique:nilai_bobot_alternatifs,kode'],
             'kriteria_id' => ['required'],
             'nilai_banding' => ['required'],
             'alternatif1' => ['required'],
