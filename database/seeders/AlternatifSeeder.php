@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Alternatif;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,12 @@ class AlternatifSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for ($i=1; $i < 10; $i++) {
+            Alternatif::create([
+                'kode'=> 'A0'.$i,
+                'nama'=> 'Alternatif '. $i,
+
+            ]);
+        }
     }
 }
