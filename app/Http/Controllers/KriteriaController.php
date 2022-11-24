@@ -46,7 +46,7 @@ class KriteriaController extends Controller
             'name'=> $request->name,
         ]);
         $tbKriteria = new NilaiBobotKriteriaController();
-        $tbKriteria->store($kriteria->id, );
+        $tbKriteria->store($request->kode);
         Alert::success('Info', 'Berhasil Di Tambah');
         return redirect()->route('Kriteria.index');
     }

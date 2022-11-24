@@ -24,10 +24,9 @@ class UpdateNilaiBobotKriteriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode'=> ['required', 'unique:nilai_bobot_kriterias,kode'],
-            'nilai_banding'=> ['required', 'unique:nilai_bobot_kriterias,nilai_banding'],
-            'kriteria1' => ['required', 'unique:nilai_bobot_kriterias,kriteria1'],
-            'kriteria2'=> ['required', 'unique:nilai_bobot_kriterias,kriteria2'],
+            'nilai_banding' => ['required'],
+            'kriteria1' => ['required'],
+            'kriteria2' => ['required'],
         ];
     }
 }

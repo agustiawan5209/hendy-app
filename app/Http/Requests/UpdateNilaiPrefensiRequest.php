@@ -24,7 +24,7 @@ class UpdateNilaiPrefensiRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode'=> ['required', 'unique:nilai_prefensis,kode'],
+            'kode'=> ['required', 'exists:nilai_prefensis,kode'],
             'nama'=> ['required', 'unique:nilai_prefensis,nama']
         ];
     }

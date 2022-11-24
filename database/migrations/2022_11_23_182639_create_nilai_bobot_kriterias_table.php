@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('kode');
             $table->integer('nilai_banding');
-            $table->foreignId('kriteria1')->nullable();
-            $table->foreignId('kriteria2')->nullable();
+            $table->string('kriteria1')->nullable();
+            $table->string('kriteria2')->nullable();
             $table->timestamps();
         });
     }

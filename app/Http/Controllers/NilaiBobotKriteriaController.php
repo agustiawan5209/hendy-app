@@ -18,14 +18,14 @@ class NilaiBobotKriteriaController extends Controller
      */
     public function index()
     {
-        $bobot = NilaiBobotKriteria::all();
+        $bobot = NilaiBobotKriteria::with(['datakriteria1', 'datakriteria2'])->get();
         $kriteria = Kriteria::with(['kriteria1', 'kriteria2'])->get()->toArray();
         // dd($kriteria);
         $prefensi = NilaiPrefensi::all();
         return view('admin.nilaibobotkriteria.index', [
             'bobot' => $bobot,
-            'kriteria'=> $kriteria,
-            'prefensi'=> $prefensi,
+            'kriteria' => $kriteria,
+            'prefensi' => $prefensi,
         ]);
     }
 
@@ -38,12 +38,12 @@ class NilaiBobotKriteriaController extends Controller
     {
         $nilai = NilaiBobotKriteria::max('kode');
         $kode = "B";
-        if($nilai == null){
-            $kode= "B01";
-        }else{
-            $spr = substr($nilai, 1,2);
+        if ($nilai == null) {
+            $kode = "B01";
+        } else {
+            $spr = substr($nilai, 1, 2);
             $spr++;
-            $kode = sprintf($kode. '%02s', $spr);
+            $kode = sprintf($kode . '%02s', $spr);
         }
         return $kode;
     }
@@ -56,12 +56,35 @@ class NilaiBobotKriteriaController extends Controller
      */
     public function store($kriteria_id)
     {
-        NilaiBobotKriteria::create([
-            'kode' => $this->createKode(),
-            'nilai_banding' => '1',
-            'kriteria1' => $kriteria_id,
-            'kriteria2' => $kriteria_id,
-        ]);
+        $kriteria = Kriteria::all()->toArray();
+        // dd($kriteria);
+        if (count($kriteria) > 0) {
+            for ($k = 0; $k < count($kriteria); $k++) {
+                for ($i = 0; $i < count($kriteria); $i++) {
+                    // dd($kriteria[$k]);
+                    $bobot1 = NilaiBobotKriteria::where('kriteria1', '=', $kriteria[$k]['kode'])
+                        ->where('kriteria2', '=', $kriteria[$i]['kode'])
+                        ->get();
+                    if($bobot1->count() < 1){
+                        NilaiBobotKriteria::insert([
+                            [
+                                'kode' => $this->createKode(),
+                                'nilai_banding' => '1',
+                                'kriteria1' => $kriteria[$k]['kode'],
+                                'kriteria2' => $kriteria[$i]['kode'],
+                            ],
+                        ]);
+                    }
+                }
+            }
+        } else {
+            NilaiBobotKriteria::create([
+                'kode' => $this->createKode(),
+                'nilai_banding' => '1',
+                'kriteria1' => $kriteria_id,
+                'kriteria2' => $kriteria_id,
+            ]);
+        }
     }
 
     /**
@@ -96,15 +119,34 @@ class NilaiBobotKriteriaController extends Controller
      * @param  \App\Models\NilaiBobotKriteria  $nilaiBobotKriteria
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateNilaiBobotKriteriaRequest $request, NilaiBobotKriteria $nilaiBobotKriteria, $id)
+    public function update(UpdateNilaiBobotKriteriaRequest $request, NilaiBobotKriteria $nilaiBobotKriteria)
     {
-        $nilaiBobotKriteria->find($id)->update([
-            'kode' => $request->kode,
-            'nilai_banding' => $request->nilai_banding,
-            'kriteria1' => $request->kriteria1,
-            'kriteria2' => $request->kriteria2,
-        ]);
-        Alert::success('Info', 'Berhasil Di Update');
+        if ($request->kriteria1 == $request->kriteria2) {
+            $bobot = 1;
+            Alert::success('Info', 'Berhasil Di Update');
+        } else {
+            $bobot = $nilaiBobotKriteria->where('kriteria1', '=', $request->kriteria1)
+                ->where('kriteria2', '=', $request->kriteria2)
+                ->first();
+            // dd($bobot);
+            if ($bobot == null) {
+                $nilaiBobotKriteria->create([
+                    'kode' => $this->createKode(),
+                    'nilai_banding' => $request->nilai_banding,
+                    'kriteria1' => $request->kriteria1,
+                    'kriteria2' => $request->kriteria2,
+                ]);
+                Alert::success('Info', 'Berhasil Di Tambah');
+            } else {
+                $nilaiBobotKriteria->find($bobot->id)->update([
+                    'nilai_banding' => $request->nilai_banding,
+                    'kriteria1' => $request->kriteria1,
+                    'kriteria2' => $request->kriteria2,
+                ]);
+                Alert::success('Info', 'Berhasil Di Update');
+            }
+        }
+
         return redirect()->route('NilaiBobotKriteria.index');
     }
 
