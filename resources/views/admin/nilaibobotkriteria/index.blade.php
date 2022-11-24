@@ -83,10 +83,14 @@
                                                 ->first();
                                             $NB = $NilaiBobot->nilai_banding;
                                         } else {
-                                            $NilaiBobot = \App\Models\NilaiBobotKriteria::where('kriteria2', $kriteria[$i]['kode'])
+                                            $NilaiBobot = \App\Models\NilaiBobotKriteria::where('kriteria1', $kriteria[$i]['kode'])
+                                                ->where('kriteria2', $kriteria[$b]['kode'])
+                                                ->first();
+                                            $NilaiBobot2 = \App\Models\NilaiBobotKriteria::where('kriteria2', $kriteria[$i]['kode'])
                                                 ->where('kriteria1', $kriteria[$b]['kode'])
                                                 ->first();
-                                            $NB = number_format($bobot[$b]['nilai_banding'] / $NilaiBobot->nilai_banding,2);
+                                            $NB = number_format($NilaiBobot->nilai_banding / $NilaiBobot2->nilai_banding,2);
+                                            // $NB = $kriteria[$i]['kode'] . ':'. $NilaiBobot2->nilai_banding . " (". $NilaiBobot->nilai_banding .")";
                                         }
                                     }
                                 @endphp
