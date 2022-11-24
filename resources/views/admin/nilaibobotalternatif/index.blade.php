@@ -14,7 +14,7 @@
                     <select class="select select-bordered kriteria_id" name="kriteria_id" id="kriteria_id">
                         <option value="">---</option>
                         @for ($z = 0; $z < count($kriteria); $z++)
-                            <option class="text-gray-800" value="{{ $kriteria[$z]['kode'] }}">
+                            <option class="text-gray-800" value="{{ $kriteria[$z]['kode'] }}" {{ isset($kode_kriteria) == null ? '': 'selected' }}>
                                 {{ $kriteria[$z]['kode'] }} - {{ $kriteria[$z]['name'] }}</option>
                         @endfor
                     </select>
@@ -74,7 +74,7 @@
                 $var = 0;
                 $alternatif_arr = [];
             @endphp
-            <table class="table w-full" >
+            <table class="table w-full">
                 <tr>
                     <x-th class="bg-info text-info-content">Kode</x-th>
                     @for ($i = 0; $i < $batas; $i++)
@@ -84,27 +84,27 @@
 
                 <tbody id="table_banding_alternatif">
                     @for ($i = 0; $i < $batas; $i++)
-                    <tr>
-                        <x-td class="bg-info text-info-content">{{ $alternatif[$i]['kode'] }}</x-td>
-                        @for ($b = 0; $b < $batas; $b++)
-                            <x-td class="bg-info text-info-content">
-                                @php
-                                    $NB;
-                                    if ($i == $b) {
-                                        $NB = 1;
-                                    } else {
-                                        if ($i < $b) {
-                                            $NB = '0';
+                        <tr>
+                            <x-td class="bg-info text-info-content">{{ $alternatif[$i]['kode'] }}</x-td>
+                            @for ($b = 0; $b < $batas; $b++)
+                                <x-td class="bg-info text-info-content">
+                                    @php
+                                        $NB;
+                                        if ($i == $b) {
+                                            $NB = 1;
                                         } else {
-                                            $NB = '2';
+                                            if ($i < $b) {
+                                                $NB = '0';
+                                            } else {
+                                                $NB = '2';
+                                            }
                                         }
-                                    }
-                                @endphp
-                                {{ $NB }}
-                            </x-td>
-                        @endfor
-                    </tr>
-                @endfor
+                                    @endphp
+                                    {{ $NB }}
+                                </x-td>
+                            @endfor
+                        </tr>
+                    @endfor
                 </tbody>
             </table>
         </div>

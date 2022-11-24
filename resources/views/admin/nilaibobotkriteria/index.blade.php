@@ -90,7 +90,7 @@
                                                 ->where('kriteria1', $kriteria[$b]['kode'])
                                                 ->first();
                                             $NB = number_format($NilaiBobot->nilai_banding / $NilaiBobot2->nilai_banding,2);
-                                            // $NB = $kriteria[$i]['kode'] . ':'. $NilaiBobot2->nilai_banding . " (". $NilaiBobot->nilai_banding .")";
+                                            // $NB = $kriteria[$i]['kode'] . ':'. $kriteria[$b]['kode'] . " (". $NilaiBobot->nilai_banding ." / ". $NilaiBobot2->nilai_banding .")";
                                         }
                                     }
                                 @endphp

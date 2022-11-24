@@ -1,13 +1,25 @@
 $(document).ready(function () {
 
-    $("#kriteria_id").change(function (e) {
-        e.preventDefault();
-        var data = $(this).val();
+   function getNilaiBobot(param) {
+        var hasil = '';
+       var nilai =  $.ajax({
+            type: "GET",
+            url: "/NilaiBobotAlternatif/GetBobot/"+ param,
+            async: false,
+            success: function (response) {
+                return response.data;
+            }
+        });
+        // console.log(hasil);
+        return nilai;
+    }
 
+
+    function MatrixAHP(data) {
         var request = $.ajax({
             type: "GET",
             url: "/NilaiBobotAlternatif/update/" + data,
-            data: data,
+            async: false,
             success: function (response) {
                 var parse = response['alternatif'];
                 var bobot = response['bobot'];
@@ -27,20 +39,27 @@ $(document).ready(function () {
                         if (i == k) {
                             hasil_matrix[i][k] = 1
                             // td = "<td>"+ hasil_matrix[i][k] +"</td>"
-                        } else if (i < k) {
-                            hasil_matrix[i][k] = bobot[i]['nilai_banding'];
-                            // td = "<td>"+ hasil_matrix[i][k] +"</td>"
-
                         } else {
-                            hasil_matrix[i][k] = bobot[i]['nilai_banding'] / bobot[k]['nilai_banding'];
-                            // td = "<td>"+ hasil_matrix[i][k] +"</td>"
+                            if (i < k) {
+                                hasil_matrix[i][k] = bobot[k]['nilai_banding'];
+                                // td = "<td>"+ hasil_matrix[i][k] +"</td>"
+
+                            } else {
+                                var param = data + '/' + bobot[i]['alternatif2'] + '/' + bobot[k]['alternatif2'];
+                                var NilaiBobot = 0;
+                                let books = getNilaiBobot(param);
+                                // Tampilan Perbandingan
+                                // hasil_matrix[i][k] = bobot[i]['alternatif2'] + ' :' + bobot[k]['alternatif2'] + '( Nilai = ' + bobot[k]['nilai_banding'] + ' / ' + books.responseText + ')';
+                                hasil_matrix[i][k] =  Number(bobot[k]['nilai_banding'] / books.responseText).toLocaleString(2) ;
+                                // td = "<td>"+ hasil_matrix[i][k] +"</td>"
+                            }
                         }
                     }
 
                     // tr += '</tr>';
                 }
                 for (var i = 0; i < batas; i++) {
-                    tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx text-center bg-info text-info-content'><th class='bg-info text-info-content'>"+ parse[i]['kode'] +"</th>";
+                    tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx text-center bg-info text-info-content'><th class='bg-info text-info-content'>" + parse[i]['kode'] + "</th>";
 
                     for (var j = 0; j < batas; j++)
 
@@ -51,7 +70,6 @@ $(document).ready(function () {
 
                 }
                 $("#table_banding_alternatif").html(tr);
-                console.log(tr)
 
             },
 
@@ -63,6 +81,16 @@ $(document).ready(function () {
         request.fail(function (jqXHR, textStatus) {
             console.log("Request failed: " + textStatus);
         });
+    }
+    var data = $('#kriteria_id').val();
+
+    if (data != null) {
+        MatrixAHP(data)
+    }
+    $("#kriteria_id").change(function (e) {
+        e.preventDefault();
+        var data = $(this).val();
+        MatrixAHP(data);
         console.log(data)
     });
 });

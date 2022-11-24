@@ -70,6 +70,8 @@ Route::group(['auth', 'verified'], function () {
             Route::put("/edit", 'edit')->name('edit');
             Route::get("/update/{kode}", 'update')->name('update');
             Route::get("/destroy/{id}", 'destroy')->name('destroy');
+            Route::get("/GetBobot/{kode}/{alternatif1}/{alternatif2}", 'getBobotAlternatif')->name('getBobotAlternatif');
+
         });
     });
 });

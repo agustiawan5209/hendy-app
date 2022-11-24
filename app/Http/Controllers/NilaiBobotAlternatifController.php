@@ -17,15 +17,17 @@ class NilaiBobotAlternatifController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $alternatif = Alternatif::all()->toArray();
         $prefensi = NilaiPrefensi::all();
         $kriteria = Kriteria::all()->toArray();
+        // dd($request->kode);
         return view('admin.nilaibobotalternatif.index', [
             'alternatif' => $alternatif,
             'prefensi' => $prefensi,
-            'kriteria' => $kriteria
+            'kriteria' => $kriteria,
+            'kode_kriteria'=> $request->kode,
         ]);
     }
 
@@ -121,7 +123,8 @@ class NilaiBobotAlternatifController extends Controller
                 'alternatif2' => $request->alternatif2,
             ]);
         }
-        return redirect()->route('NilaiBobotAlternatif.index');
+        // dd($bobot1);
+        return redirect()->route('NilaiBobotAlternatif.index', ['kode'=> $request->kriteria_id]);
     }
 
     /**
@@ -137,6 +140,14 @@ class NilaiBobotAlternatifController extends Controller
         $bobot['bobot'] = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)->get();
         $bobot['alternatif'] = Alternatif::all();
         return response()->json($bobot);
+    }
+    public function getBobotAlternatif($kode, $alternatif1, $alternatif2){
+        $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
+            ->where('alternatif1', '=', $alternatif1)
+            ->where('alternatif2', '=', $alternatif2)
+            ->first();
+
+        return response()->json($bobot1->nilai_banding);
     }
 
     /**
