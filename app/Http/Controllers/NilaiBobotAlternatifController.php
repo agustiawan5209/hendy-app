@@ -85,16 +85,6 @@ class NilaiBobotAlternatifController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\NilaiBobotAlternatif  $nilaiBobotAlternatif
-     * @return \Illuminate\Http\Response
-     */
-    public function show(NilaiBobotAlternatif $nilaiBobotAlternatif)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

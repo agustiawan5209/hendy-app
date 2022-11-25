@@ -22,6 +22,7 @@
       <script src="aset/https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <!--Regular Datatables CSS-->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <!--Responsive Extension Datatables CSS-->
@@ -32,8 +33,21 @@
 </head>
 
 <body class="overflow-x-hidden overflow-y-auto h-screen">
+    <div class="animation bg-info opacity-90">
+        <div class="flip-to-square ">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
     @include('sweetalert::alert')
-    <div class="md:w-1/4 lg:w-[15%] h-full flex items-start pt-20 bg-info absolute left-0 shadow-sm shadow-white z-20">
+    <div class=" hidden md:flex md:w-1/4 lg:w-[15%] h-full items-start pt-20 bg-info absolute left-0 shadow-sm shadow-white z-20">
         @include('layouts.sidebar')
     </div>
     <main class=" md:ml-[25%] lg:ml-[15%] overflow-x-hidden overflow-y-auto h-screen">
@@ -78,6 +92,8 @@
     <script src="{{ asset('aset/js/Chart.min.js') }}"></script>
     <script src="{{ asset('aset/js/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/matrix.js') }}"></script>
+    <script src="{{ asset('js/matrixAlternatif.js') }}"></script>
 </body>
 
 </html>

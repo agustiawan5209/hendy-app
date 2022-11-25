@@ -14,7 +14,7 @@
                     <select class="select select-bordered kriteria_id" name="kriteria_id" id="kriteria_id">
                         <option value="">---</option>
                         @for ($z = 0; $z < count($kriteria); $z++)
-                            <option class="text-gray-800" value="{{ $kriteria[$z]['kode'] }}" {{ isset($kode_kriteria) == null ? '': 'selected' }}>
+                            <option class="text-gray-800" value="{{ $kriteria[$z]['kode'] }}" {{ $kode_kriteria == $kriteria[$z]['kode'] ? 'selected': '' }}>
                                 {{ $kriteria[$z]['kode'] }} - {{ $kriteria[$z]['name'] }}</option>
                         @endfor
                     </select>

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreNilaiBobotKriteriaRequest;
 use App\Http\Requests\UpdateNilaiBobotKriteriaRequest;
 use App\Models\Kriteria;
 use App\Models\NilaiPrefensi;
+use Illuminate\Http\Request;
 
 class NilaiBobotKriteriaController extends Controller
 {
@@ -88,30 +89,6 @@ class NilaiBobotKriteriaController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\NilaiBobotKriteria  $nilaiBobotKriteria
-     * @return \Illuminate\Http\Response
-     */
-    public function show(NilaiBobotKriteria $nilaiBobotKriteria)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\NilaiBobotKriteria  $nilaiBobotKriteria
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(NilaiBobotKriteria $nilaiBobotKriteria, $id)
-    {
-        $data = $nilaiBobotKriteria->find();
-        return view('admin.nilaibobotalternatif.form', [
-            'bobot' => $data,
-        ]);
-    }
 
     /**
      * Update the specified resource in storage.
@@ -161,5 +138,24 @@ class NilaiBobotKriteriaController extends Controller
     {
         $data = $nilaiBobotKriteria->find($id);
         $data->delete();
+    }
+
+    public function GetKriteria(){
+        $data['kriteria'] = Kriteria::all();
+        $data['bobot'] = NilaiBobotKriteria::all();
+        return response()->json($data);
+    }
+
+    public function getNilaiBobotKriteria($kriteria1,$kriteria2){
+        $kriteria = NilaiBobotKriteria::where('kriteria1', '=', $kriteria1)
+        ->where('kriteria2', '=', $kriteria2)
+        ->first();
+        return response()->json($kriteria->nilai_banding);
+    }
+    public function getNilaiBobotKriteria2($kriteria1,$kriteria2){
+        $kriteria = NilaiBobotKriteria::where('kriteria2', '=', $kriteria1)
+        ->where('kriteria1', '=', $kriteria2)
+        ->first();
+        return response()->json($kriteria->nilai_banding);
     }
 }

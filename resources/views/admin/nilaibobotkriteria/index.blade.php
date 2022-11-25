@@ -58,47 +58,9 @@
                 $var = 0;
                 $kriteria_arr = [];
             @endphp
-            <table class="table w-full">
-                <tr>
-                    <x-th class="bg-info text-info-content">Kode</x-th>
-                    @for ($i = 0; $i < $batas; $i++)
-                        <x-th class="bg-info text-info-content">{{ $kriteria[$i]['kode'] }}</x-th>
-                    @endfor
-                </tr>
+            <table class="table table-auto w-full">
+            @include('matrix.MatrixKriteria', ['batas'=> $batas, 'kriteria'=> $kriteria])
 
-                @for ($i = 0; $i < $batas; $i++)
-                    <tr>
-                        <x-td class="bg-info text-info-content">{{ $kriteria[$i]['kode'] }}</x-td>
-                        @for ($b = 0; $b < $batas; $b++)
-                            <x-td class="bg-info text-info-content">
-                                @php
-                                    $NB;
-                                    if ($i == $b) {
-                                        $NB = 1;
-                                    } else {
-                                        if ($i < $b) {
-                                            $NB = $kriteria[$i]['kode'] . $kriteria[$b]['kode'];
-                                            $NilaiBobot = \App\Models\NilaiBobotKriteria::where('kriteria1', $kriteria[$i]['kode'])
-                                                ->where('kriteria2', $kriteria[$b]['kode'])
-                                                ->first();
-                                            $NB = $NilaiBobot->nilai_banding;
-                                        } else {
-                                            $NilaiBobot = \App\Models\NilaiBobotKriteria::where('kriteria1', $kriteria[$i]['kode'])
-                                                ->where('kriteria2', $kriteria[$b]['kode'])
-                                                ->first();
-                                            $NilaiBobot2 = \App\Models\NilaiBobotKriteria::where('kriteria2', $kriteria[$i]['kode'])
-                                                ->where('kriteria1', $kriteria[$b]['kode'])
-                                                ->first();
-                                            $NB = number_format($NilaiBobot->nilai_banding / $NilaiBobot2->nilai_banding,2);
-                                            // $NB = $kriteria[$i]['kode'] . ':'. $kriteria[$b]['kode'] . " (". $NilaiBobot->nilai_banding ." / ". $NilaiBobot2->nilai_banding .")";
-                                        }
-                                    }
-                                @endphp
-                                {{ $NB }}
-                            </x-td>
-                        @endfor
-                    </tr>
-                @endfor
             </table>
         </div>
     </div>

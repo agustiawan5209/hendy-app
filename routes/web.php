@@ -6,6 +6,7 @@ use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\NilaiPrefensiController;
 use App\Http\Controllers\NilaiBobotKriteriaController;
 use App\Http\Controllers\NilaiBobotAlternatifController;
+use App\Http\Controllers\PerhitunganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,9 @@ Route::group(['auth', 'verified'], function () {
             Route::post("/create", 'store')->name('store');
             Route::get("/edit/{id}", 'edit')->name('edit');
             Route::put("/update", 'update')->name('update');
-            Route::get("/destroy/{id}", 'destroy')->name('destroy');
+            Route::get("/GetKriteria", 'GetKriteria')->name('GetKriteria');
+            Route::get("/getNilaiBobotKriteria/{kriteria1}/{kriteria2}", 'getNilaiBobotKriteria')->name('getNilaiBobotKriteria');
+            Route::get("/getNilaiBobotKriteria2/{kriteria2}/{kriteria1}", 'getNilaiBobotKriteria2')->name('getNilaiBobotKriteria2');
         });
     });
     Route::group(['prefix' => 'NilaiBobotAlternatif', 'as' => 'NilaiBobotAlternatif.'], function () {
@@ -73,6 +76,9 @@ Route::group(['auth', 'verified'], function () {
             Route::get("/GetBobot/{kode}/{alternatif1}/{alternatif2}", 'getBobotAlternatif')->name('getBobotAlternatif');
 
         });
+    });
+    Route::group(['prefix' => 'Perhitungan', 'as' => 'Perhitungan.'], function () {
+       Route::get('/', [PerhitunganController::class, 'index'])->name('Index');
     });
 });
 
