@@ -64,6 +64,10 @@ Route::group(['auth', 'verified'], function () {
             Route::get("/GetKriteria", 'GetKriteria')->name('GetKriteria');
             Route::get("/getNilaiBobotKriteria/{kriteria1}/{kriteria2}", 'getNilaiBobotKriteria')->name('getNilaiBobotKriteria');
             Route::get("/getNilaiBobotKriteria2/{kriteria2}/{kriteria1}", 'getNilaiBobotKriteria2')->name('getNilaiBobotKriteria2');
+            Route::get("/Matrix/Kriteria", 'MatrixAHP')->name('MatrixAHP');
+            Route::get("/Matrix/Prioritas", 'PrioritasAHP')->name('PrioritasAHP');
+            Route::get("/Matrix/ConsistencyMeasure", 'ConsistencyMeasure')->name('ConsistencyMeasure');
+            Route::get("/Matrix/RatioKonsistensi", 'RatioKonsistensi')->name('RatioKonsistensi');
         });
     });
     Route::group(['prefix' => 'NilaiBobotAlternatif', 'as' => 'NilaiBobotAlternatif.'], function () {

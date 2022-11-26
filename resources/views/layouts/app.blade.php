@@ -92,7 +92,7 @@
     <script src="{{ asset('aset/js/Chart.min.js') }}"></script>
     <script src="{{ asset('aset/js/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/matrix.js') }}"></script>
+    <script src="{{ asset('js/backend-Matrix.js') }}"></script>
     <script src="{{ asset('js/matrixAlternatif.js') }}"></script>
 </body>
 

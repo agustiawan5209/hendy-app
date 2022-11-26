@@ -140,22 +140,149 @@ class NilaiBobotKriteriaController extends Controller
         $data->delete();
     }
 
-    public function GetKriteria(){
+    public function GetKriteria()
+    {
         $data['kriteria'] = Kriteria::all();
         $data['bobot'] = NilaiBobotKriteria::all();
         return response()->json($data);
     }
 
-    public function getNilaiBobotKriteria($kriteria1,$kriteria2){
+    public function getNilaiBobotKriteria($kriteria1, $kriteria2)
+    {
         $kriteria = NilaiBobotKriteria::where('kriteria1', '=', $kriteria1)
-        ->where('kriteria2', '=', $kriteria2)
-        ->first();
+            ->where('kriteria2', '=', $kriteria2)
+            ->first();
         return response()->json($kriteria->nilai_banding);
     }
-    public function getNilaiBobotKriteria2($kriteria1,$kriteria2){
+    public function getNilaiBobotKriteria2($kriteria1, $kriteria2)
+    {
         $kriteria = NilaiBobotKriteria::where('kriteria2', '=', $kriteria1)
-        ->where('kriteria1', '=', $kriteria2)
-        ->first();
+            ->where('kriteria1', '=', $kriteria2)
+            ->first();
         return response()->json($kriteria->nilai_banding);
+    }
+    public function NilaiBobotKriteria($kriteria1, $kriteria2)
+    {
+        $kriteria = NilaiBobotKriteria::where('kriteria1', '=', $kriteria1)
+            ->where('kriteria2', '=', $kriteria2)
+            ->first();
+        return $kriteria->nilai_banding;
+    }
+    public function NilaiBobotKriteria2($kriteria1, $kriteria2)
+    {
+        $kriteria = NilaiBobotKriteria::where('kriteria2', '=', $kriteria1)
+            ->where('kriteria1', '=', $kriteria2)
+            ->first();
+        return $kriteria->nilai_banding;
+    }
+
+    public function MatrixAHP()
+    {
+        $kriteria = Kriteria::all()->toArray();
+        $bobot = NilaiBobotKriteria::all()->toArray();
+        $batas = count($kriteria);
+        $Matrix = array($batas);
+        for ($i = 0; $i < $batas; $i++) {
+            $Matrix['kriteria'][$i] = [$i];
+            $Matrix['bobot'][$i] = [$i];
+        }
+        for ($baris = 0; $baris < $batas; $baris++) {
+            for ($kolom = 0; $kolom < $batas; $kolom++) {
+                if ($baris == $kolom) {
+                    $Matrix['kriteria'][$baris][$kolom] = 1;
+                } else {
+                    $kriteria_1 = 0;
+                    $kriteria_2 = 0;
+                    if ($baris < $kolom) {
+                        $kriteria_1 = $this->NilaiBobotKriteria($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
+                        $Matrix['kriteria'][$baris][$kolom] = $kriteria_1;
+                    } else {
+                        $kriteria_1 = $this->NilaiBobotKriteria($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
+                        $kriteria_2 = $this->NilaiBobotKriteria2($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
+                        $Matrix['kriteria'][$baris][$kolom] = $kriteria_1 / $kriteria_2;
+                    }
+                }
+                $Matrix['bobot'][$kolom][$baris] = $Matrix['kriteria'][$baris][$kolom];
+            }
+        }
+        for ($i = 0; $i < $batas; $i++) {
+            $Matrix['bobot'][$i] = number_format(array_sum($Matrix['bobot'][$i]), 4);
+        }
+        return $Matrix;
+    }
+    private function FormatNumber($value){
+        return number_format($value,4);
+    }
+    public function PrioritasAHP()
+    {
+        $kriteria = Kriteria::all()->toArray();
+        $bobot = NilaiBobotKriteria::all()->toArray();
+        $batas = count($kriteria);
+        $Matrix = array($batas);
+        $Hasil_Matrix = $this->MatrixAHP();
+        $jumlah = 0;
+        for ($i = 0; $i < $batas; $i++) {
+            $Matrix['matrix'][$i] = [$i];
+            $Matrix['jumlah'][$i] = [$i];
+            $Matrix['prioritas'][$i] = [$i];
+            $Matrix['Hasil_kolom'][$i] = [$i];
+        }
+        for ($baris = 0; $baris < $batas; $baris++) {
+            for ($kolom = 0; $kolom < $batas; $kolom++) {
+                $Matrix['matrix'][$kolom][$baris] = $this->FormatNumber($Hasil_Matrix['kriteria'][$kolom][$baris] / $Hasil_Matrix['bobot'][$baris]);
+                $Matrix['Hasil_kolom'][$baris][$kolom] = $this->FormatNumber($Hasil_Matrix['kriteria'][$kolom][$baris] / $Hasil_Matrix['bobot'][$baris]);
+            }
+            $Matrix['jumlah'][$baris]= $this->FormatNumber(array_sum($Matrix['Hasil_kolom'][$baris]) );
+        }
+        for ($i=0; $i < $batas; $i++) {
+            $Matrix['prioritas'][$i]= $this->FormatNumber(array_sum($Matrix['matrix'][$i]) / $batas);
+
+        }
+        return $Matrix;
+    }
+
+    public function ConsistencyMeasure(){
+        $kriteria = Kriteria::all()->toArray();
+        $bobot = NilaiBobotKriteria::all()->toArray();
+        $batas = count($kriteria);
+        $Matrix = array($batas);
+        $Hasil_Matrix = $this->MatrixAHP();
+        $F_prioritas = $this->PrioritasAHP();
+        $Prioritas = $F_prioritas['prioritas'];
+        $jumlah = 0;
+        for ($i = 0; $i < $batas; $i++) {
+            $Matrix['Hasil_CM'][$i] = [$i];
+            $Matrix['Matrix_CM'][$i] = [$i];
+            $Matrix['Jumlah_CM'][$i] = [$i];
+        }
+        for ($baris = 0; $baris < $batas; $baris++) {
+            for ($kolom = 0; $kolom < $batas; $kolom++) {
+                $Matrix['Matrix_CM'][$kolom][$baris] = $Hasil_Matrix['kriteria'][$baris][$kolom] * $Prioritas[$kolom];
+                $Matrix['Jumlah_CM'][$baris][$kolom] = $Hasil_Matrix['kriteria'][$baris][$kolom] * $Prioritas[$kolom];
+            }
+        }
+        for ($baris=0; $baris < $batas; $baris++) {
+            $Matrix['Hasil_CM'][$baris]= $this->FormatNumber(array_sum($Matrix['Jumlah_CM'][$baris]) / $Prioritas[$baris]);
+        }
+        return $Matrix ;
+    }
+
+    public function RatioKonsistensi()
+    {
+        $kriteria = Kriteria::all()->toArray();
+        $batas = count($kriteria);
+        $konsistensi = $this->ConsistencyMeasure();
+        $hasil_index = 0;
+        // Rasio Index
+        $Ratio_index = [0, 0, 0.58, 0.9, 1.12, 1.24, 1.32, 1.41, 1.46, 1.49, 1.51, 1.48, 1.56, 1.57, 1.59];
+        for ($i=0; $i < $batas; $i++) {
+            $hasil_index = $Ratio_index[$i];
+        }
+        //
+        $Matrix['RT_CM'] = array_sum($konsistensi['Hasil_CM']) / $batas;
+        $Matrix['CI'] = ($Matrix['RT_CM'] / $batas)/ ($batas - 1);
+        $Matrix['CR'] = $Matrix['CI'] / $hasil_index;
+        $Matrix['Ratio_index'] = $hasil_index;
+        return $Matrix;
     }
 }

@@ -152,7 +152,7 @@ $(document).ready(function () {
             }
         }
         for (let i = 0; i < batas; i++) {
-            returnNilai[i] = Number(sumArray(Hasil_kolo[i]))
+            returnNilai[i] = sumArray(Hasil_kolo[i])
         }
         return returnNilai;
     }
@@ -176,7 +176,7 @@ $(document).ready(function () {
                 Hasil_Matrix[baris][kolom] = Nilai;
                 // console.log(Hasil_array[kolom][baris] + " / " + HasilMatrix[baris])
             }
-            prioritas[baris] = Number(sumArray(Hasil_Matrix[baris]) / batas).toFixed(3)
+            prioritas[baris] = sumArray(Hasil_Matrix[baris]) / batas
         }
         return prioritas;
     }
@@ -214,7 +214,7 @@ $(document).ready(function () {
             }
             // console.log(Hasil_Matrix);
             tr += "<td class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Number(sumArray(Hasil_Matrix[baris])).toFixed(3) + "</td>"
-            tr += "<td class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Prioritas[baris] + "</td>"
+            tr += "<td class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Number(Prioritas[baris]).toFixed(3) + "</td>"
             tr += "</tr>";
         }
         $(NamaTable).html(tr);
@@ -251,7 +251,7 @@ $(document).ready(function () {
             }
         }
         for (let i = 0; i < batas; i++) {
-            CM[i] = Number(sumArray(Hasil_Matrix[i]) / Prioritas[i]);
+            CM[i] =sumArray(Hasil_Matrix[i]) / Prioritas[i];
         }
         const Hasil = {
             "Matrix": Hasil_Matrix,
@@ -264,16 +264,13 @@ $(document).ready(function () {
     // FUngsi Table CM
     function TabelCMKriteria(NamaTable) {
         let Matrix_Konsistensi = MatrixKonsistensi();
-        var Matrix =  Matrix_Konsistensi.Matrix;
-        var NilaiCM =  Matrix_Konsistensi.CM;
-        var Hasil_array = MatrixAHPkriteria();
+        var Matrix = Matrix_Konsistensi.Matrix;
+        var NilaiCM = Matrix_Konsistensi.CM;
         var kriteria = GetTableKriteria();
         var batas = kriteria.length;
         let Hasil_Matrix = new Array(batas);
         let Nilai_Matrix = new Array(batas);
         var Nilai = 0;
-        let Prioritas = getNilaiPrioritas();
-        let HasilMatrix = HasilMatrixKriteria();
 
         for (let i = 0; i < batas; i++) {
             Hasil_Matrix[i] = [i];
@@ -291,12 +288,12 @@ $(document).ready(function () {
             tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx text-center bg-info text-info-content'><th class='bg-info text-info-content'>" + kriteria[baris]['name'] + "</th>";
             for (let kolom = 0; kolom < batas; kolom++) {
                 // Hitung Nilai Martrix
-                Nilai = Matrix[baris][kolom] ;
+                Nilai = Matrix[baris][kolom];
                 tr += "<td class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Number(Nilai).toFixed(4) + "</td> ";
                 Hasil_Matrix[baris][kolom] = Nilai
             }
             // console.log(Hasil_Matrix);
-            tr += "<td class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" +Number(NilaiCM[baris]).toFixed(2) + "</td>"
+            tr += "<td class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Number(NilaiCM[baris]).toFixed(4) + "</td>"
             tr += "</tr>";
         }
         // $(NamaTable).html(tr);
@@ -306,5 +303,99 @@ $(document).ready(function () {
     if (MatrixCMKriteria.length > 0) {
         $('#MatrixCMKriteria').html(TabelCMKriteria('#MatrixCMKriteria'));
     }
+
+    // Fungsi Mencari Rasio
+    function RasioKriteria() {
+        let Matrix_Konsistensi = MatrixKonsistensi();
+        var Matrix = Matrix_Konsistensi.Matrix;
+        var NilaiCM = Matrix_Konsistensi.CM;
+        var kriteria = GetTableKriteria();
+        var batas = kriteria.length;
+        let Hasil_Matrix = new Array(batas);
+        let Total_CM = 0;
+        var CI = 0;
+
+        Total_CM = average(NilaiCM);
+        CI = (Total_CM / batas) / (batas - 1);
+        const Hasil = {
+            'CM': Total_CM,
+            'CI': CI,
+        }
+        return Hasil;
+    }
+    let Rasi = RasioKriteria();
     // End Matrix Kriteria
+
+    function average(scores) {
+
+
+        var total = 0;
+
+
+        scores.forEach(function (score) {
+
+
+            total += score;
+        });
+        var avg = total / scores.length
+
+        return avg;
+
+    }
+
+    function OrderMatrix() {
+        var Jumlah_kriteria = GetTableKriteria();
+        let batas = 1;
+        var Array_order = 0.0;
+        var Ratio_index = [0, 0, 0.58, 0.9, 1.12, 1.24, 1.32, 1.41, 1.46, 1.49, 1.51, 1.48, 1.56, 1.57, 1.59];
+        var tr = '';
+        let RasioIndex = 0;
+        let Rasi = RasioKriteria();
+        Ratio_index.forEach(function (value, index, array) {
+            batas = index - 1;
+            if (index == Jumlah_kriteria.length) {
+                Array_order = array[batas];
+                RasioIndex = index;
+            }
+        })
+        tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info text-center bg-info text-info-content'><th class='bg-info text-info-content'>Ordo matriks</th>";
+        for (let baris = 0; baris < Ratio_index.length; baris++) {
+            if (Ratio_index[baris] == Array_order) {
+                tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-red-500'>" + (baris + 1) + "</th> ";
+
+            } else {
+                tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + (baris + 1) + "</th> ";
+
+            }
+        }
+        tr += "</tr>"
+
+        tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info text-center bg-info text-info-content'><th class='bg-info text-info-content'>Ratio index</th>";
+        for (let baris = 0; baris < Ratio_index.length; baris++) {
+            if (Ratio_index[baris] == Array_order) {
+                tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-red-500'>" + Ratio_index[baris] + "</th> ";
+
+            } else {
+                tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Ratio_index[baris] + "</th> ";
+
+            }
+        }
+        tr += "</tr>"
+        const Hasil = {
+            "Nilai": Array_order,
+            "Table": tr,
+            "Hasil_index": Rasi.CI,
+            "Hasil_rasio": Array_order,
+            "Konsistensi": Number(Rasi.CI / Array_order).toFixed(2)
+        }
+        return Hasil;
+    }
+    let OMatr = OrderMatrix();
+    var TableOrderMatrix = $("#OrdoMatrix");
+    if (TableOrderMatrix.length > 0) {
+        $("#OrdoMatrix").html(OMatr.Table);
+        $("#Hasil_index").html(OMatr.Hasil_index)
+        $("#Hasil_rasio").html(OMatr.Hasil_rasio)
+        $("#Hasil_konsistensi_rasio").html(OMatr.Konsistensi)
+    }
 });
