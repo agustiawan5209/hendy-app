@@ -13,7 +13,7 @@ $(function () {
     </div>
 </div>`
     // $('.main-animation').append(animasi)
-    $(".animation").fadeIn(2000 ,function(){
+    $(".animation").fadeIn(500, function () {
         $(this).fadeOut();
     });
 });

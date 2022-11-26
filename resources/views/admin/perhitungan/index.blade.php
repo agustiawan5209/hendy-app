@@ -1,12 +1,25 @@
 <x-app-layout>
     <x-slot name="page">Halaman Perhitungan</x-slot>
-    <H1>Matrix Kriteria</H1>
-    <table class="table table-compact w-full TableMatrixKriteria">
+    <div class="flex flex-col w-full">
+        <div class="grid text-white card bg-info rounded-box place-items-center">Matrix Kriteria</div>
+        <table class="table table-compact w-full TableMatrixKriteria">
 
-    </table>
+        </table>
+        <div class="divider"></div>
+    </div>
+    <div class="flex flex-col w-full">
+        <div class="grid text-white card bg-info rounded-box place-items-center">Matrix Nilai Kriteria</div>
+        <table class="table table-compact w-full" id="MatrixNilaiKriteria">
 
-    <h1>Matrix Nilai Kriteria</h1>
-    <table class="table table-compact w-full" id="MatrixNilaiKriteria">
+        </table>
+        <div class="divider"></div>
+    </div>
+    <div class="flex flex-col w-full">
+        <div class="grid text-white card bg-info rounded-box place-items-center">Matrix CM Kriteria</div>
+        <table class="table table-compact w-full" id="MatrixCMKriteria">
 
-    </table>
+        </table>
+        <div class="divider"></div>
+    </div>
+
 </x-app-layout>
