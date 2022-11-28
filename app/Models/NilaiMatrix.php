@@ -9,5 +9,5 @@ class NilaiMatrix extends Model
 {
     use HasFactory;
     protected $table = 'nilai_matrices';
-    protected $fillable = ['kode', 'data', 'ranking'];
+    protected $fillable = ['kode', 'data', 'ranking','nama'];
 }

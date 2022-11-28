@@ -62,7 +62,8 @@
         <div class="hero-content text-center">
             <div class="w-full">
                 <h1 class="text-5xl font-bold">Hasil Akhir </h1>
-                <p class="py-2 text-justify">Setelah menemukan bobot dari masing-masing kriteria terhadap lokasi yang sudah
+                <p class="py-2 text-justify">Setelah menemukan bobot dari masing-masing kriteria terhadap lokasi yang
+                    sudah
                     ditentukan oleh pihak perusahaan, langkah selanjutnya adalah mengalikan bobot dari masing,masing
                     kriteria dengan bobot dari masing-masing lokasi, kemudian hasil perkalian tersebut dijumlahkan
                     perbaris. Sehingga didapatkan total prioritas global seperti pada tabel berikut.</p>
@@ -75,13 +76,14 @@
             </div>
         </div>
     </div>
-    <div class="hero min-h-max bg-base-200">
+    <div class="hero min-h-max bg-base-200 border border-black">
         <div class="hero-content text-center">
             <div class="w-full">
-            <h1 class="text-5xl font-bold">Chart Js</h1>
-            <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-            <button class="btn btn-primary">Get Started</button>
-          </div>
+                <h1 class="text-2xl font-bold">Chart Js</h1>
+                <div style="width: 600px; margin: auto;">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
 </x-app-layout>

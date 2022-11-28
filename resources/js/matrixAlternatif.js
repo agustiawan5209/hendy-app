@@ -64,8 +64,9 @@ $(function () {
                             if (i < k) {
                                 var param = data + '/' + bobot[i]['alternatif2'] + '/' + bobot[k]['alternatif2'];
                                 var NilaiBobot = 0;
+                                let books2 = getNilaiBobotAlternatif2(param);
                                 let books = getNilaiBobotAlternatif(param);
-                                hasil_matrix[i][k] = books.responseText;
+                                hasil_matrix[i][k] =  Number(books.responseText / books2.responseText).toLocaleString(2);
                                 // td = "<td>"+ hasil_matrix[i][k] +"</td>"
 
                             } else {
@@ -170,14 +171,14 @@ $(function () {
                     var batas_alternatif = response['alternatif'].length;
 
                     // Pembeuatan Table Matrix Dari Database;
-                    table += "<table border='1' class='table table-auto'>";
-                    table += "<tr ><td  colspan=" + (batas_alternatif + 1) + " class='bg-gray-800 text-white'>Matrix Kriteria <span class='text-white font-bold'> " + kriteria[baris].name + " </span></td> </tr>";
+                    table += "<table border='1' class='table table-compact w-full'>";
+                    table += "<tr ><td  colspan=" + (batas_alternatif + 1) + " class='bg-gray-800 text-white'>Matriks Perbandingan Alternatif Berdasarkan Kriteria <span class='text-white font-bold'> " + kriteria[baris].name + " </span></td> </tr>";
                     table += "<tr>";
+                    table += `<th class='bg-info text-info-content !border border-info'>kode</th>`;
+
                     for (let i = 0; i < batas_alternatif; i++) {
                         table += `<th class='bg-info text-info-content !border border-info'>${Nama_table[i].kode}</th>`;
                     }
-
-                    table += `<th class='bg-info text-info-content !border border-info'>Bobot</th>`;
                     table += "</tr>";
 
                     for (let i = 0; i < batas_alternatif; i++) {
@@ -199,9 +200,9 @@ $(function () {
 
 
                     // Matrix Hasil Pembobotan Alternatif
-
-                    table += "<table border='1' class='table table-auto'>";
-                    table += "<tr ><td  colspan=" + (batas_alternatif + 1) + " class='bg-gray-800 text-white'>Matrix Kriteria <span class='text-white font-bold'> " + kriteria[baris].name + " </span></td> </tr>";
+                    // Matrik bobot prioritas alternatif berdasarkan Kriteria
+                    table += "<table border='1' class='table table-compact w-full'>";
+                    table += "<tr ><td  colspan=" + (batas_alternatif + 1) + " class='bg-gray-800 text-white'>Matrik bobot prioritas alternatif berdasarkan Kriteria <span class='text-white font-bold'> " + kriteria[baris].name + " </span></td> </tr>";
 
                     table += "<tr>";
                     table += `<th class='bg-info text-info-content !border border-info'>Kode</th>`;
@@ -258,7 +259,7 @@ $(function () {
                 table += `</tr>`
                 for (let index = 0; index < response.length; index++) {
                     table += `<tr>`;
-                    table += `<td class='bg-info text-info-content border-info border'>${response[index].kode}</td>`
+                    table += `<td class='bg-info text-info-content border-info border'>${response[index].kode} - ${response[index].nama}</td>`
                     var parse = response[index].data.split('/');
                     console.log(parse.length);
                     for (let ik = 0; ik < parse.length; ik++) {

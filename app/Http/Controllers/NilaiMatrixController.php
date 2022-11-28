@@ -15,20 +15,20 @@ class NilaiMatrixController extends Controller
     public function create($data)
     {
         $exp = implode('/', $data['matrix']);
-        // dd($exp);
-        $nilai = NilaiMatrix::where('kode', '=', $data['kode'])->get();
+        // dd($data);
+        $nilai = NilaiMatrix::where('kode', '=', $data['kode']['kode'])->get();
         if ($nilai->count() < 1) {
             NilaiMatrix::create([
-                'kode' => $data['kode'],
+                'kode' => $data['kode']['kode'],
                 'data' => $exp,
                 'ranking' => $data['ranking'],
+                'nama' => $data['nama'],
             ]);
         } else {
-            NilaiMatrix::where('kode', '=', $data['kode'])->update([
-
+            NilaiMatrix::where('kode', '=', $data['kode']['kode'])->update([
                 'data' => $exp,
                 'ranking' => $data['ranking'],
-
+                'nama' => $data['nama'],
             ]);
         }
     }
