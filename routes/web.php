@@ -78,6 +78,16 @@ Route::group(['auth', 'verified'], function () {
             Route::get("/update/{kode}", 'update')->name('update');
             Route::get("/destroy/{id}", 'destroy')->name('destroy');
             Route::get("/GetBobot/{kode}/{alternatif1}/{alternatif2}", 'getBobotAlternatif')->name('getBobotAlternatif');
+            Route::get("/GetBobot2/{kode}/{alternatif1}/{alternatif2}", 'getBobotAlternatif2')->name('getBobotAlternatif2');
+            Route::get("/Matrix/alternatif/{kode}", 'MatrixAHP')->name('MatrixAHP');
+            Route::get("/NilaiAKhir/alternatif", 'NilaiAKhir')->name('NilaiAKhir');
+            Route::get("/NilaiAKhir/Hasil", 'hasilAlternatif')->name('hasilAlternatif');
+            Route::get("/Bobot/alternatif", 'BobotAHP')->name('BobotAHP');
+            Route::get("/GetKriteria/alternatif", 'GetKriteria')->name('GetKriteria');
+            Route::get("/Vector/alternatif/{kode}", 'GetVector')->name('GetVector');
+            Route::get("/Matrix/Prioritas", 'PrioritasAHP')->name('PrioritasAHP');
+            Route::get("/Matrix/ConsistencyMeasure", 'ConsistencyMeasure')->name('ConsistencyMeasure');
+            Route::get("/Matrix/RatioKonsistensi", 'RatioKonsistensi')->name('RatioKonsistensi');
 
         });
     });

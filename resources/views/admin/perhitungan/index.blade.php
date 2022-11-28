@@ -35,15 +35,53 @@
                 <td id="Consistency_Index"></td>
             </tr>
             <tr>
-                <td >Ratio Index: </td>
+                <td>Ratio Index: </td>
                 <td id="Ratio_Index"></td>
             </tr>
             <tr>
-                <td >Consistency Ratio:</td>
+                <td>Consistency Ratio:</td>
                 <td id="Consistency_Ratio"></td>
             </tr>
         </table>
         <div class="divider"></div>
     </div>
 
+    <div class="w-full flex flex-col px-3">
+        <div class="overflow-x-auto w-full">
+            <div class="grid h-20 text-white card bg-info rounded-box place-items-center">Tabel Perbandingan Alternatif
+            </div>
+        </div>
+        <div class="table-alternatif">
+            <div class="flex flex-col justify-center" id="TemplateTable">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="hero min-h-max bg-base-200">
+        <div class="hero-content text-center">
+            <div class="w-full">
+                <h1 class="text-5xl font-bold">Hasil Akhir </h1>
+                <p class="py-2 text-justify">Setelah menemukan bobot dari masing-masing kriteria terhadap lokasi yang sudah
+                    ditentukan oleh pihak perusahaan, langkah selanjutnya adalah mengalikan bobot dari masing,masing
+                    kriteria dengan bobot dari masing-masing lokasi, kemudian hasil perkalian tersebut dijumlahkan
+                    perbaris. Sehingga didapatkan total prioritas global seperti pada tabel berikut.</p>
+
+                <table id="HasilAlternatif" class="table table-compact w-full">
+                    <tr>
+                        <td>Hai</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="hero min-h-max bg-base-200">
+        <div class="hero-content text-center">
+            <div class="w-full">
+            <h1 class="text-5xl font-bold">Chart Js</h1>
+            <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <button class="btn btn-primary">Get Started</button>
+          </div>
+        </div>
+      </div>
 </x-app-layout>

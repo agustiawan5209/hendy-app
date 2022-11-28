@@ -163,7 +163,7 @@ $(document).ready(function () {
         const TablePrioritas = Hasil_prioritas['matrix'];
         var Hasil_array = TablePrioritas;
 
-        console.log(Matrix_Konsistensi);
+        // console.log(Matrix_Konsistensi);
         var Matrix = Matrix_Konsistensi['Matrix_CM'];
         var NilaiCM = Matrix_Konsistensi['Hasil_CM'];
         var kriteria = GetTableKriteria();
@@ -210,7 +210,7 @@ $(document).ready(function () {
             url: url,
             async: false,
             success: function (response, status, data) {
-                console.log(response);
+                // console.log(response);
                 Hasil_CM = response;
             }
         })

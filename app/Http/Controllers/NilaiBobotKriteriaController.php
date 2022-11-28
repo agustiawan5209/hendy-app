@@ -210,8 +210,9 @@ class NilaiBobotKriteriaController extends Controller
         }
         return $Matrix;
     }
-    private function FormatNumber($value){
-        return number_format($value,4);
+    private function FormatNumber($value, $num = 3)
+    {
+        return number_format($value, $num);
     }
     public function PrioritasAHP()
     {
@@ -232,16 +233,16 @@ class NilaiBobotKriteriaController extends Controller
                 $Matrix['matrix'][$kolom][$baris] = $this->FormatNumber($Hasil_Matrix['kriteria'][$kolom][$baris] / $Hasil_Matrix['bobot'][$baris]);
                 $Matrix['Hasil_kolom'][$baris][$kolom] = $this->FormatNumber($Hasil_Matrix['kriteria'][$kolom][$baris] / $Hasil_Matrix['bobot'][$baris]);
             }
-            $Matrix['jumlah'][$baris]= $this->FormatNumber(array_sum($Matrix['Hasil_kolom'][$baris]) );
+            $Matrix['jumlah'][$baris] = $this->FormatNumber(array_sum($Matrix['Hasil_kolom'][$baris]));
         }
-        for ($i=0; $i < $batas; $i++) {
-            $Matrix['prioritas'][$i]= $this->FormatNumber(array_sum($Matrix['matrix'][$i]) / $batas);
-
+        for ($i = 0; $i < $batas; $i++) {
+            $Matrix['prioritas'][$i] = $this->FormatNumber(array_sum($Matrix['matrix'][$i]) / $batas);
         }
         return $Matrix;
     }
 
-    public function ConsistencyMeasure(){
+    public function ConsistencyMeasure()
+    {
         $kriteria = Kriteria::all()->toArray();
         $bobot = NilaiBobotKriteria::all()->toArray();
         $batas = count($kriteria);
@@ -261,10 +262,10 @@ class NilaiBobotKriteriaController extends Controller
                 $Matrix['Jumlah_CM'][$baris][$kolom] = $Hasil_Matrix['kriteria'][$baris][$kolom] * $Prioritas[$kolom];
             }
         }
-        for ($baris=0; $baris < $batas; $baris++) {
-            $Matrix['Hasil_CM'][$baris]= $this->FormatNumber(array_sum($Matrix['Jumlah_CM'][$baris]) / $Prioritas[$baris]);
+        for ($baris = 0; $baris < $batas; $baris++) {
+            $Matrix['Hasil_CM'][$baris] = $this->FormatNumber(array_sum($Matrix['Jumlah_CM'][$baris]) / $Prioritas[$baris]);
         }
-        return $Matrix ;
+        return $Matrix;
     }
 
     public function RatioKonsistensi()
@@ -275,14 +276,16 @@ class NilaiBobotKriteriaController extends Controller
         $hasil_index = 0;
         // Rasio Index
         $Ratio_index = [0, 0, 0.58, 0.9, 1.12, 1.24, 1.32, 1.41, 1.46, 1.49, 1.51, 1.48, 1.56, 1.57, 1.59];
-        for ($i=0; $i < $batas; $i++) {
+        for ($i = 0; $i < $batas; $i++) {
             $hasil_index = $Ratio_index[$i];
         }
         //
         $Matrix['RT_CM'] = array_sum($konsistensi['Hasil_CM']) / $batas;
-        $Matrix['CI'] = ($Matrix['RT_CM'] / $batas)/ ($batas - 1);
-        $Matrix['CR'] = $Matrix['CI'] / $hasil_index;
+        $Matrix['CI'] = $this->FormatNumber(($Matrix['RT_CM'] / $batas) / ($batas - 1));
+        $Matrix['IR'] = $this->FormatNumber($Matrix['CI'] / $hasil_index);
         $Matrix['Ratio_index'] = $hasil_index;
+        $Matrix['CR'] = $this->FormatNumber($Matrix['IR'], 2);
+        $Matrix['Hasil'] = $Matrix['CI'] < $Matrix['IR'] || $Matrix['CR'] < $hasil_index ? 'Diterima' : 'Tidak Diterima';
         return $Matrix;
     }
 }
