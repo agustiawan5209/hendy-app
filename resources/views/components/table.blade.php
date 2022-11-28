@@ -1,8 +1,8 @@
 <div>
     <!--Card-->
-    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded  bg-white shadow-lg overflow-x-auto overflow-y-auto">
+    <div id='recipients' class="md:p-8 md:mt-6 lg:mt-0 rounded  bg-white shadow-lg overflow-x-auto overflow-y-auto">
         <x-validation-errors />
-        <div class="w-full flex py-2">
+        <div class="w-full flex py-2 px-4">
             {{ $input }}
         </div>
         <table id="example" class="example table table-normal w-full">

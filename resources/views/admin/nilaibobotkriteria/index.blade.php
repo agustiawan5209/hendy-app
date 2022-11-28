@@ -4,12 +4,13 @@
     <div class="card w-full bg-info text-gray-800">
         <div class="card-body">
             <x-validation-errors />
-            <form action="{{ route('NilaiBobotKriteria.update') }}" method="POST" class="flex justify-around">
+            <form action="{{ route('NilaiBobotKriteria.update') }}" method="POST"
+                class="flex flex-col md:flex-row justify-around">
                 @csrf
                 @method('PUT')
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text text-white text-2xl">Kriteria 1</span>
+                        <span class="label-text text-white text-base md:text-xl">Kriteria 1</span>
                     </label>
                     <select class="select select-bordered" name="kriteria1">
                         @for ($z = 0; $z < count($kriteria); $z++)
@@ -20,7 +21,7 @@
                 </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text text-white text-2xl">Nilai Perbandingan</span>
+                        <span class="label-text text-white text-base md:text-xl">Nilai Perbandingan</span>
                     </label>
                     <select class="select select-bordered" name="nilai_banding">
                         @foreach ($prefensi as $item)
@@ -31,7 +32,7 @@
                 </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text text-white text-2xl">Kriteria 2</span>
+                        <span class="label-text text-white text-base md:text-xl">Kriteria 2</span>
                     </label>
                     <select class="select select-bordered" name="kriteria2">
                         @for ($l = 0; $l < count($kriteria); $l++)
@@ -42,7 +43,7 @@
                 </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text text-white text-2xl">-</span>
+                        <span class="label-text text-white text-base md:text-xl">-</span>
                     </label>
                     <button type="submit" class="btn btn-accent">Ganti</button>
                 </div>
@@ -59,7 +60,7 @@
                 $kriteria_arr = [];
             @endphp
             <table class="table table-auto w-full">
-            @include('matrix.MatrixKriteria', ['batas'=> $batas, 'kriteria'=> $kriteria])
+                @include('matrix.MatrixKriteria', ['batas' => $batas, 'kriteria' => $kriteria])
 
             </table>
         </div>

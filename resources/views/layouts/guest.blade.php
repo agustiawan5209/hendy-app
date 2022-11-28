@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <link rel="stylesheet" href="{{ asset('build/assets/app.6c4cfe54.css') }}">
 
     {{-- Animasi --}}
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
@@ -26,6 +27,8 @@
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>
+    <script src="{{ asset('build/assets/app.7679cdf9.js') }}"></script>
+
 </body>
 
 </html>

@@ -14,9 +14,9 @@
     </div> --}}
     <div class="hero min-h-max bg-base-200 border border-black">
         <div class="hero-content !w-full text-center">
-            <div class="w-full border border-black bg-white">
+            <div class="w-full border border-black bg-white box-border">
                 <h1 class="text-2xl font-bold">Grafik Hasil Perankingan</h1>
-                <div style="width: 600px; margin: auto;">
+                <div class="w-full max-w-full">
                     <canvas id="myChart"></canvas>
                 </div>
             </div>
