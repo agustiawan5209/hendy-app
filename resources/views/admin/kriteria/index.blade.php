@@ -55,7 +55,7 @@
                     <x-td>{{ $item->name }}</x-td>
                     <x-td>
                         <x-tdaction :edit="true" :delete="true" :routeEdit="route('Kriteria.edit', ['id' => $item->id])" routeDelete="deleteKriteria "
-                            :idDelete="$item->id" />
+                            :idDelete="$item->id" :detail="false" />
                     </x-td>
                 </x-tr>
             @endforeach
