@@ -1,18 +1,19 @@
 <div>
     <!--Card-->
-    <div id='recipients' class="md:p-8 md:mt-6 lg:mt-0 rounded  bg-white shadow-lg overflow-x-auto overflow-y-auto w-full">
+    <div id='recipients'
+        class="md:p-8 md:mt-6 lg:mt-0 rounded  bg-white shadow-lg overflow-x-auto overflow-y-auto w-full">
         <x-validation-errors />
         <div class="w-full flex py-2 px-4">
             {{ $input }}
         </div>
-        <table id="example" class="example table table-normal w-full">
+        <table id="example" class="example table table-normal w-full flex" width="100%">
             <thead>
                 <x-tr>
                     {{ $head }}
                 </x-tr>
             </thead>
             <tbody>
-                    {{ $body }}
+                {{ $body }}
             </tbody>
 
         </table>
