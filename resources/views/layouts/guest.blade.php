@@ -18,6 +18,8 @@
     {{-- Animasi --}}
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+
     <script>
         new WOW().init();
     </script>
