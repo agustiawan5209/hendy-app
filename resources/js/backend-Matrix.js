@@ -46,14 +46,14 @@ $(document).ready(function () {
             Hasil_kolo[i] = [i];
         }
         var tr = '';
-        tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info text-center bg-info text-info-content'><th class='bg-info text-info-content'>Kode</th>";
+        tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info  bg-info text-info-content'><th class='bg-info text-info-content'>Kode</th>";
         for (let baris = 0; baris < batas; baris++) {
             tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + kriteria[baris]['kode'] + "</th> ";
         }
         tr += "</tr>";
         for (let baris = 0; baris < batas; baris++) {
 
-            tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx text-center bg-info text-info-content'><th class='bg-info text-info-content'>" + kriteria[baris]['name'] + "</th>";
+            tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx  bg-info text-info-content'><th class='bg-info text-info-content'>" + kriteria[baris]['name'] + "</th>";
 
             for (let kolom = 0; kolom < batas; kolom++) {
                 tr += "<td class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Number(Hasil_array[baris][kolom]).toLocaleString() + "</td> ";
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
 
         }
-        tr += "<x-tr> <th class='bg-info text-info-content'>Hasil</th>"
+        tr += "<tr> <th class='bg-info text-info-content'>Hasil</th>"
         for (let i = 0; i < batas; i++) {
             tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + HasilMatrixAHPKriteria.bobot[i] + "</th>"
         }
@@ -109,7 +109,7 @@ $(document).ready(function () {
         }
         let Nilai = 0;
         var tr = '';
-        tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info text-center bg-info text-info-content'><th class='bg-info text-info-content'>Kode</th>";
+        tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info  bg-info text-info-content'><th class='bg-info text-info-content'>Kode</th>";
         for (let baris = 0; baris < batas; baris++) {
             tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + kriteria[baris]['kode'] + "</th> ";
         }
@@ -118,7 +118,7 @@ $(document).ready(function () {
         tr += "</tr>";
         for (let baris = 0; baris < batas; baris++) {
 
-            tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx text-center bg-info text-info-content'><th class='bg-info text-info-content'>" + kriteria[baris]['name'] + "</th>";
+            tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx  bg-info text-info-content'><th class='bg-info text-info-content'>" + kriteria[baris]['name'] + "</th>";
             for (let kolom = 0; kolom < batas; kolom++) {
                 // Hitung Nilai Martrix
                 Nilai = Hasil_array[baris][kolom];
@@ -177,7 +177,7 @@ $(document).ready(function () {
             Nilai_Matrix[i] = [i];
         }
         var tr = '';
-        tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info text-center bg-info text-info-content'><th class='bg-info text-info-content'>Kode</th>";
+        tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info  bg-info text-info-content'><th class='bg-info text-info-content'>Kode</th>";
         for (let baris = 0; baris < batas; baris++) {
             tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + kriteria[baris]['kode'] + "</th> ";
         }
@@ -185,7 +185,7 @@ $(document).ready(function () {
         tr += "</tr>";
         for (let baris = 0; baris < batas; baris++) {
 
-            tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx text-center bg-info text-info-content'><th class='bg-info text-info-content'>" + kriteria[baris]['name'] + "</th>";
+            tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx  bg-info text-info-content'><th class='bg-info text-info-content'>" + kriteria[baris]['name'] + "</th>";
             for (let kolom = 0; kolom < batas; kolom++) {
                 tr += "<td class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Hasil_array[baris][kolom] + "</td> ";
 
@@ -222,7 +222,7 @@ $(document).ready(function () {
         var Ratio_index = [0, 0, 0.58, 0.9, 1.12, 1.24, 1.32, 1.41, 1.46, 1.49, 1.51, 1.48, 1.56, 1.57, 1.59];
         var Array_order = GetTableKriteria().length;
         var tr = '';
-        tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info text-center bg-info text-info-content'><th class='bg-info text-info-content'>Ordo matriks</th>";
+        tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info  bg-info text-info-content'><th class='bg-info text-info-content'>Ordo matriks</th>";
         for (let baris = 0; baris < Ratio_index.length; baris++) {
             if (Ratio_index[baris] == Ratio['Ratio_index']) {
                 tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-white'>" + (baris + 1) + "</th> ";
@@ -233,7 +233,7 @@ $(document).ready(function () {
         }
         tr += "</tr>"
 
-        tr += "<x-tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info text-center bg-info text-info-content'><th class='bg-info text-info-content'>Ratio index</th>";
+        tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info  bg-info text-info-content'><th class='bg-info text-info-content'>Ratio index</th>";
         for (let baris = 0; baris < Ratio_index.length; baris++) {
             if (Ratio_index[baris] == Ratio['Ratio_index']) {
                 tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-white'>" + Ratio_index[baris] + "</th> ";

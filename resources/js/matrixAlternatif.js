@@ -1,6 +1,6 @@
 $(function () {
 
-    // $("table tr").addClass('!bg-gray-800 !text-content-info');
+    $("table tr").addClass('!bg-gray-800 !text-content-info');
 
     $.ajax({
         type: "GET",

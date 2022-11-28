@@ -32,7 +32,7 @@
 
 </head>
 
-<body class="overflow-x-hidden overflow-y-auto h-screen">
+<body class="overflow-x-hidden overflow-y-auto h-screen bg-base-200">
     <div class="animation bg-info opacity-90">
         <div class="flip-to-square ">
             <div></div>
@@ -88,13 +88,7 @@
     <script src="{{ asset('aset/js/animate.js') }}"></script>
     <!-- owl carousel -->
     <script src="{{ asset('aset/js/owl.carousel.js') }}"></script>
-    <!-- chart js -->
-    <script src="{{ asset('aset/js/Chart.min.js') }}"></script>
-    <script src="{{ asset('aset/js/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/backend-Matrix.js') }}"></script>
-    {{-- <script src="{{ asset('js/matrixAlternatif.js') }}"></script> --}}
-    <script src="{{ asset('js/chart.js') }}"></script>
 </body>
 
 </html>
