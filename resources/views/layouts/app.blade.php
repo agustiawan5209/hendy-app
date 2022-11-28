@@ -17,19 +17,20 @@
     <link rel="icon" href="{{ asset('aset/images/fevicon.png') }}" type="image/png" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="{{ asset('aset/css/perfect-scrollbar.css') }}" />
-    <!--[if lt IE 9]>
-      <script src="aset/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="aset/https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
+    {{-- <link rel="stylesheet" href="{{ asset('css/styindex.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/app.6c4cfe54.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!--Regular Datatables CSS-->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <!--Responsive Extension Datatables CSS-->
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script>
+        new WOW().init();
+    </script>
 
 </head>
 
@@ -50,7 +51,7 @@
     </div>
     @include('sweetalert::alert')
     <div id="Sidebar"
-        class=" hidden md:flex  md:w-1/4 lg:w-[15%] h-full items-start bg-info flex-wrap absolute left-0 shadow-sm shadow-white z-20 transition-all ease-in-out">
+        class="wow slideIn hidden md:flex  md:w-1/4 lg:w-[15%] h-full items-start bg-info flex-wrap absolute left-0 shadow-sm shadow-white z-20 transition-all ease-in-out">
         <div class=" flex md:hidden w-full justify-end">
             <button type="button" class="btn btn-info text-white btnSidebar">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -115,7 +116,6 @@
     <script src="{{ asset('aset/js/animate.js') }}"></script>
     <!-- owl carousel -->
     <script src="{{ asset('aset/js/owl.carousel.js') }}"></script>
-    <script src="{{ asset('build/assets/app.7679cdf9.js') }}"></script>
 </body>
 
 </html>

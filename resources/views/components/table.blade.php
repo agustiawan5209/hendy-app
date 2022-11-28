@@ -6,7 +6,7 @@
         <div class="w-full flex py-2 px-4">
             {{ $input }}
         </div>
-        <table id="example" class="example table table-normal w-full flex" width="100%">
+        <table id="example" class="example table table-normal w-full flex wow fadeInUp" width="100%">
             <thead>
                 <x-tr>
                     {{ $head }}

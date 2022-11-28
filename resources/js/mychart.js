@@ -45,8 +45,8 @@ if (chart.length > 0) {
                 labels: nama,
                 datasets: [{
                     label: 'Bobot Nilai',
-                    backgroundColor: 'rgb(34, 74, 255)',
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgb(34, 74, 255, 0.5)',
+                    borderColor: 'rgb(255, 99, 132, 0.5)',
                     data: ranking,
                 }]
             };
@@ -60,19 +60,6 @@ if (chart.length > 0) {
                         legend: {
                             position: 'top',
                         },
-                    },
-                    animation: {
-                        onComplete: () => {
-                            delayed = true;
-                        },
-                        delay: (context) => {
-                            let delay = 0;
-                            if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                                delay = context.dataIndex * 300 + context.datasetIndex * 100;
-                            }
-                            return delay;
-                        },
-
                     },
 
                 },

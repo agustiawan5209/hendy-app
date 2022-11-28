@@ -6,7 +6,7 @@ $(function () {
         type: "GET",
         url: "/NilaiBobotAlternatif/Matrix/alternatif",
         success: function (response) {
-            console.log(response);
+            // console.log(response);
         }
     });
 
@@ -101,7 +101,7 @@ $(function () {
 
         });
         request.done(function (msg) {
-            console.log(msg)
+            // console.log(msg)
         });
 
         request.fail(function (jqXHR, textStatus) {
@@ -261,7 +261,7 @@ $(function () {
                     table += `<tr>`;
                     table += `<td class='bg-info text-info-content border-info border'>${response[index].kode} - ${response[index].nama}</td>`
                     var parse = response[index].data.split('/');
-                    console.log(parse.length);
+                    // console.log(parse.length);
                     for (let ik = 0; ik < parse.length; ik++) {
                         table += `<td class='bg-info text-info-content border-info border'>${parse[ik]}</td>`
 
