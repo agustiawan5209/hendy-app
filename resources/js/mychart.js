@@ -12,20 +12,21 @@ function GetTableKriteria() {
     });
     return Kriteria
 }
+
 function colorize(opaque) {
     return (ctx) => {
-      const v = ctx.parsed.y;
-      const c = v < -50 ? '#D60000'
-        : v < 0 ? '#F46300'
-        : v < 50 ? '#0358B6'
-        : '#44DE28';
+        const v = ctx.parsed.y;
+        const c = v < -50 ? '#D60000' :
+            v < 0 ? '#F46300' :
+            v < 50 ? '#0358B6' :
+            '#44DE28';
 
-      return opaque ? c : Utils.transparentize(c, 1 - Math.abs(v / 150));
+        return opaque ? c : Utils.transparentize(c, 1 - Math.abs(v / 150));
     };
-  }
+}
 var url = '/NilaiBobotAlternatif/NilaiAKhir/Hasil';
 var chart = $("#myChart");
-if(chart.length > 0){
+if (chart.length > 0) {
     $.ajax({
         type: "GET",
         url: url,
@@ -36,7 +37,7 @@ if(chart.length > 0){
             let kriteria = GetTableKriteria();
             // console.log(response);
             // console.log(response.length);
-            response.forEach((element,index,array) => {
+            response.forEach((element, index, array) => {
                 nama.push(element.nama);
                 ranking.push(parseFloat(element.ranking));
             });
@@ -56,12 +57,25 @@ if(chart.length > 0){
                 options: {
                     responsive: true,
                     plugins: {
-                      legend: {
-                        position: 'top',
-                      },
+                        legend: {
+                            position: 'top',
+                        },
+                    },
+                    animation: {
+                        onComplete: () => {
+                            delayed = true;
+                        },
+                        delay: (context) => {
+                            let delay = 0;
+                            if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                                delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            }
+                            return delay;
+                        },
+
                     },
 
-                  },
+                },
             };
 
             new Chart(
@@ -72,4 +86,3 @@ if(chart.length > 0){
         }
     });
 }
-

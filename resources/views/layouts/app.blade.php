@@ -63,7 +63,7 @@
         <div class="flex w-full justify-center items-center flex-wrap md:mt-10">
             <div class="avatar online hidden md:block">
                 <div class="w-24 rounded-full">
-                    <img src="https://placeimg.com/192/192/people" />
+                    <img src="{{ asset('img/ben-sweet-2LowviVHZ-E-unsplash.jpg') }}" />
                 </div>
             </div>
             @include('layouts.sidebar')
@@ -89,7 +89,7 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" />
+                            <img src="{{ asset('img/ben-sweet-2LowviVHZ-E-unsplash.jpg') }}" />
                         </div>
                     </label>
                     <ul tabindex="0"
