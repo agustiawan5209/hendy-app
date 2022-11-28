@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sty_info.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script>
