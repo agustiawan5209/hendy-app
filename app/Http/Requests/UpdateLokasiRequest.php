@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAlternatifRequest extends FormRequest
+class UpdateLokasiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateAlternatifRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,12 +24,7 @@ class UpdateAlternatifRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode'=> ['required'],
-            'nama'=> ['required', 'unique:alternatifs,nama'],
-            'gambar'=> ['image', 'nullable'],
-            'lokasi'=> ['required', 'string'],
-            'pemilik'=> ['required', 'string'],
-            'deskripsi'=> ['required', 'string'],
+            //
         ];
     }
 }

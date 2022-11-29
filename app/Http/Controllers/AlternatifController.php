@@ -6,6 +6,7 @@ use App\Models\Alternatif;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAlternatifRequest;
 use App\Http\Requests\UpdateAlternatifRequest;
+use Illuminate\Http\Request;
 
 class AlternatifController extends Controller
 {
@@ -40,10 +41,12 @@ class AlternatifController extends Controller
      */
     public function store(StoreAlternatifRequest $request)
     {
-        Alternatif::create([
+       $alternatif = Alternatif::create([
             'kode'=> $request->kode,
             'nama'=> $request->nama,
         ]);
+        $lokasi = new LokasiController();
+        $lokasi->store($request, $alternatif->id);
         Alert::success('Info', 'Berhasil Di Tambah');
         return redirect()->route('Alternatif.index');
     }
@@ -86,6 +89,8 @@ class AlternatifController extends Controller
             'kode'=> $request->kode,
             'nama'=> $request->nama,
         ]);
+        $lokasi = new LokasiController();
+        $lokasi->update($request, $id);
         Alert::success('Info', 'Berhasil Di Update');
         return redirect()->route('Alternatif.index');
     }
