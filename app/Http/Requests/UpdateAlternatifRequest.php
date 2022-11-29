@@ -25,7 +25,7 @@ class UpdateAlternatifRequest extends FormRequest
     {
         return [
             'kode'=> ['required'],
-            'nama'=> ['required', 'unique:alternatifs,nama'],
+            'nama'=> ['required'],
             'gambar'=> ['image', 'nullable'],
             'lokasi'=> ['required', 'string'],
             'pemilik'=> ['required', 'string'],

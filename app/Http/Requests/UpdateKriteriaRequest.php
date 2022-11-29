@@ -24,8 +24,8 @@ class UpdateKriteriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode'=> ['required', 'unique:kriterias,kode'],
-            'name'=> ['required', 'unique:kriterias,name,'],
+            'kode'=> ['required'],
+            'name'=> ['required'],
         ];
     }
 }

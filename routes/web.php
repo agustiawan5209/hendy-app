@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NilaiPrefensiController;
 use App\Http\Controllers\NilaiBobotKriteriaController;
 use App\Http\Controllers\NilaiBobotAlternatifController;
@@ -19,9 +20,7 @@ use App\Http\Controllers\PerhitunganController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('Home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

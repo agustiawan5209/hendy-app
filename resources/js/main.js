@@ -27,4 +27,5 @@ $(function () {
             $("#Sidebar").toggleClass('hidden', "w-1/3");
         }
     })
+
 });
