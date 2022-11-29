@@ -6,6 +6,8 @@ use App\Models\Alternatif;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAlternatifRequest;
 use App\Http\Requests\UpdateAlternatifRequest;
+use App\Models\NilaiBobotAlternatif;
+use App\Models\NilaiMatrix;
 use Illuminate\Http\Request;
 
 class AlternatifController extends Controller
@@ -104,6 +106,8 @@ class AlternatifController extends Controller
     public function destroy(Alternatif $alternatif, $id)
     {
         $data = $alternatif->find($id);
+        NilaiBobotAlternatif::where('alternatif1', $data->kode)->orWhere('alternatif2', $data->kode)->delete();
+        NilaiMatrix::where('kode', $data->kode)->delete();
         $data->delete();
     }
 }

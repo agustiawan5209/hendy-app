@@ -28,9 +28,9 @@ class NilaiBobotAlternatifController extends Controller
      */
     public function index(Request $request)
     {
-        $alternatif = Alternatif::all()->toArray();
-        $prefensi = NilaiPrefensi::all();
-        $kriteria = Kriteria::all()->toArray();
+        $alternatif = Alternatif::orderBy('kode', 'asc')->get()->toArray();
+        $prefensi = NilaiPrefensi::orderBy('kode', 'asc')->get();
+        $kriteria = Kriteria::orderBy('kode', 'asc')->get()->toArray();
         // dd($request->kode);
         return view('admin.nilaibobotalternatif.index', [
             'alternatif' => $alternatif,
@@ -222,7 +222,7 @@ class NilaiBobotAlternatifController extends Controller
         // $kode_kriteria = $this->GetKriteria();
         $alternatif = Alternatif::all()->toArray();
         $NilaiAlternatif = NilaiBobotAlternatif::all()->toArray();
-        $Cari_kd = NilaiBobotAlternatif::where('kode', $kode)->get();
+        $Cari_kd = NilaiBobotAlternatif::where('kriteria_id', $kode)->get();
         // dd($Cari_kd);
         $this->store($kode);
         $batas = count($alternatif);

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
+use App\Models\NilaiBobotAlternatif;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreKriteriaRequest;
 use App\Http\Requests\UpdateKriteriaRequest;
 use App\Http\Controllers\NilaiBobotKriteriaController;
+use App\Models\NilaiBobotKriteria;
 
 class KriteriaController extends Controller
 {
@@ -102,6 +104,8 @@ class KriteriaController extends Controller
     public function destroy(Kriteria $kriteria,$id)
     {
         $data = $kriteria->find($id);
+        NilaiBobotAlternatif::where('kriteria_id', $data->kode)->delete();
+        NilaiBobotKriteria::where('kriteria1', $data->kode)->orWhere('kriteria2', $data->kode)->delete();
         $data->delete();
     }
 }

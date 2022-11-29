@@ -20,9 +20,9 @@ class NilaiBobotKriteriaController extends Controller
     public function index()
     {
         $bobot = NilaiBobotKriteria::with(['datakriteria1', 'datakriteria2'])->get();
-        $kriteria = Kriteria::with(['kriteria1', 'kriteria2'])->get()->toArray();
+        $kriteria = Kriteria::with(['kriteria1', 'kriteria2'])->orderBy('kode', 'asc')->get()->toArray();
         // dd($kriteria);
-        $prefensi = NilaiPrefensi::all();
+        $prefensi = NilaiPrefensi::orderBy('kode', 'asc')->get();
         return view('admin.nilaibobotkriteria.index', [
             'bobot' => $bobot,
             'kriteria' => $kriteria,
@@ -285,13 +285,14 @@ class NilaiBobotKriteriaController extends Controller
             $Nilai_total[$i] = $konsistensi['Hasil_CM'][$i] * $Prioritas[$i];
         }
         //
-        $Matrix['prioritas'] = $Prioritas ;
-        $Matrix['RT_CM'] = array_sum($konsistensi['Hasil_CM']) / $batas  ;
+        $Matrix['prioritas'] = $Prioritas;
+        $Matrix['RT_CM'] = array_sum($konsistensi['Hasil_CM']) / $batas;
         // $Matrix['CI'] = $this->FormatNumber(($Matrix['RT_CM'] / $batas) / ($batas - 1));
-        $Matrix['CI'] =($Matrix['RT_CM'] / $batas) / ($batas - 1);
-        $Matrix['IR'] = $this->FormatNumber( $hasil_index/ $Matrix['CI']);
+        $Matrix['CI'] = $this->FormatNumber(($Matrix['RT_CM'] / $batas) / ($batas - 1));
+        $Matrix['IR'] = $this->FormatNumber($hasil_index / $Matrix['CI']);
         $Matrix['Ratio_index'] = $hasil_index;
-        $Matrix['CR'] = $this->FormatNumber($Matrix['CI'] / $hasil_index );
+        $Matrix['CR'] =  $hasil_index == 0 ? 1 : $this->FormatNumber($Matrix['CI'] / $hasil_index);
+        // dd($Matrix);
         $Matrix['Hasil'] = $Matrix['CI'] < $Matrix['IR'] || $Matrix['CR'] < $hasil_index ? 'Diterima' : 'Tidak Diterima';
         return $Matrix;
     }

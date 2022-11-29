@@ -56,7 +56,7 @@
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg></span>
-        <ul class=" absolute left-[80%] shadow-lg text-black transition-all bg-info ">
+        <ul class=" absolute left-[80%] shadow-lg transition-all bg-info z-10">
             <li class="border-b border-white">
                 <x-nav-link class="{{ request()->routeIs('NilaiBobotKriteria.index') ? 'active' : '' }}"
                     href="{{ route('NilaiBobotKriteria.index') }}">Nilai Bobot Kriteria</x-nav-link>

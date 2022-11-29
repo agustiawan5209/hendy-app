@@ -23,7 +23,11 @@
                             $NilaiBobot = \App\Models\NilaiBobotKriteria::where('kriteria1', $kriteria[$i]['kode'])
                                 ->where('kriteria2', $kriteria[$b]['kode'])
                                 ->first();
-                            $NB = number_format($NilaiBobot->nilai_banding);
+                                $NilaiBobot2 = \App\Models\NilaiBobotKriteria::where('kriteria2', $kriteria[$i]['kode'])
+                                ->where('kriteria1', $kriteria[$b]['kode'])
+                                ->first();
+                                $NB = round($NilaiBobot->nilai_banding / $NilaiBobot2->nilai_banding, 2);
+
                         } else {
                             $NilaiBobot = \App\Models\NilaiBobotKriteria::where('kriteria1', $kriteria[$i]['kode'])
                                 ->where('kriteria2', $kriteria[$b]['kode'])
@@ -31,7 +35,7 @@
                             $NilaiBobot2 = \App\Models\NilaiBobotKriteria::where('kriteria2', $kriteria[$i]['kode'])
                                 ->where('kriteria1', $kriteria[$b]['kode'])
                                 ->first();
-                            $NB = number_format($NilaiBobot->nilai_banding / $NilaiBobot2->nilai_banding, 2);
+                            $NB = round($NilaiBobot->nilai_banding / $NilaiBobot2->nilai_banding, 2);
                             // $hasil_array[$b] = $NB;
 
                             // $NB = $kriteria[$i]['kode'] . ':'. $kriteria[$b]['kode'] . " (". $NilaiBobot->nilai_banding ." / ". $NilaiBobot2->nilai_banding .")";
