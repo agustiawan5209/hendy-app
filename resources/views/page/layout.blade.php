@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="{{ asset('css/sty_info.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link rel="stylesheet" href="{{ asset('build/assets/app.08b0e096.css') }}">
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script>
@@ -71,7 +71,7 @@
     <br>
 
 
-    <script src="{{ asset('build/assets/app.7679cdf9.js') }}"></script>
+    <script defer src="{{ asset('build/assets/app.ccef2707.js') }}"></script>
 
 </body>
 
