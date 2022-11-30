@@ -83,28 +83,7 @@
                 </tr>
 
                 <tbody id="table_banding_alternatif">
-                    @for ($i = 0; $i < $batas; $i++)
-                        <tr>
-                            <x-td class="bg-info text-info-content">{{ $alternatif[$i]['kode'] }}</x-td>
-                            @for ($b = 0; $b < $batas; $b++)
-                                <x-td class="bg-info text-info-content">
-                                    @php
-                                        $NB;
-                                        if ($i == $b) {
-                                            $NB = 1;
-                                        } else {
-                                            if ($i < $b) {
-                                                $NB = '0';
-                                            } else {
-                                                $NB = '2';
-                                            }
-                                        }
-                                    @endphp
-                                    {{ $NB }}
-                                </x-td>
-                            @endfor
-                        </tr>
-                    @endfor
+
                 </tbody>
             </table>
         </div>

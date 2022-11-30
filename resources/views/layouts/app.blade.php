@@ -17,7 +17,7 @@
     <link rel="icon" href="{{ asset('aset/images/fevicon.png') }}" type="image/png" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="{{ asset('aset/css/perfect-scrollbar.css') }}" />
-    {{-- <link rel="stylesheet" href="{{ asset('css/styindex.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -35,7 +35,7 @@
 </head>
 
 <body class="overflow-x-hidden overflow-y-auto h-screen bg-base-200">
-    <div class="animation bg-info opacity-90">
+    <div class="animation-loading bg-info opacity-90">
         <div class="flip-to-square ">
             <div></div>
             <div></div>
