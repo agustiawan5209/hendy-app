@@ -74,8 +74,6 @@
     <x-table>
         <x-slot name="input">
             <label for="my-modal" class="btn">Tambah</label>
-
-
         </x-slot>
         <x-slot name="head">
             <x-th data-priority="1">No.</x-th>

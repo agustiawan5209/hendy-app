@@ -14,5 +14,13 @@ $(function () {
             $("#Sidebar").toggleClass('hidden', "w-1/3");
         }
     })
+    // how to make matrix foreach
+    var matrix = [];
+    for (var i = 0; i < 5; i++) {
+        matrix[i] = [];
+        for (var j = 0; j < 5; j++) {
+            matrix[i][j] = 0;
+        }
+    }
 
 });
