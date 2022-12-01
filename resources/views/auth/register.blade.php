@@ -1,4 +1,21 @@
-<x-guest-layout>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login -- Page</title>
+    <link rel="stylesheet" href="{{ asset('build/assets/app.6fd1fe47.css') }}">
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script>
+        new WOW().init();
+    </script>
+</head>
+
+<body class="overflow-hidden h-screen">
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -61,4 +78,6 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</body>
+
+</html>

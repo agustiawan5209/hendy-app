@@ -1,5 +1,4 @@
-@extends('page.layout')
-@section('content')
+<x-guest-layout>
     <div class="flex flex-col justify-center items-center px-5 py-3 relative">
         <div class="grid grid-cols-3 md:grid-cols-7">
             @foreach ($kriteria as $item)
@@ -22,5 +21,4 @@
             </div>
         </div>
     </div>
-
-@endsection
+</x-guest-layout>

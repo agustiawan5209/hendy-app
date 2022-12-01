@@ -1,5 +1,4 @@
-@extends('page.layout')
-@section('content')
+<x-guest-layout>
     <div class="container mx-auto px-4 py-2" style="background-color:whitesmoke">
         <div class="grid grid-cols-2 gap-4 box-border">
             <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1s">
@@ -22,7 +21,8 @@
                     </article>
                 </div>
             </div>
-            <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1s">
+            <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s"
+                data-wow-duration="1s">
                 <div class="card-body">
                     <h5 class="prose px-3 py-1 text-lg font-semibold">2. Peralatan</h5>
                     <article class="prose text-justify text-base">Barang habis jadi yang juga perlu dipersiapkan adalah
@@ -46,31 +46,47 @@
                         rumah tanpa perlu membelinya lagi.</article>
                 </div>
             </div>
-            <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1s">
-                <div class="card-body"><h5 class="prose px-3 py-1 text-lg font-semibold">3. Gerobak Atau Booth</h5>
-                    <article class="prose text-justify text-base">Jika usaha penjualan minuman boba akan dibuka di pinggir jalan, maka
-                        dibutuhkan gerobak atau booth sebagai tempat jualannya. Booth minuman boba dapat dibeli dengan harga yang murah
-                        melalui online shop, yaitu sekitar 590 ribu rupiah.</article></div>
+            <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s"
+                data-wow-duration="1s">
+                <div class="card-body">
+                    <h5 class="prose px-3 py-1 text-lg font-semibold">3. Gerobak Atau Booth</h5>
+                    <article class="prose text-justify text-base">Jika usaha penjualan minuman boba akan dibuka di pinggir
+                        jalan, maka
+                        dibutuhkan gerobak atau booth sebagai tempat jualannya. Booth minuman boba dapat dibeli dengan harga
+                        yang murah
+                        melalui online shop, yaitu sekitar 590 ribu rupiah.</article>
+                </div>
             </div>
-            <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1s">
+            <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s"
+                data-wow-duration="1s">
                 <div class="card-body">
                     <h5 class="prose px-3 py-1 text-lg font-semibold">4. Sewa Tempat</h5>
-                    <article class="prose text-justify text-base">Jika berencana membuka usaha minuman boba di tempat yang tetap, maka
-                        disarankan untuk menyewa tempat jualan. Harga sewa tempat sendiri bervariasi, tergantung lokasi yang dipilih.
+                    <article class="prose text-justify text-base">Jika berencana membuka usaha minuman boba di tempat yang
+                        tetap, maka
+                        disarankan untuk menyewa tempat jualan. Harga sewa tempat sendiri bervariasi, tergantung lokasi yang
+                        dipilih.
                         Namun pada umumnya, penyewaan tempat jualan minuman boba berkisar Rp 1 jutaan per bulan.</article>
                 </div>
             </div>
-            <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1s">
+            <div class="card !px-2 !py-2 bg-info text-info-content wow fadeInUp" data-wow-delay="0.7s"
+                data-wow-duration="1s">
                 <div class="card-body">
                     <h5 class="prose px-3 py-1 text-lg font-semibold">5. Gaji Karyawan</h5>
-                    <article class="prose text-justify text-base">Beberapa pendiri bisnis mungkin tidak bisa menjalankan bisnisnya
-                        sendiri karena alasan tertentu. Oleh karena itu, ada kalanya diperlukan seorang karyawan untuk menjaga booth
-                        atau tempat penjualan minuman boba. Biaya yang perlu disiapkan untuk menggaji seorang pegawai sebenarnya bisa
-                        bervariasi sesuai dengan kebijakan yang berlaku. Namun pada umumnya, karyawan untuk penjualan minuman boba per
+                    <article class="prose text-justify text-base">Beberapa pendiri bisnis mungkin tidak bisa menjalankan
+                        bisnisnya
+                        sendiri karena alasan tertentu. Oleh karena itu, ada kalanya diperlukan seorang karyawan untuk
+                        menjaga booth
+                        atau tempat penjualan minuman boba. Biaya yang perlu disiapkan untuk menggaji seorang pegawai
+                        sebenarnya bisa
+                        bervariasi sesuai dengan kebijakan yang berlaku. Namun pada umumnya, karyawan untuk penjualan
+                        minuman boba per
                         bulannya digaji sekitar Rp.1.200.000.
-                        Itulah tadi paparan mengenai modal usaha minuman boba. Menurut paparan tersebut, dapat disimpulkan bahwa total
-                        modal yang dibutuhkan untuk membuka usaha minuman boba adalah sekitar Rp4.000.000. Sebenarnya ada banyak sekali
-                        pilihan dalam membuka suatu usaha bisnis. Namun, lagi-lagi setiap usaha memiliki tantangan-tantangannya sendiri
+                        Itulah tadi paparan mengenai modal usaha minuman boba. Menurut paparan tersebut, dapat disimpulkan
+                        bahwa total
+                        modal yang dibutuhkan untuk membuka usaha minuman boba adalah sekitar Rp4.000.000. Sebenarnya ada
+                        banyak sekali
+                        pilihan dalam membuka suatu usaha bisnis. Namun, lagi-lagi setiap usaha memiliki
+                        tantangan-tantangannya sendiri
                         yang tentunya tidak mudah. Jadi, tetap semangat dan jangan menyerah.</article>
                 </div>
             </div>
@@ -79,4 +95,4 @@
 
 
     </div>
-@endsection
+</x-guest-layout>
