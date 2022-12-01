@@ -103,7 +103,12 @@
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST" class="w-full">
+                                @csrf
+                                <button type="submit" class="w-full">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
