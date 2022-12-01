@@ -19,15 +19,25 @@ if (chart.length > 0) {
             const data = {
                 labels: nama,
                 datasets: [{
-                    label: 'Bobot Nilai',
-                    backgroundColor: 'rgb(34, 74, 255, 0.5)',
-                    borderColor: 'rgb(255, 99, 132, 0.5)',
-                    data: ranking,
-                }]
+                        label: 'Grafik Bar Bobot Nilai',
+                        backgroundColor: 'rgb(51, 91, 138)',
+                        borderColor: 'rgb(255, 99, 132, 0.5)',
+                        data: ranking,
+                        stack: 'combined',
+                        type: 'bar'
+                    },
+                    {
+                        label: 'Grafik Line Bobot Nilai',
+                        backgroundColor: 'rgb(76, 241, 11)',
+                        borderColor: 'rgb(255, 99, 132, 0.5)',
+                        data: ranking,
+                        stack: 'combined'
+                    }
+                ]
             };
 
             const config = {
-                type: 'bar',
+                type: 'line',
                 data: data,
                 options: {
                     responsive: true,
@@ -36,6 +46,11 @@ if (chart.length > 0) {
                             position: 'top',
                         },
                     },
+                    scales: {
+                        y: {
+                            stacked: true
+                        }
+                    }
 
                 },
             };

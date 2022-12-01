@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('build/assets/app.6fd1fe47.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
     <!--Regular Datatables CSS-->
@@ -123,7 +123,6 @@
     <script src="{{ asset('aset/js/animate.js') }}"></script>
     <!-- owl carousel -->
     <script src="{{ asset('aset/js/owl.carousel.js') }}"></script>
-    <script src="{{ asset('build/assets/app.98245433.js') }}"></script>
 
 </body>
 

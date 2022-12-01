@@ -7,12 +7,26 @@
     <title>SKRIPSI</title>
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/app.6fd1fe47.css') }}">
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
 </head>
 
 <body class="overflow-y-auto overflow-x-hidden">
+    <div class="animation-loading bg-info opacity-90">
+        <div class="flip-to-square ">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="md:w-0 lg:w-0 w-0 -translate-x-64"></div>
+        </div>
+    </div>
     <div class="navbar bg-info z-[50]">
         <div class="navbar-start">
             <div class="dropdown">
@@ -50,7 +64,7 @@
             <a href="{{ route('login') }}" class="btn btn-primary text-white">Masuk</a>
         </div>
     </div>
-    <main class="absolute w-full ">
+    <main class="absolute w-full h-max max-h-max ">
        {{$slot}}
         <footer class="footer p-10 bg-accent text-neutral-content ">
             <div>
@@ -86,6 +100,8 @@
                 </div>
             </div>
         </footer>
+        <div class="border-svg-2"></div>
+
     </main>
     <br>
     <script src="{{ asset('js/wow.min.js') }}"></script>

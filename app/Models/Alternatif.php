@@ -17,4 +17,7 @@ class Alternatif extends Model
     public function subalternatif(){
         return $this->hasMany(SubAlternatif::class, 'alternatif_id','id');
     }
+    public function nilaiMatrix(){
+        return $this->hasOne(NilaiMatrix::class, 'kode','kode');
+    }
 }

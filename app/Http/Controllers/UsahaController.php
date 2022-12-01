@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Usaha;
 use App\Models\Kriteria;
+use App\Models\Alternatif;
+use App\Models\NilaiMatrix;
+use Illuminate\Http\Request;
+use App\Models\SubAlternatif;
 use App\Http\Requests\StoreUsahaRequest;
 use App\Http\Requests\UpdateUsahaRequest;
 
@@ -17,8 +21,8 @@ class UsahaController extends Controller
     public function index()
     {
         $kriteria = Kriteria::all();
-        return view('page.info-usaha' ,[
-            'kriteria'=> $kriteria,
+        return view('page.info-usaha', [
+            'kriteria' => $kriteria,
         ]);
     }
 
@@ -27,9 +31,39 @@ class UsahaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function GetAlternatif(Request $request)
     {
-        //
+        $dataCari = $request->kode;
+        // dd($dataCari);
+        $alternatif = NilaiMatrix::all();
+        for ($i = 0; $i < count($dataCari); $i++) {
+            if ($dataCari[$i] != null) {
+                $im = explode(',', $dataCari[$i]);
+                // $alternatif = Alternatif::with(['subalternatif', 'lokasi'])->whereHas('subalternatif', function ($query) use ($im) {
+                //     return $query->where('kriteria_kode', '=', $im[0])->where('sub_kriteria', '=', $im[1]);
+                // })->whereHas('nilaiMatrix', function($query){
+                //     return $query->orderBy('ranking', 'asc');
+                // })->get();
+                $alternatif=   NilaiMatrix::whereHas('alternatif', function($query) use($im){
+                    return $query->with(['subalternatif', 'lokasi'])->whereHas('subalternatif', function ($query) use ($im) {
+                        return $query->where('kriteria_kode', '=', $im[0])->where('sub_kriteria', '=', $im[1]);
+                    });
+                })->orderBy('ranking', 'desc')->get();
+            }
+        }
+        // dd($alternatif);
+        $kriteria = Kriteria::all();
+        return view('page.info-usaha', [
+            'kriteria' => $kriteria,
+            'NilaiM' => $alternatif,
+        ]);
+    }
+    public function create(Request $request)
+    {
+        $kriteria = Kriteria::all();
+        return view('page.info-usaha', [
+            'kriteria' => $kriteria,
+        ]);
     }
 
     /**
