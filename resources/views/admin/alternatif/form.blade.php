@@ -43,9 +43,8 @@
                                 <span class="label-nama">Gambar</span>
                             </label>
                             <label class="input-group input-group-lg ">
-                                <span>gambar</span>
                                 <input type="file" placeholder="....." name="gambar"
-                                    class="input input-bordered w-1/2"
+                                    class="file-input  file-input-bordered w-full"
                                     value="{{ $edit == false ? '' : $alternatif->lokasi->gambar }}" />
                             </label>
                         </div>
@@ -89,13 +88,15 @@
                                 <label class="input-group input-group-sm input-group-vertical">
                                     <span>{{ $item->name }}</span>
                                     <select name="kodeSub[]" id="" class="select select-bordered">
-                                        @foreach ($subalternatif as $suba)
-                                            @if ($item->kode == $suba->kriteria_kode)
-                                                <option value="" selected>{{$suba->sub_kriteria}}</option>
-                                            @else
-                                                <option value="" selected>--pilih--</option>
-                                            @endif
-                                        @endforeach
+                                        @if ($edit)
+                                            @foreach ($subalternatif as $suba)
+                                                @if ($item->kode == $suba->kriteria_kode)
+                                                    <option value="{{ $suba->nama }}" selected>{{ $suba->sub_kriteria }}</option>
+
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        <option value="">-----</option>
                                         @foreach ($item->subkriteria as $sub)
                                             <option value="{{ $item->kode }},{{ $sub->nama }}">
                                                 {{ $sub->nama }}</option>

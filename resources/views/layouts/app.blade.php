@@ -71,7 +71,7 @@
             @include('layouts.sidebar')
         </div>
     </div>
-    <main id="sm:content"
+    <main  id="content"
         class=" md:ml-[25%] lg:ml-[15%] overflow-x-hidden overflow-y-auto h-screen transition-all ease-in-out">
         <div class="navbar bg-info">
             <div class="flex-1">
@@ -97,9 +97,8 @@
                     <ul tabindex="0"
                         class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                         <li>
-                            <a class="justify-between">
+                            <a class="justify-between" href="{{ route('profile.index') }}">
                                 Profile
-                                <span class="badge">New</span>
                             </a>
                         </li>
                         <li><a>Settings</a></li>

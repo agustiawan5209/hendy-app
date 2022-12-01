@@ -42,6 +42,7 @@ class AlternatifController extends Controller
             'edit' => false,
             'kode' => $this->createCode(),
             'kriteria' => $tbKriteria,
+            'kriteria' => $tbKriteria,
         ]);
     }
 
@@ -53,20 +54,21 @@ class AlternatifController extends Controller
      */
     public function store(StoreAlternatifRequest $request)
     {
+        dd($request->all());
         $reqKodeSub = $request->kodeSub;
         $alternatif = Alternatif::create([
             'kode' => $request->kode,
             'nama' => $request->nama,
         ]);
-        for ($i=0; $i < count($reqKodeSub); $i++) {
-           if($reqKodeSub[$i] !=null){
-            $im = explode(',', $reqKodeSub[$i]);
-            $sub =  SubAlternatif::create([
-                'alternatif_id' => $alternatif->id,
-                'kriteria_kode' => $im[0],
-                'sub_kriteria' => $im[1],
-            ]);
-           }
+        for ($i = 0; $i < count($reqKodeSub); $i++) {
+            if ($reqKodeSub[$i] != null) {
+                $im = explode(',', $reqKodeSub[$i]);
+                $sub =  SubAlternatif::create([
+                    'alternatif_id' => $alternatif->id,
+                    'kriteria_kode' => $im[0],
+                    'sub_kriteria' => $im[1],
+                ]);
+            }
         }
         $lokasi = new LokasiController();
         $lokasi->store($request, $alternatif->id);
@@ -85,7 +87,7 @@ class AlternatifController extends Controller
     public function show(Alternatif $alternatif, $id)
     {
         return view('admin.alternatif.show', [
-            'alternatif'=> $alternatif->find($id),
+            'alternatif' => $alternatif->find($id),
         ]);
     }
 
@@ -103,7 +105,7 @@ class AlternatifController extends Controller
         return view('admin.alternatif.form', [
             'alternatif' => $data,
             'edit' => true,
-            'subalternatif' =>$subKriteria,
+            'subalternatif' => $subKriteria,
             'kriteria' => $tbKriteria,
         ]);
     }
@@ -117,10 +119,30 @@ class AlternatifController extends Controller
      */
     public function update(UpdateAlternatifRequest $request, Alternatif $alternatif, $id)
     {
+        $reqKodeSub = $request->kodeSub;
         $alternatif->find($id)->update([
             'kode' => $request->kode,
             'nama' => $request->nama,
         ]);
+        for ($i = 0; $i < count($reqKodeSub); $i++) {
+            if ($reqKodeSub[$i] != null) {
+                $im = explode(',', $reqKodeSub[$i]);
+                $subalter = SubAlternatif::where('alternatif_id', $id)->where('sub_kriteria', '=', $im[1])->get();
+                if($subalter->count() > 0){
+                    $sub =  SubAlternatif::where('alternatif_id', $id)->where('sub_kriteria', '=', $im[1])->update([
+                        'kriteria_kode' => $im[0],
+                        'sub_kriteria' => $im[1],
+                    ]);
+                }else{
+                    $sub =  SubAlternatif::create([
+                        'alternatif_id' => $id,
+                        'kriteria_kode' => $im[0],
+                        'sub_kriteria' => $im[1],
+                    ]);
+                }
+            }
+        }
+
         $lokasi = new LokasiController();
         $lokasi->update($request, $id);
         $nilai = new NilaiBobotAlternatifController();
@@ -139,6 +161,7 @@ class AlternatifController extends Controller
     {
         $data = $alternatif->find($id);
         NilaiBobotAlternatif::where('alternatif1', $data->kode)->orWhere('alternatif2', $data->kode)->delete();
+        SubKriteria::where('alternatif_id', $id)->delete();
         NilaiMatrix::where('kode', $data->kode)->delete();
         $data->delete();
     }

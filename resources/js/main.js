@@ -29,5 +29,8 @@ $(function () {
 
     });
 
+    // how jqeury keyup events inputs
+
+
 
 });
