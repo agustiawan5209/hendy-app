@@ -1,6 +1,6 @@
 @extends('page.layout')
 @section('content')
-    <div class="hero h-screen bg-cover relative" style="background-image: url('img/3.png'); background-attachment:fixed">
+    <div class="hero max-h-screen bg-cover relative" style="background-image: url('img/3.png');">
         <div class="hero-overlay bg-opacity-60"></div>
         <div
             class="hero-content  z-10 w-full !justify-around lg:flex-row-reverse text-left text-neutral-content relative box-border">

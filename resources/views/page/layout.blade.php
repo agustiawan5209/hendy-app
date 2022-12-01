@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-    <link rel="stylesheet" href="{{ asset('build/assets/app.08b0e096.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.6fd1fe47.css') }}">
    @vite(['resources/js/app.js','resources/css/app.css'])
 
     <script src="{{ asset('js/main.js') }}"></script>
@@ -72,8 +72,7 @@
     </main>
     <br>
 
-
-    <script defer src="{{ asset('build/assets/app.ccef2707.js') }}"></script>
+    <script src="{{ asset('build/assets/app.98245433.js') }}"></script>
 
 </body>
 

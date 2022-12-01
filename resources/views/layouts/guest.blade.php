@@ -13,7 +13,8 @@
 
     <!-- Scripts -->
 
-   @vite(['resources/js/app.js','resources/css/app.css'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app.6fd1fe47.css') }}">
+
 
 
     {{-- Animasi --}}
@@ -30,7 +31,8 @@
     <div class="font-sans text-gray-900 antialiased overflow-x-hidden">
         {{ $slot }}
     </div>
-    <script defer src="{{ asset('build/assets/app.ccef2707.js') }}"></script>
+    <script src="{{ asset('build/assets/app.98245433.js') }}"></script>
+
 
 </body>
 
