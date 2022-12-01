@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usaha;
+use App\Models\Kriteria;
 use App\Http\Requests\StoreUsahaRequest;
 use App\Http\Requests\UpdateUsahaRequest;
 
@@ -15,7 +16,10 @@ class UsahaController extends Controller
      */
     public function index()
     {
-        return view('page.info-usaha');
+        $kriteria = Kriteria::all();
+        return view('page.info-usaha' ,[
+            'kriteria'=> $kriteria,
+        ]);
     }
 
     /**

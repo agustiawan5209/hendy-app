@@ -10,10 +10,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $NilaiMatrix = NilaiMatrix::all();
+        $NilaiMatrix = NilaiMatrix::orderBy('ranking', 'asc')->paginate(4);
         $alternatif = Alternatif::all();
         return view('welcome', [
             'alternatif' => $alternatif,
+            'nilaiMatrix' => $NilaiMatrix,
         ]);
     }
 }

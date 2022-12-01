@@ -13,7 +13,7 @@
 
     <!-- Scripts -->
 
-    <link rel="stylesheet" href="{{ asset('build/assets/app.08b0e096.css') }}">
+   @vite(['resources/js/app.js','resources/css/app.css'])
 
 
     {{-- Animasi --}}

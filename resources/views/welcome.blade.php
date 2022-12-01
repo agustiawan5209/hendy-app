@@ -39,26 +39,27 @@
                     class="text-info text-3xl wow slideInDown">4</span> <span class="titlestrategis wow slideInRight">Lokasi Strategis</span></div>
         </div>
         <div class="m-0 p-0 grid grid-cols-4 gap-0 ">
-            @for ($i = 0; $i < 4; $i++)
-                <div class=" bg-base-100 border-2 border-gray-800 shadow-sm image-full rounded-none hover:bg-blue-600 hover:text-white transition-all ease-in-out ">
-                    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-                    <div class="card-body rounded-none">
-                        <h2 class="card-title">Shoes!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Buy Now</button>
-                        </div>
+            @foreach ($nilaiMatrix as $item)
+            <div class=" bg-base-100 border-2 border-gray-800 shadow-sm image-full rounded-none hover:bg-blue-600 hover:text-white transition-all ease-in-out ">
+                <figure><img src="{{ asset('storage/lokasi/'. $item->alternatif->lokasi->gambar) }}" alt="Shoes" /></figure>
+                <div class="card-body rounded-none">
+                    <h2 class="card-title">{{ $item->nama }}</h2>
+                    <p>{{ $item->alternatif->lokasi->deskripsi }}</p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-info text-white">Detail</button>
                     </div>
                 </div>
-            @endfor
+            </div>
+            @endforeach
         </div>
     </div>
     {{-- Card --}}
-    <div class="w-full  py-3 md:py-10 relative box-border">
+    <div class="grid h-20 card bg-accent rounded-none place-items-center"></div>
+    <div class="w-full  py-3 md:pb-10 relative box-border">
 
-        <div class="flex flex-col md:flex-row flex-1 md:gap-8 z-20 px-3 md:px-11">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 z-20 px-3 md:px-11">
             @foreach ($alternatif as $item)
-                <div class="card w-96 bg-white shadow-lg border border-gray-700">
+                <div class="card bg-white shadow-lg border border-gray-700">
                     <figure class="h-64"><img src="{{ asset('storage/lokasi/' . $item->lokasi->gambar) }}"
                             class="w-full bg-cover" alt="car!" /></figure>
                     <div class="card-body py-2">
