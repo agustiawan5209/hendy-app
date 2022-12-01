@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('sub_alternatifs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('alternatif_id')->constrained('alternatifs')->onDelete('cascade');
+            $table->string('sub_kriteria');
             $table->timestamps();
         });
     }
