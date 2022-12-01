@@ -52,7 +52,7 @@
     </div>
     <main class="absolute w-full ">
        {{$slot}}
-        <footer class="footer p-10 bg-accent text-neutral-content absolute bottom-0 pt-10">
+        <footer class="footer p-10 bg-accent text-neutral-content ">
             <div>
                 <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                     fill-rule="evenodd" clip-rule="evenodd" class="fill-current">
