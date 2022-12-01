@@ -5,19 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKRIPSI</title>
-    <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sty_info.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/sty_info.css') }}"> --}}
 
     <link rel="stylesheet" href="{{ asset('build/assets/app.6fd1fe47.css') }}">
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-
-    <script src="{{ asset('js/wow.min.js') }}"></script>
-    <script>
-        new WOW().init();
-    </script>
 </head>
 
 <body class="overflow-y-auto overflow-x-hidden">
@@ -58,9 +52,9 @@
             <a href="{{ route('login') }}" class="btn btn-primary text-white">Masuk</a>
         </div>
     </div>
-    <main class="absolute w-full h-screen">
+    <main class="absolute w-full ">
         @yield('content')
-        <footer class="footer p-10 bg-accent text-neutral-content absolute bottom-0">
+        <footer class="footer p-10 bg-accent text-neutral-content absolute bottom-0 pt-10">
             <div>
                 <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                     fill-rule="evenodd" clip-rule="evenodd" class="fill-current">
@@ -96,7 +90,10 @@
         </footer>
     </main>
     <br>
-
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 
 </html>
