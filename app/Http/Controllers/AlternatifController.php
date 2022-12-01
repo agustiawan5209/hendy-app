@@ -10,6 +10,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAlternatifRequest;
 use App\Http\Requests\UpdateAlternatifRequest;
 use App\Http\Controllers\NilaiBobotAlternatifController;
+use App\Models\Kriteria;
+use App\Models\SubAlternatif;
+use App\Models\SubKriteria;
 
 class AlternatifController extends Controller
 {
@@ -23,7 +26,7 @@ class AlternatifController extends Controller
         $alternatif = Alternatif::all();
         return view('admin.alternatif.index', [
             'alternatif' => $alternatif,
-            'kode'=> $this->createCode(),
+            'kode' => $this->createCode(),
         ]);
     }
 
@@ -34,7 +37,12 @@ class AlternatifController extends Controller
      */
     public function create()
     {
-        //
+        $tbKriteria = Kriteria::orderBy('kode', 'asc')->get();
+        return view('admin.alternatif.form', [
+            'edit' => false,
+            'kode' => $this->createCode(),
+            'kriteria' => $tbKriteria,
+        ]);
     }
 
     /**
@@ -45,10 +53,21 @@ class AlternatifController extends Controller
      */
     public function store(StoreAlternatifRequest $request)
     {
+        $reqKodeSub = $request->kodeSub;
         $alternatif = Alternatif::create([
             'kode' => $request->kode,
             'nama' => $request->nama,
         ]);
+        for ($i=0; $i < count($reqKodeSub); $i++) {
+           if($reqKodeSub[$i] !=null){
+            $im = explode(',', $reqKodeSub[$i]);
+            $sub =  SubAlternatif::create([
+                'alternatif_id' => $alternatif->id,
+                'kriteria_kode' => $im[0],
+                'sub_kriteria' => $im[1],
+            ]);
+           }
+        }
         $lokasi = new LokasiController();
         $lokasi->store($request, $alternatif->id);
         $tbKriteria = new NilaiBobotAlternatifController();
@@ -63,9 +82,11 @@ class AlternatifController extends Controller
      * @param  \App\Models\Alternatif  $alternatif
      * @return \Illuminate\Http\Response
      */
-    public function show(Alternatif $alternatif)
+    public function show(Alternatif $alternatif, $id)
     {
-        //
+        return view('admin.alternatif.show', [
+            'alternatif'=> $alternatif->find($id),
+        ]);
     }
 
     /**
@@ -77,8 +98,13 @@ class AlternatifController extends Controller
     public function edit(Alternatif $alternatif, $id)
     {
         $data = $alternatif->find($id);
+        $subKriteria = SubAlternatif::where('alternatif_id', $id)->get();
+        $tbKriteria = Kriteria::all();
         return view('admin.alternatif.form', [
             'alternatif' => $data,
+            'edit' => true,
+            'subalternatif' =>$subKriteria,
+            'kriteria' => $tbKriteria,
         ]);
     }
 
@@ -126,7 +152,7 @@ class AlternatifController extends Controller
             $parse_kode = substr($alternatif, 1, 2);
             $parse_kode++;
             $huruf = "A";
-            $kode = sprintf($huruf ."%02s",  $parse_kode);
+            $kode = sprintf($huruf . "%02s",  $parse_kode);
         }
         return $kode;
     }

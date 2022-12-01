@@ -50,7 +50,9 @@ Route::group(['middleware', ['verified', 'auth.session', 'role']], function () {
     Route::group(['prefix' => 'Alternatif', 'as' => 'Alternatif.'], function () {
         Route::controller(AlternatifController::class)->group(function () {
             Route::get("/", 'index')->name('index');
-            Route::post("/create", 'store')->name('store');
+            Route::get("/create", 'create')->name('create');
+            Route::get("/show/{id}", 'show')->name('show');
+            Route::post("/store", 'store')->name('store');
             Route::get("/edit/{id}", 'edit')->name('edit');
             Route::put("/update/{id}", 'update')->name('update');
             Route::get("/destroy/{id}", 'destroy')->name('destroy');

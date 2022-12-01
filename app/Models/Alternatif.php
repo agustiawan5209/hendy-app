@@ -14,4 +14,7 @@ class Alternatif extends Model
     public function lokasi(){
         return $this->hasOne(Lokasi::class, 'alternatif_id','id');
     }
+    public function subalternatif(){
+        return $this->hasMany(SubAlternatif::class, 'alternatif_id','id');
+    }
 }

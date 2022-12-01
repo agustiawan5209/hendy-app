@@ -30,6 +30,7 @@ class StoreAlternatifRequest extends FormRequest
             'lokasi'=> ['required', 'string'],
             'pemilik'=> ['required', 'string'],
             'deskripsi'=> ['required', 'string'],
+            // 'kodeSub'=> ['required', 'string'],
         ];
     }
 }
