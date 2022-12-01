@@ -15,7 +15,7 @@
                     </label>
                     <label class="input-group">
                         <span>Kode</span>
-                        <input type="text" placeholder="....." name="kode" class="input input-bordered" />
+                        <input type="text" placeholder="....." name="kode" class="input input-bordered" value="{{ $kode }}" />
                     </label>
                 </div>
                 <div class="form-control">

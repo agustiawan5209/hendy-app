@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alternatif;
+use App\Models\NilaiMatrix;
+use Illuminate\Http\Request;
+use App\Models\NilaiBobotAlternatif;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAlternatifRequest;
 use App\Http\Requests\UpdateAlternatifRequest;
-use App\Models\NilaiBobotAlternatif;
-use App\Models\NilaiMatrix;
-use Illuminate\Http\Request;
+use App\Http\Controllers\NilaiBobotAlternatifController;
 
 class AlternatifController extends Controller
 {
@@ -21,7 +22,8 @@ class AlternatifController extends Controller
     {
         $alternatif = Alternatif::all();
         return view('admin.alternatif.index', [
-            'alternatif'=> $alternatif
+            'alternatif' => $alternatif,
+            'kode'=> $this->createCode(),
         ]);
     }
 
@@ -43,12 +45,14 @@ class AlternatifController extends Controller
      */
     public function store(StoreAlternatifRequest $request)
     {
-       $alternatif = Alternatif::create([
-            'kode'=> $request->kode,
-            'nama'=> $request->nama,
+        $alternatif = Alternatif::create([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
         ]);
         $lokasi = new LokasiController();
         $lokasi->store($request, $alternatif->id);
+        $tbKriteria = new NilaiBobotAlternatifController();
+        $tbKriteria->store();
         Alert::success('Info', 'Berhasil Di Tambah');
         return redirect()->route('Alternatif.index');
     }
@@ -74,7 +78,7 @@ class AlternatifController extends Controller
     {
         $data = $alternatif->find($id);
         return view('admin.alternatif.form', [
-            'alternatif'=> $data,
+            'alternatif' => $data,
         ]);
     }
 
@@ -88,8 +92,8 @@ class AlternatifController extends Controller
     public function update(UpdateAlternatifRequest $request, Alternatif $alternatif, $id)
     {
         $alternatif->find($id)->update([
-            'kode'=> $request->kode,
-            'nama'=> $request->nama,
+            'kode' => $request->kode,
+            'nama' => $request->nama,
         ]);
         $lokasi = new LokasiController();
         $lokasi->update($request, $id);
@@ -111,5 +115,19 @@ class AlternatifController extends Controller
         NilaiBobotAlternatif::where('alternatif1', $data->kode)->orWhere('alternatif2', $data->kode)->delete();
         NilaiMatrix::where('kode', $data->kode)->delete();
         $data->delete();
+    }
+
+    private function createCode()
+    {
+        $alternatif = ALternatif::max('kode');
+        if ($alternatif == null) {
+            $kode = "A01";
+        } else {
+            $parse_kode = substr($alternatif, 1, 2);
+            $parse_kode++;
+            $huruf = "A";
+            $kode = sprintf($huruf ."%02s",  $parse_kode);
+        }
+        return $kode;
     }
 }

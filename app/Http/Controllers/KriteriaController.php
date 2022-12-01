@@ -22,6 +22,7 @@ class KriteriaController extends Controller
         $kriteria = Kriteria::orderBy('kode', 'asc')->get();
         return view('admin.kriteria.index', [
             'kriteria'=> $kriteria,
+            'kode'=> $this->createCode()
         ]);
     }
 
@@ -49,6 +50,8 @@ class KriteriaController extends Controller
         ]);
         $tbKriteria = new NilaiBobotKriteriaController();
         $tbKriteria->store($request->kode);
+        $tbKriteria = new NilaiBobotAlternatifController();
+        $tbKriteria->store();
         Alert::success('Info', 'Berhasil Di Tambah');
         return redirect()->route('Kriteria.index');
     }
@@ -107,5 +110,18 @@ class KriteriaController extends Controller
         NilaiBobotAlternatif::where('kriteria_id', $data->kode)->delete();
         NilaiBobotKriteria::where('kriteria1', $data->kode)->orWhere('kriteria2', $data->kode)->delete();
         $data->delete();
+    }
+    private function createCode()
+    {
+        $alternatif = Kriteria::max('kode');
+        if ($alternatif == null) {
+            $kode = "C01";
+        } else {
+            $parse_kode = substr($alternatif, 1, 2);
+            $parse_kode++;
+            $huruf = "C";
+            $kode = sprintf($huruf ."%02s",  $parse_kode);
+        }
+        return $kode;
     }
 }

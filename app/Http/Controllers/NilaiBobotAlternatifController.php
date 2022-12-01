@@ -228,7 +228,7 @@ class NilaiBobotAlternatifController extends Controller
         $NilaiAlternatif = NilaiBobotAlternatif::all()->toArray();
         $Cari_kd = NilaiBobotAlternatif::where('kriteria_id', $kode)->get();
         // dd($Cari_kd);
-        $this->store($kode);
+        $this->store();
         $batas = count($alternatif);
         $matrix = array();
         $matrix_bobot = array();
