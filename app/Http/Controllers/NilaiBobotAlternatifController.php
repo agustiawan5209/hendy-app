@@ -66,29 +66,34 @@ class NilaiBobotAlternatifController extends Controller
      * @param  \App\Http\Requests\StoreNilaiBobotAlternatifRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($kode)
+    public function store()
     {
         $alternatif = Alternatif::all()->toArray();
+        $kriteria = Kriteria::all();
         // dd($alternatif);
-        if (count($alternatif) > 0) {
-            $nilai_kode = $this->createKode();
-            for ($k = 0; $k < count($alternatif); $k++) {
-                for ($i = 0; $i < count($alternatif); $i++) {
-                    // dd($alternatif[$k]);
-                    $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
-                        ->where('alternatif1', '=', $alternatif[$k]['kode'])
-                        ->where('alternatif2', '=', $alternatif[$i]['kode'])
-                        ->get();
-                    if ($bobot1->count() < 1) {
-                        NilaiBobotAlternatif::insert([
-                            [
-                                'kode' => $nilai_kode,
-                                'kriteria_id' => $kode,
-                                'nilai_banding' => '1',
-                                'alternatif1' => $alternatif[$k]['kode'],
-                                'alternatif2' => $alternatif[$i]['kode'],
-                            ],
-                        ]);
+        if($kriteria->count() > 0){
+            foreach ($kriteria as $item){
+                if (count($alternatif) > 0) {
+                    $nilai_kode = $this->createKode();
+                    for ($k = 0; $k < count($alternatif); $k++) {
+                        for ($i = 0; $i < count($alternatif); $i++) {
+                            // dd($alternatif[$k]);
+                            $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $item->kode)
+                                ->where('alternatif1', '=', $alternatif[$k]['kode'])
+                                ->where('alternatif2', '=', $alternatif[$i]['kode'])
+                                ->get();
+                            if ($bobot1->count() < 1) {
+                                NilaiBobotAlternatif::insert([
+                                    [
+                                        'kode' => $nilai_kode,
+                                        'kriteria_id' => $item->kode,
+                                        'nilai_banding' => '1',
+                                        'alternatif1' => $alternatif[$k]['kode'],
+                                        'alternatif2' => $alternatif[$i]['kode'],
+                                    ],
+                                ]);
+                            }
+                        }
                     }
                 }
             }
@@ -136,7 +141,6 @@ class NilaiBobotAlternatifController extends Controller
      */
     public function update(Request $request, $kode)
     {
-        $this->store($kode);
         $bobot['bobot'] = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)->get();
         $bobot['alternatif'] = Alternatif::all();
         return response()->json($bobot);

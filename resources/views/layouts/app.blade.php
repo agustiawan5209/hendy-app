@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('build/assets/app.08b0e096.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!--Regular Datatables CSS-->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -113,7 +113,6 @@
         </div>
     </main>
     <!-- jQuery -->
-    <script defer src="{{ asset('build/assets/app.ccef2707.js') }}"></script>
 
     <!-- wow animation -->
     <script src="{{ asset('aset/js/animate.js') }}"></script>

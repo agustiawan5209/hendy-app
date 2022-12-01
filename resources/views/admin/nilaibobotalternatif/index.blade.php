@@ -14,7 +14,8 @@
                     <select class="select select-bordered kriteria_id" name="kriteria_id" id="kriteria_id">
                         <option value="">---</option>
                         @for ($z = 0; $z < count($kriteria); $z++)
-                            <option class="text-gray-800" value="{{ $kriteria[$z]['kode'] }}" {{ $kode_kriteria == $kriteria[$z]['kode'] ? 'selected': '' }}>
+                            <option class="text-gray-800" value="{{ $kriteria[$z]['kode'] }}"
+                                {{ $kode_kriteria == $kriteria[$z]['kode'] ? 'selected' : '' }}>
                                 {{ $kriteria[$z]['kode'] }} - {{ $kriteria[$z]['name'] }}</option>
                         @endfor
                     </select>
@@ -89,57 +90,6 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            $(".deletealternatif").click(function(e) {
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success',
-                        cancelButton: 'btn btn-danger'
-                    },
-                    buttonsStyling: false
-                })
 
-                swalWithBootstrapButtons.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya, Hapus!',
-                    cancelButtonText: 'Tidal, Batal!',
-                    reverseButtons: true
-                }).then((result) => {
-                    e.preventDefault();
-                    var id = $(this).attr('aria-id')
-                    console.log(id)
-                    $.ajax({
-                        type: "GET",
-                        url: "/alternatif/destroy/" + id,
-                        success: function(response, status, data) {
-                            if (status == "success") {
-                                if (result.isConfirmed) {
-                                    swalWithBootstrapButtons.fire(
-                                        'Berhasi;!',
-                                        'Berhasil Di Hapus'
-                                    )
-                                    setTimeout(function() {
-                                        window.location.reload();
-                                    }, 1000);
-                                }
-                            } else if (
-                                /* Read more about handling dismissals below */
-                                result.dismiss === Swal.DismissReason.cancel
-                            ) {
-                                swalWithBootstrapButtons.fire(
-                                    'Cancelled',
-                                    'Your imaginary file is safe :)',
-                                    'error'
-                                )
-                            }
-                        }
-                    });
-
-                })
-            });
-        });
     </script>
 </x-app-layout>

@@ -32,51 +32,19 @@ $(document).ready(function () {
     function MatrixAHPalternatif(data) {
         $.ajax({
             type: "GET",
-            url: "/NilaiBobotAlternatif/update/" + data,
+            url: "/NilaiBobotAlternatif/Matrix/alternatif/" + data,
             async: false,
             success: function (response) {
                 $(".animation-loading").fadeIn(500, function () {
                     $(this).fadeOut();
                 });
-                var parse = response['alternatif'];
+                console.log(response);
+                var parse = response['nama_table'];
                 var batas = response['alternatif'].length;
-                var hasil_matrix = new Array(batas);
+                var hasil_matrix = response['alternatif'];;
 
-                for (var i = 0; i < batas; i++) {
-                    hasil_matrix[i] = [i];
-                }
                 var tr = '';
-                var td = '';
-                for (let i = 0; i < batas; i++) {
-                    // tr += "<x-tr>" ;
-                    for (let k = 0; k < batas; k++) {
-                        if (i == k) {
-                            hasil_matrix[i][k] = 1
-                            // td = "<td>"+ hasil_matrix[i][k] +"</td>"
-                        } else {
-                            if (i < k) {
-                                var param = data + '/' + parse[i]['kode'] + '/' + parse[k]['kode'];
-                                var NilaiBobot = 0;
-                                let books2 = getNilaiBobotAlternatif2(param);
-                                let books = getNilaiBobotAlternatif(param);
-                                hasil_matrix[i][k] = Number(books.responseText / books2.responseText).toLocaleString(2);
-                                // td = "<td>"+ hasil_matrix[i][k] +"</td>"
 
-                            } else {
-                                var param = data + '/' + parse[i]['kode'] + '/' + parse[k]['kode'];
-                                var NilaiBobot = 0;
-                                let books = getNilaiBobotAlternatif(param);
-                                let books2 = getNilaiBobotAlternatif2(param);
-                                // Tampilan Perbandingan
-                                // hasil_matrix[i][k] = bobot[i]['alternatif2'] + ' :' + bobot[k]['alternatif2'] + '( Nilai = ' + bobot[k]['nilai_banding'] + ' / ' + books.responseText + ')';
-                                hasil_matrix[i][k] = Number(books.responseText / books2.responseText).toLocaleString(2);
-                                // td = "<td>"+ hasil_matrix[i][k] +"</td>"
-                            }
-                        }
-                    }
-
-                    tr += '</tr>';
-                }
                 for (var i = 0; i < batas; i++) {
                     tr += "<tr class='!text-xs !md:text-sm font-semibold  !border-mx text-center bg-info text-info-content !border border-info'><th class='bg-info text-info-content !border border-info'>" + parse[i]['kode'] + "</th>";
 

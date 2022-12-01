@@ -93,6 +93,8 @@ class AlternatifController extends Controller
         ]);
         $lokasi = new LokasiController();
         $lokasi->update($request, $id);
+        $nilai = new NilaiBobotAlternatifController();
+        $nilai->store();
         Alert::success('Info', 'Berhasil Di Update');
         return redirect()->route('Alternatif.index');
     }
