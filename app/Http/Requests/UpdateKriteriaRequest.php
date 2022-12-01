@@ -26,6 +26,7 @@ class UpdateKriteriaRequest extends FormRequest
         return [
             'kode'=> ['required'],
             'name'=> ['required'],
+            'subkriteria'=> ['required'],
         ];
     }
 }

@@ -71,7 +71,7 @@
             @include('layouts.sidebar')
         </div>
     </div>
-    <main id="content"
+    <main id="sm:content"
         class=" md:ml-[25%] lg:ml-[15%] overflow-x-hidden overflow-y-auto h-screen transition-all ease-in-out">
         <div class="navbar bg-info">
             <div class="flex-1">
@@ -85,7 +85,7 @@
                 <a class="btn btn-ghost normal-case text-xl text-white hidden md:flex">{{ $page }}</a>
             </div>
             <div class="flex-none gap-2">
-                <div class="form-control">
+                <div class="form-control hidden md:flex">
                     <input type="text" placeholder="Search" class="input input-bordered" />
                 </div>
                 <div class="dropdown dropdown-end">
@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mx-auto px-2 md:py-4 w-full relative box-border overflow-x-auto">
+        <div class="md:container mx-auto md:px-2 md:py-4 w-full relative box-border overflow-x-auto">
             {{ $slot }}
         </div>
     </main>

@@ -34,9 +34,22 @@ class SubKriteriaController extends Controller
      * @param  \App\Http\Requests\StoreSubKriteriaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSubKriteriaRequest $request)
+    public function store($subKriteria, $kriteria_id)
     {
-        //
+        for ($i=0; $i < count($subKriteria); $i++) {
+            $sub = SubKriteria::where( 'nama',$subKriteria[$i])->first();
+            if($sub == null){
+                SubKriteria::create([
+                    'kriteria_id' => $kriteria_id,
+                    'nama' => $subKriteria[$i],
+                ]);
+            }else{
+                SubKriteria::where('nama', '=', $subKriteria[$i])->update([
+                    'nama' => $subKriteria[$i],
+                ]);
+            }
+
+        }
     }
 
     /**
@@ -79,8 +92,9 @@ class SubKriteriaController extends Controller
      * @param  \App\Models\SubKriteria  $subKriteria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubKriteria $subKriteria)
+    public function destroy(SubKriteria $subKriteria, $id)
     {
-        //
+        $subKriteria->find($id)->delete();
+        return redirect()->back();
     }
 }

@@ -27,6 +27,11 @@
                         <input type="text" placeholder="....." name="name" class="input input-bordered" />
                     </label>
                 </div>
+                <div class="divider">Sub Kriteria</div>
+                <div class="form-control w-full flex flex-nowrap justify-center contentSubKriteria" id="">
+                <input type="text" placeholder="Type here" name="subkriteria[]" class="input input-bordered w-full max-w-xs" />
+                </div>
+                <kbd class="kbd cursor-pointer plusSubKriteria" >+</kbd>
                 <div class="modal-action flex justify-between">
                     <button type="submit" for="my-modal" class="btn btn-success">Simpan!</button>
                     <label for="my-modal" class="btn btn-error">Tutup!</label>

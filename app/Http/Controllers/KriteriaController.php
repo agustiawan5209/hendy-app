@@ -44,12 +44,18 @@ class KriteriaController extends Controller
      */
     public function store(StoreKriteriaRequest $request)
     {
+        // dd($request->all());
         $kriteria = Kriteria::create([
             'kode'=> $request->kode,
             'name'=> $request->name,
         ]);
+        // Tambah Sub Kriteria
+        $subKriteria = new SubKriteriaController();
+        $subKriteria->store($request->subkriteria, $kriteria->id);
+        // Tambah NilaiBobotKriteriaController
         $tbKriteria = new NilaiBobotKriteriaController();
         $tbKriteria->store($request->kode);
+        // Tambah NilaiBobotAlternatifController
         $tbKriteria = new NilaiBobotAlternatifController();
         $tbKriteria->store();
         Alert::success('Info', 'Berhasil Di Tambah');
@@ -90,10 +96,14 @@ class KriteriaController extends Controller
      */
     public function update(UpdateKriteriaRequest $request, Kriteria $kriteria, $id)
     {
+        // dd($request->all());
         $kriteria->find($id)->update([
             'kode'=> $request->kode,
             'name'=> $request->name,
         ]);
+         // Tambah Sub Kriteria
+         $subKriteria = new SubKriteriaController();
+         $subKriteria->store($request->subkriteria, $id);
         Alert::success('Info', 'Berhasil Di Update');
         return redirect()->route('Kriteria.index');
     }

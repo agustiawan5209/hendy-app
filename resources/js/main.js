@@ -14,13 +14,20 @@ $(function () {
             $("#Sidebar").toggleClass('hidden', "w-1/3");
         }
     })
-    // how to make matrix foreach
-    var matrix = [];
-    for (var i = 0; i < 5; i++) {
-        matrix[i] = [];
-        for (var j = 0; j < 5; j++) {
-            matrix[i][j] = 0;
-        }
-    }
+    // how to make function click events jquery compatible
+    $(".plusSubKriteria").click(function (e) {
+        e.preventDefault();
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.classList.add('input')
+        input.classList.add('input-bordered')
+        input.classList.add('w-full')
+        input.classList.add('max-w-xs')
+        input.placeholder = 'masukkan nama sub kriteria';
+        input.name = 'subkriteria[]';
+        $(".contentSubKriteria").append(input)
+
+    });
+
 
 });

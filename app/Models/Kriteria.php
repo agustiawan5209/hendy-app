@@ -17,4 +17,7 @@ class Kriteria extends Model
     public function kriteria2(){
         return $this->hasOne(NilaiBobotKriteria::class, 'kriteria1', 'id');
     }
+    public function subKriteria(){
+        return $this->hasMany(SubKriteria::class, 'kriteria_id', 'id');
+    }
 }

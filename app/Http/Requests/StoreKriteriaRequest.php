@@ -26,6 +26,7 @@ class StoreKriteriaRequest extends FormRequest
         return [
             'kode'=> ['required', 'unique:kriterias,kode'],
             'name'=> ['required', 'unique:kriterias,name,'],
+            'subkriteria'=> ['required'],
         ];
     }
 }

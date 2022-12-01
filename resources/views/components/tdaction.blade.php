@@ -1,5 +1,5 @@
 <div {{ $attributes->merge(['class' => 'flex flex-wrap justify-center gap-2']) }}>
-  @if ($edit == true)
+  @if ($delete == true)
       <a href="#" aria-id="{{ $idDelete }}" class=" {{ $routeDelete }} bg-error text-white p-1 rounded">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -8,7 +8,7 @@
           </svg>
       </a>
   @endif
-    @if ($delete == true)
+    @if ($edit == true)
         <a href="{{ $routeEdit }}" class="bg-success text-white p-1 rounded">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
