@@ -208,6 +208,26 @@
     border-radius:100% 0% 100% 0% / 100% 100% 0% 0% ;
     z-index: -1;
 }
+.border-svg-3{
+    width: 26rem;
+    height: 20rem;
+    position: absolute;
+    right: 20%;
+    background-color: #395d8533;
+    border-radius:
+    100% 0% 52% 48% / 100% 0% 100% 0% ;
+    z-index: -1;
+}
+.border-svg-4{
+    width: 26rem;
+    height: 20rem;
+    position: absolute;
+    top: 0;
+    right: 20%;
+    background-color: #395c8585;
+    border-radius:0% 100% 24% 76% / 28% 23% 77% 72% ;
+    z-index: -1;
+}
 .triangle {
     width: 0;
     height: 0;

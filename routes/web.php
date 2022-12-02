@@ -28,7 +28,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::group(['middleware', ['verified', 'auth.session', 'role']], function () {
+Route::group(['middleware'=> [ 'auth.session', 'role']], function () {
     Route::group(['prefix' => 'Kriteria', 'as' => 'Kriteria.'], function () {
         Route::controller(KriteriaController::class)->group(function () {
             Route::get("/", 'index')->name('index');

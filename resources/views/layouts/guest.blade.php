@@ -12,7 +12,7 @@
 
 </head>
 
-<body class="overflow-y-auto overflow-x-hidden">
+<body class="overflow-y-auto overflow-x-hidden font-inter">
     <div class="animation-loading bg-info opacity-90">
         <div class="flip-to-square ">
             <div></div>
