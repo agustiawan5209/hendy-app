@@ -225,7 +225,7 @@ $(document).ready(function () {
         tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info  bg-info text-info-content'><th class='bg-info text-info-content'>Ordo matriks</th>";
         for (let baris = 0; baris < Ratio_index.length; baris++) {
             if (Ratio_index[baris] == Ratio['Ratio_index']) {
-                tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-white'>" + (baris + 1) + "</th> ";
+                tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-warning text-white '>" + (baris + 1) + "</th> ";
             } else {
                 tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + (baris + 1) + "</th> ";
 
@@ -236,7 +236,7 @@ $(document).ready(function () {
         tr += "<tr class='!text-xs !md:text-sm font-semibold !border !border-mx !border-info  bg-info text-info-content'><th class='bg-info text-info-content'>Ratio index</th>";
         for (let baris = 0; baris < Ratio_index.length; baris++) {
             if (Ratio_index[baris] == Ratio['Ratio_index']) {
-                tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-white'>" + Ratio_index[baris] + "</th> ";
+                tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-warning text-white'>" + Ratio_index[baris] + "</th> ";
 
             } else {
                 tr += "<th class='!text-sm !md:text-base !border !border-mx !border-info bg-info text-info-content'>" + Ratio_index[baris] + "</th> ";

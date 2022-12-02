@@ -201,11 +201,11 @@ class NilaiBobotKriteriaController extends Controller
                     if ($baris < $kolom) {
                         $kriteria_1 = $this->NilaiBobotKriteria($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
                         $kriteria_2 = $this->NilaiBobotKriteria2($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
-                        $Matrix['kriteria'][$baris][$kolom] = $kriteria_1 / $kriteria_2;
+                        $Matrix['kriteria'][$baris][$kolom] = $this->FormatNumber($kriteria_1 / $kriteria_2);
                     } else {
                         $kriteria_1 = $this->NilaiBobotKriteria($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
                         $kriteria_2 = $this->NilaiBobotKriteria2($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
-                        $Matrix['kriteria'][$baris][$kolom] = $kriteria_1 / $kriteria_2;
+                        $Matrix['kriteria'][$baris][$kolom] = $this->FormatNumber($kriteria_1 / $kriteria_2);
                     }
                 }
                 $Matrix['bobot'][$kolom][$baris] = $Matrix['kriteria'][$baris][$kolom];
