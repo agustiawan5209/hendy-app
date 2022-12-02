@@ -104,7 +104,7 @@ Route::group(['middleware'=> [ 'auth.session', 'role']], function () {
         });
     });
     Route::group(['prefix' => 'Perhitungan', 'as' => 'Perhitungan.'], function () {
-       Route::get('/', [PerhitunganController::class, 'index'])->name('Index');
+       Route::get('/', [PerhitunganController::class, 'perhitungan'])->name('Perhitungan');
     });
 });
 

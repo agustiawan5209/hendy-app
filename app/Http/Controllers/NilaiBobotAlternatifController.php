@@ -321,12 +321,12 @@ class NilaiBobotAlternatifController extends Controller
      */
     public function BobotAHP()
     {
-        $kode_kriteria = $this->GetKriteria();
+        $kode_kriteria = kriteria::all()->toArray();
         $kriteria = Kriteria::all();
         $Hasil_bobot = array();
         $batas = count($kode_kriteria);
         for ($i = 0; $i < $batas; $i++) {
-            $Hasil_bobot[$kode_kriteria[$i]] = $this->MatrixAHP($kode_kriteria[$i]);
+            $Hasil_bobot[$kode_kriteria[$i]['kode']] = $this->MatrixAHP($kode_kriteria[$i]['kode']);
         }
         // $Matrix_alternatif =  $this->MatrixAHP("C01");
         $this->NilaiAKhir();

@@ -161,7 +161,7 @@ class AlternatifController extends Controller
     {
         $data = $alternatif->find($id);
         NilaiBobotAlternatif::where('alternatif1', $data->kode)->orWhere('alternatif2', $data->kode)->delete();
-        SubKriteria::where('alternatif_id', $id)->delete();
+        SubAlternatif::where('alternatif_id', $id)->delete();
         NilaiMatrix::where('kode', $data->kode)->delete();
         $data->delete();
     }

@@ -176,6 +176,11 @@ class NilaiBobotKriteriaController extends Controller
         return $kriteria->nilai_banding;
     }
 
+    /**
+     * MatrixAHP
+     * Perhitngan nilai Bobot Kriteria
+     * @return void
+     */
     public function MatrixAHP()
     {
         $kriteria = Kriteria::all()->toArray();
@@ -195,7 +200,8 @@ class NilaiBobotKriteriaController extends Controller
                     $kriteria_2 = 0;
                     if ($baris < $kolom) {
                         $kriteria_1 = $this->NilaiBobotKriteria($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
-                        $Matrix['kriteria'][$baris][$kolom] = $kriteria_1;
+                        $kriteria_2 = $this->NilaiBobotKriteria2($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
+                        $Matrix['kriteria'][$baris][$kolom] = $kriteria_1 / $kriteria_2;
                     } else {
                         $kriteria_1 = $this->NilaiBobotKriteria($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
                         $kriteria_2 = $this->NilaiBobotKriteria2($kriteria[$baris]['kode'], $kriteria[$kolom]['kode']);
@@ -260,8 +266,8 @@ class NilaiBobotKriteriaController extends Controller
         }
         for ($baris = 0; $baris < $batas; $baris++) {
             for ($kolom = 0; $kolom < $batas; $kolom++) {
-                $Matrix['Matrix_CM'][$kolom][$baris] = $this->FormatNumber($Hasil_Matrix['kriteria'][$baris][$kolom] * $Prioritas[$kolom]);
-                $Matrix['Jumlah_CM'][$baris][$kolom] = $this->FormatNumber($Hasil_Matrix['kriteria'][$baris][$kolom] * $Prioritas[$kolom]);
+                $Matrix['Matrix_CM'][$kolom][$baris] = $this->FormatNumber( $Prioritas[$kolom] * $Hasil_Matrix['kriteria'][$baris][$kolom]  );
+                $Matrix['Jumlah_CM'][$baris][$kolom] = $this->FormatNumber( $Prioritas[$kolom] * $Hasil_Matrix['kriteria'][$baris][$kolom]  );
             }
         }
         for ($baris = 0; $baris < $batas; $baris++) {
