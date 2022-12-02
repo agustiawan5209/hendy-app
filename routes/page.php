@@ -10,6 +10,7 @@ Route::group(['prefix' => 'Usaha', 'as' => 'Usaha.'], function () {
         Route::get("/", 'index')->name('index');
         Route::post("/cari", 'GetAlternatif')->name('GetAlternatif');
         Route::post("/create", 'store')->name('store');
+        Route::get("/Detail/{id}", 'show')->name('show');
         Route::get("/edit/{id}", 'edit')->name('edit');
         Route::put("/update/{id}", 'update')->name('update');
         Route::get("/destroy/{id}", 'destroy')->name('destroy');

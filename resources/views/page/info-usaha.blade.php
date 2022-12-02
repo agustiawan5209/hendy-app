@@ -36,6 +36,7 @@
                         <th class="bg-info text-white text-base capitalize">lokasi</th>
                         <th class="bg-info text-white text-base capitalize">pemilik</th>
                         <th class="bg-info text-white text-base capitalize">deskripsi</th>
+                        <th class="bg-info text-white text-base capitalize"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,6 +58,9 @@
                                     {{ $item->alternatif->lokasi->pemilik }}</td>
                                 <td class="border-spacing-1 max-w-max text-gray-800">
                                     {{ $item->alternatif->lokasi->deskripsi }}</td>
+                                <td class="border-spacing-1 max-w-max text-gray-800">
+                                    <a href="{{ route('Usaha.show', ['id'=> $item->alternatif->id]) }}" class="btn btn-info">detail</a>
+                                </td>
                             </tr>
                         @endforeach
                     @else

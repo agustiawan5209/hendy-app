@@ -83,9 +83,12 @@ class UsahaController extends Controller
      * @param  \App\Models\Usaha  $usaha
      * @return \Illuminate\Http\Response
      */
-    public function show(Usaha $usaha)
+    public function show($id)
     {
-        //
+        $alternatif = Alternatif::find($id);
+        return view('page.detail-usaha', [
+            'alternatif'=> $alternatif,
+        ]);
     }
 
     /**
