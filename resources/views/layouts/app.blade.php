@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="{{ asset('aset/css/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app.97c38cea.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.f85da3e0.css') }}">
 
     <!--Regular Datatables CSS-->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -122,6 +122,7 @@
     <script src="{{ asset('aset/js/animate.js') }}"></script>
     <!-- owl carousel -->
     <script src="{{ asset('aset/js/owl.carousel.js') }}"></script>
+    <script src="{{ asset('build/assets/app.39a39601.js') }}"></script>
 
 </body>
 

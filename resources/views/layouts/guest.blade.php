@@ -7,9 +7,9 @@
     <title>SKRIPSI</title>
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app.97c38cea.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.f85da3e0.css') }}">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-
 </head>
 
 <body class="overflow-y-auto overflow-x-hidden font-inter">
@@ -105,6 +105,8 @@
     <script>
         new WOW().init();
     </script>
+    <script src="{{ asset('build/assets/app.39a39601.js') }}"></script>
+
 </body>
 
 </html>
