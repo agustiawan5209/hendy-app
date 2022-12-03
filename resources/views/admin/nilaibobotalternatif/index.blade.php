@@ -4,10 +4,10 @@
     <div class="card w-full bg-info text-gray-800">
         <div class="card-body">
             <x-validation-errors />
-            <form action="{{ route('NilaiBobotAlternatif.edit') }}" method="POST" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <form action="{{ route('NilaiBobotAlternatif.edit') }}" method="POST" class="grid grid-cols-1">
                 @csrf
                 @method('PUT')
-                <div class="form-control w-full max-w-xs">
+                <div class="form-control w-full max-w-xs col-span-1">
                     <label class="label">
                         <span class="label-text text-white text-sm md:text-xl">Pilih Kriteria</span>
                     </label>
@@ -20,9 +20,7 @@
                         @endfor
                     </select>
                 </div>
-                @csrf
-                @method('PUT')
-                <div class="flex justify-around">
+                <div class=" col-span-3 flex  justify-around">
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text text-white text-sm md:text-xl">alternatif 1</span>
