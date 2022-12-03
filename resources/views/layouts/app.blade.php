@@ -36,7 +36,7 @@
 </head>
 
 <body class="overflow-x-hidden overflow-y-auto h-screen bg-base-200">
-    <div class="animation-loading bg-info opacity-90">
+    <div class="animation-loading bg-info">
         <div class="flip-to-square ">
             <div></div>
             <div></div>

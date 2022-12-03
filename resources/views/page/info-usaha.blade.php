@@ -1,6 +1,6 @@
 <x-guest-layout>
     <form action="{{ route('Usaha.GetAlternatif') }}" method="POST"
-        class="flex flex-col justify-center items-center px-5 py-3 relative">
+        class="flex flex-col justify-center items-center px-5 py-3 relative z-30">
         @csrf
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7">
             @foreach ($kriteria as $item)
@@ -26,7 +26,7 @@
             </div>
         </div>
     </form>
-    <div class="md:container md:px-4 overflow-x-auto mx-auto py-4 border-none bg-transparent">
+    <div class="md:container md:px-4 overflow-x-auto mx-auto py-4 border-none bg-transparent relative z-50">
         @if (isset($NilaiM))
             <table class=" table table-compact   table-zebra w-full">
                 <thead>

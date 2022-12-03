@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login -- Page</title>
-    <link rel="stylesheet" href="{{ asset('build/assets/app.6fd1fe47.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.97c38cea.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.f85da3e0.css') }}">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <script src="{{ asset('js/wow.min.js') }}"></script>

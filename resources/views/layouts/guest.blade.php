@@ -27,7 +27,7 @@
             <div class="md:w-0 lg:w-0 w-0 -translate-x-64"></div>
         </div>
     </div>
-    <div class="navbar bg-info z-[50]">
+    <div class="navbar bg-info z-[50] box-border">
         <div class="navbar-start">
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -41,8 +41,7 @@
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ url('/') }}">Home</a>
                     </li>
-                    <li class="text-white"><a class="text-whte hover:text-gray-100"
-                            href="{{ route('artikel') }}">Artikel</a></li>
+
                     <li class="text-white"><a class="text-whte hover:text-gray-100"
                             href="{{ route('Usaha.index') }}">Info Usaha</a></li>
 
@@ -50,13 +49,11 @@
             </div>
             <a class="btn btn-ghost normal-case text-xl text-white">SPK</a>
         </div>
-        <div class="navbar-center hidden lg:flex">
+        <div class="navbar-center hidden lg:flex relative box-border">
             <ul class="menu menu-horizontal p-0">
-                <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ url('/') }}">Home</a>
+                <li class="text-white"><a class="text-whte hover:text-gray-100 text-2xl font-bold hover:border-b transition-colors" href="{{ url('/') }}">Home</a>
                 </li>
-                <li class="text-white"><a class="text-whte hover:text-gray-100"
-                        href="{{ route('artikel') }}">Artikel</a></li>
-                <li class="text-white"><a class="text-whte hover:text-gray-100" href="{{ route('Usaha.index') }}">Info
+                <li class="text-white"><a class="text-whte hover:text-gray-100 text-2xl font-bold hover:border-b transition-colors" href="{{ route('Usaha.index') }}">Info
                         Usaha</a></li>
             </ul>
         </div>
