@@ -22,7 +22,7 @@
                     <x-td>{{ $loop->iteration }}</x-td>
                     <x-td>{{ $item->kode }}</x-td>
                     <x-td>{{ $item->nama }}</x-td>
-                    <x-td>{{ $item->kecamatan_id }}</x-td>
+                    <x-td>{{ $item->kecamatan }}</x-td>
                     <x-td>{{ $item->lokasi->pemilik }}</x-td>
                     <x-td>
                         <x-tdaction :edit="true" :delete="true" :routeEdit="route('Alternatif.edit', ['id' => $item->id])"

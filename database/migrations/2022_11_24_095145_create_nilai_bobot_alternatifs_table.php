@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode');
             $table->string('kriteria_id')->nullable();
+            $table->string('kecamatan')->nullable();
             $table->integer('nilai_banding');
             $table->string('alternatif1')->nullable();
             $table->string('alternatif2')->nullable();

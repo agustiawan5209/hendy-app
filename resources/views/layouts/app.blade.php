@@ -19,8 +19,7 @@
     <link rel="stylesheet" href="{{ asset('aset/css/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/app.97c38cea.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/app.f85da3e0.css') }}">
+    @vite(['resources/js/app.js','resources/css/app.css'])
 
     <!--Regular Datatables CSS-->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">

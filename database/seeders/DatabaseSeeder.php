@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
             NilaiBobotKriteriaSeeder::class,
             AlternatifSeeder::class,
             LokasiSeeder::class,
-            SubAlternatifSeeder::class,
-            NilaiBobotAlternatifSeeder::class,
+            // SubAlternatifSeeder::class,
+            // NilaiBobotAlternatifSeeder::class,
         ]);
     }
 }

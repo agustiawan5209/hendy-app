@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode');
             $table->string('nama');
-            $table->string('kecamatan_id')->nullable();
+            $table->string('kecamatan')->nullable();
             $table->timestamps();
         });
     }

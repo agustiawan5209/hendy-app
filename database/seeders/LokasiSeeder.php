@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kecamatan;
 use App\Models\Lokasi;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -79,5 +80,22 @@ class LokasiSeeder extends Seeder
         );
 
         Lokasi::insert($lokasis);
+
+        $kecamatans = array(
+            array(
+                "id" => 1,
+                "nama" => "Rappocini",
+                "created_at" => "2022-12-30 19:28:35",
+                "updated_at" => "2022-12-30 19:28:35",
+            ),
+            array(
+                "id" => 2,
+                "nama" => "Biringkanaya",
+                "created_at" => "2022-12-30 19:46:25",
+                "updated_at" => "2022-12-30 19:46:25",
+            ),
+        );
+
+        Kecamatan::insert($kecamatans);
     }
 }

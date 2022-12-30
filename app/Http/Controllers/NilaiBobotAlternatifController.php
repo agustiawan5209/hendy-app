@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
+use App\Models\Kecamatan;
 use App\Models\Alternatif;
+use App\Models\NilaiMatrix;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\NilaiPrefensi;
+use App\Models\NilaiBobotKriteria;
 use Illuminate\Support\Collection;
 use App\Models\NilaiBobotAlternatif;
 use App\Http\Requests\StoreNilaiBobotAlternatifRequest;
 use App\Http\Requests\UpdateNilaiBobotAlternatifRequest;
-use App\Models\NilaiBobotKriteria;
-use App\Models\NilaiMatrix;
 
 class NilaiBobotAlternatifController extends Controller
 {
@@ -31,12 +32,14 @@ class NilaiBobotAlternatifController extends Controller
         $alternatif = Alternatif::orderBy('kode', 'asc')->get()->toArray();
         $prefensi = NilaiPrefensi::orderBy('kode', 'asc')->get();
         $kriteria = Kriteria::orderBy('kode', 'asc')->get()->toArray();
+        $kecamatan = Kecamatan::all()->toArray();
         // dd($request->kode);
         return view('admin.nilaibobotalternatif.index', [
             'alternatif' => $alternatif,
             'prefensi' => $prefensi,
             'kriteria' => $kriteria,
             'kode_kriteria' => $request->kode,
+            'kecamatan'=> $kecamatan,
         ]);
     }
 

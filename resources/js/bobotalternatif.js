@@ -29,10 +29,12 @@ $(document).ready(function () {
     }
     // Matrix Perbandingan Alernatif
 
-    function MatrixAHPalternatif(data) {
+    function MatrixAHPalternatif() {
+      var kriteria_id =  $('#kriteria_id').value;
+      var kecamatan = $("#kecamatan").value;
         $.ajax({
             type: "GET",
-            url: "/NilaiBobotAlternatif/Matrix/alternatif/" + data,
+            url: "/NilaiBobotAlternatif/Matrix/alternatif/" + kriteria_id + '/'+kecamatan,
             async: false,
             success: function (response) {
                 $(".animation-loading").fadeIn(500, function () {
@@ -67,7 +69,7 @@ $(document).ready(function () {
     if (data != null) {
         MatrixAHPalternatif(data)
     }
-    $("#kriteria_id").change(function (e) {
+    $("#cari_alternatif").click(function (e) {
         e.preventDefault();
 
         var data = $(this).val();
