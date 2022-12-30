@@ -1,32 +1,50 @@
 <x-app-layout>
 
-    <x-slot name="page">Alternatif</x-slot>
-    {{-- Modal Tambah Alternatif --}}
+    <x-slot name="page">Kriteria</x-slot>
+    {{-- Modal Tambah Kriteria --}}
     <!-- Put this part before </body> tag -->
+    <input type="checkbox" id="my-modal" class="modal-toggle" />
+    <div class="modal">
+        <div class="modal-box max-w-md">
+            <form action="{{ route('Kecamatan.store') }}" method="POST" class="flex flex-col justify-center items-center">
+                @csrf
+                @method('POST')
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-kode">Nama Kecamatan</span>
+                    </label>
+                    <label class="input-group">
+                        <span>Kecamatan</span>
+                        <input type="text" placeholder="....." name="nama" class="input input-bordered" value="{{ old('kecamatan') }}" />
+                    </label>
+                </div>
+                <div class="modal-action flex justify-between">
+                    <button type="submit" for="my-modal" class="btn btn-success">Simpan!</button>
+                    <label for="my-modal" class="btn btn-error">Tutup!</label>
+                </div>
+            </form>
+        </div>
+    </div>
     {{-- Table --}}
     <x-table>
         <x-slot name="input">
-            <a href="{{ route('Alternatif.create') }}" class="btn">Tambah</a>
+            <label for="my-modal" class="btn">Tambah</label>
+
+
         </x-slot>
         <x-slot name="head">
             <x-th data-priority="1">No.</x-th>
-            <x-th data-priority="1">Kode</x-th>
-            <x-th data-priority="2">alternatif</x-th>
-            <x-th data-priority="2">kecamatan</x-th>
-            <x-th data-priority="2">Pemilik</x-th>
+            <x-th data-priority="1">Name</x-th>
             <x-th data-priority="3">Aksi</x-th>
         </x-slot>
         <x-slot name="body">
-            @foreach ($alternatif as $item)
+            @foreach ($kecamatan as $item)
                 <x-tr>
                     <x-td>{{ $loop->iteration }}</x-td>
-                    <x-td>{{ $item->kode }}</x-td>
                     <x-td>{{ $item->nama }}</x-td>
-                    <x-td>{{ $item->kecamatan_id }}</x-td>
-                    <x-td>{{ $item->lokasi->pemilik }}</x-td>
                     <x-td>
-                        <x-tdaction :edit="true" :delete="true" :routeEdit="route('Alternatif.edit', ['id' => $item->id])"
-                            routeDelete="deleteAlternatif " :idDelete="$item->id" :detail="true" :routeDetail="route('Alternatif.show', ['id' => $item->id])"  />
+                        <x-tdaction :edit="true" :delete="true" :routeEdit="route('Kecamatan.edit', ['id' => $item->id])" routeDelete="deleteKecamatan "
+                            :idDelete="$item->id" :detail="false"  />
                     </x-td>
                 </x-tr>
             @endforeach
@@ -34,7 +52,7 @@
     </x-table>
     <script>
         $(document).ready(function() {
-            $(".deleteAlternatif").click(function(e) {
+            $(".deleteKecamatan").click(function(e) {
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-success',
@@ -57,7 +75,7 @@
                     console.log(id)
                     $.ajax({
                         type: "GET",
-                        url: "/Alternatif/destroy/" + id,
+                        url: "/Kecamatan/destroy/" + id,
                         success: function(response, status, data) {
                             if (status == "success") {
                                 if (result.isConfirmed) {

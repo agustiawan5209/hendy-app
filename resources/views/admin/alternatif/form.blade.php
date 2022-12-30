@@ -40,6 +40,20 @@
                         </div>
                         <div class="form-control">
                             <label class="label">
+                                <span class="label-nama">Kecamatan</span>
+                            </label>
+                            <label class="input-group input-group-lg">
+                                <span>Kecamatan</span>
+                                <select name="kecamatan" id="kecamatan" class="select select-bordered">
+                                    <option value="">---</option>
+                                    @foreach ($kecamatan as $item)
+                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
                                 <span class="label-nama">Gambar</span>
                             </label>
                             <label class="input-group input-group-lg ">

@@ -9,7 +9,7 @@ class Alternatif extends Model
 {
     use HasFactory;
     protected $table = "alternatifs";
-    protected $fillable =['kode', 'nama'];
+    protected $fillable =['kode', 'nama', 'kecamatan_id'];
 
     public function lokasi(){
         return $this->hasOne(Lokasi::class, 'alternatif_id','id');
@@ -19,5 +19,8 @@ class Alternatif extends Model
     }
     public function nilaiMatrix(){
         return $this->hasOne(NilaiMatrix::class, 'kode','kode');
+    }
+    public function kecamatan(){
+        return $this->hasOne(Kecamatan::class, 'kecamatan_id','nama');
     }
 }

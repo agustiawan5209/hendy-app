@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('alternatif_id')->constrained('alternatifs')->onDelete('cascade');
             $table->string('gambar', 100)->nullable();
-            $table->string('nama')->nullable();
             $table->string('lokasi');
             $table->string('pemilik');
             $table->string('deskripsi')->nullable();

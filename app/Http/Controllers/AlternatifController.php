@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAlternatifRequest;
 use App\Http\Requests\UpdateAlternatifRequest;
 use App\Http\Controllers\NilaiBobotAlternatifController;
+use App\Models\Kecamatan;
 use App\Models\Kriteria;
 use App\Models\SubAlternatif;
 use App\Models\SubKriteria;
@@ -38,11 +39,12 @@ class AlternatifController extends Controller
     public function create()
     {
         $tbKriteria = Kriteria::orderBy('kode', 'asc')->get();
+        $kecamatan= Kecamatan::all();
         return view('admin.alternatif.form', [
             'edit' => false,
             'kode' => $this->createCode(),
             'kriteria' => $tbKriteria,
-            'kriteria' => $tbKriteria,
+            'kecamatan' => $kecamatan,
         ]);
     }
 
@@ -54,11 +56,11 @@ class AlternatifController extends Controller
      */
     public function store(StoreAlternatifRequest $request)
     {
-        dd($request->all());
         $reqKodeSub = $request->kodeSub;
         $alternatif = Alternatif::create([
             'kode' => $request->kode,
             'nama' => $request->nama,
+            'kecamatan_id' => $request->kecamatan,
         ]);
         for ($i = 0; $i < count($reqKodeSub); $i++) {
             if ($reqKodeSub[$i] != null) {
@@ -123,6 +125,7 @@ class AlternatifController extends Controller
         $alternatif->find($id)->update([
             'kode' => $request->kode,
             'nama' => $request->nama,
+            'kecamatan_id' => $request->kecamatan,
         ]);
         for ($i = 0; $i < count($reqKodeSub); $i++) {
             if ($reqKodeSub[$i] != null) {

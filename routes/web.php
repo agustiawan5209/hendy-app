@@ -4,6 +4,7 @@ use App\Models\SubKriteria;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\PerhitunganController;
 use App\Http\Controllers\SubKriteriaController;
@@ -28,7 +29,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::group(['middleware'=> [ 'auth.session', 'role']], function () {
+Route::group(['middleware' => ['auth', 'auth.session', 'role']], function () {
     Route::group(['prefix' => 'Kriteria', 'as' => 'Kriteria.'], function () {
         Route::controller(KriteriaController::class)->group(function () {
             Route::get("/", 'index')->name('index');
@@ -105,6 +106,16 @@ Route::group(['middleware'=> [ 'auth.session', 'role']], function () {
     });
     Route::group(['prefix' => 'Perhitungan', 'as' => 'Perhitungan.'], function () {
        Route::get('/', [PerhitunganController::class, 'perhitungan'])->name('Perhitungan');
+    });
+
+    Route::group(['prefix' => 'Kecamatan', 'as' => 'Kecamatan.'], function () {
+        Route::controller(KecamatanController::class)->group(function () {
+            Route::get("/", 'index')->name('index');
+            Route::post("/create", 'store')->name('store');
+            Route::get("/edit/{id}", 'edit')->name('edit');
+            Route::put("/update/{id}", 'update')->name('update');
+            Route::get("/destroy/{id}", 'destroy')->name('destroy');
+        });
     });
 });
 

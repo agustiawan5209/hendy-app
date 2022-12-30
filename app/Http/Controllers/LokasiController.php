@@ -42,7 +42,6 @@ class LokasiController extends Controller
         Lokasi::create([
             'alternatif_id' => $alternatif_id,
             'gambar' => $gambar,
-            'nama' => $request->nama,
             'lokasi' => $request->lokasi,
             'pemilik' => $request->pemilik,
             'deskripsi' => $request->deskripsi,
@@ -89,7 +88,6 @@ class LokasiController extends Controller
         }
         Lokasi::where('alternatif_id', '=', $alternatif_id)->update([
             'gambar' => $gambar,
-            'nama' => $request->nama,
             'lokasi' => $request->lokasi,
             'pemilik' => $request->pemilik,
             'deskripsi' => $request->deskripsi,
