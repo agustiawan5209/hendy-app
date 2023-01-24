@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="{{ asset('aset/css/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    @vite(['resources/js/app.js','resources/css/app.css'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app.c25367af.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.f85da3e0.css') }}">
+    @vite(['resources/js/app.js'])
 
     <!--Regular Datatables CSS-->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -28,6 +30,7 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('build/assets/app.4cc26466.js') }}"></script>
     <script>
         new WOW().init();
     </script>
@@ -121,7 +124,6 @@
     <script src="{{ asset('aset/js/animate.js') }}"></script>
     <!-- owl carousel -->
     <script src="{{ asset('aset/js/owl.carousel.js') }}"></script>
-    <script src="{{ asset('build/assets/app.39a39601.js') }}"></script>
 
 </body>
 

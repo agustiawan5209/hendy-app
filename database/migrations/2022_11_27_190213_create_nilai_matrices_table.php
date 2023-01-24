@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('nilai_matrices', function (Blueprint $table) {
             $table->id();
+            $table->string('kecamatan');
             $table->string('kode');
             $table->string('nama');
             $table->text('data');

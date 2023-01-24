@@ -28,7 +28,9 @@
                         <select class="select select-bordered kecamatan" name="kecamatan" id="kecamatan">
                             <option value="">---</option>
                             @for ($z = 0; $z < count($kecamatan); $z++)
-                                <option class="text-gray-800" value="{{ $kecamatan[$z]['nama'] }}">{{ $kecamatan[$z]['nama'] }}</option>
+                                <option class="text-gray-800" value="{{ $kecamatan[$z]['nama'] }}"
+                                {{ $reqkecamatan == $kecamatan[$z]['nama'] ? 'selected' : '' }}
+                                >{{ $kecamatan[$z]['nama'] }}</option>
                             @endfor
                         </select>
 

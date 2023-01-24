@@ -9,7 +9,7 @@ class NilaiMatrix extends Model
 {
     use HasFactory;
     protected $table = 'nilai_matrices';
-    protected $fillable = ['kode', 'data', 'ranking','nama'];
+    protected $fillable = ['kode', 'data', 'ranking','nama', 'kecamatan'];
 
     public function alternatif(){
         return $this->hasOne(Alternatif::class, 'kode','kode');

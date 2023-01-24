@@ -56,12 +56,15 @@ class AlternatifController extends Controller
      */
     public function store(StoreAlternatifRequest $request)
     {
+        // dd($request->all());
         $reqKodeSub = $request->kodeSub;
+        $tbKriteria = new NilaiBobotAlternatifController();
         $alternatif = Alternatif::create([
             'kode' => $request->kode,
             'nama' => $request->nama,
-            'kecamatan_id' => $request->kecamatan,
+            'kecamatan' => $request->kecamatan,
         ]);
+        $tbKriteria->store($request->kecamatan);
         for ($i = 0; $i < count($reqKodeSub); $i++) {
             if ($reqKodeSub[$i] != null) {
                 $im = explode(',', $reqKodeSub[$i]);
@@ -74,8 +77,7 @@ class AlternatifController extends Controller
         }
         $lokasi = new LokasiController();
         $lokasi->store($request, $alternatif->id);
-        $tbKriteria = new NilaiBobotAlternatifController();
-        $tbKriteria->store();
+
         Alert::success('Info', 'Berhasil Di Tambah');
         return redirect()->route('Alternatif.index');
     }
@@ -127,6 +129,8 @@ class AlternatifController extends Controller
             'nama' => $request->nama,
             'kecamatan_id' => $request->kecamatan,
         ]);
+        $nilai = new NilaiBobotAlternatifController();
+        $nilai->store($request->kecamatan);
         for ($i = 0; $i < count($reqKodeSub); $i++) {
             if ($reqKodeSub[$i] != null) {
                 $im = explode(',', $reqKodeSub[$i]);
@@ -148,8 +152,7 @@ class AlternatifController extends Controller
 
         $lokasi = new LokasiController();
         $lokasi->update($request, $id);
-        $nilai = new NilaiBobotAlternatifController();
-        $nilai->store();
+
         Alert::success('Info', 'Berhasil Di Update');
         return redirect()->route('Alternatif.index');
     }

@@ -79,7 +79,7 @@ class LokasiSeeder extends Seeder
             ),
         );
 
-        Lokasi::insert($lokasis);
+        // Lokasi::insert($lokasis);
 
         $kecamatans = array(
             array(

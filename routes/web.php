@@ -92,7 +92,7 @@ Route::group(['middleware' => ['auth', 'auth.session', 'role']], function () {
             Route::get("/destroy/{id}", 'destroy')->name('destroy');
             Route::get("/GetBobot/{kode}/{alternatif1}/{alternatif2}", 'getBobotAlternatif')->name('getBobotAlternatif');
             Route::get("/GetBobot2/{kode}/{alternatif1}/{alternatif2}", 'getBobotAlternatif2')->name('getBobotAlternatif2');
-            Route::get("/Matrix/alternatif/{kode}", 'MatrixAHP')->name('MatrixAHP');
+            Route::get("/Matrix/alternatif/{kode}/{kecamatan}", 'MatrixAHP')->name('MatrixAHP');
             Route::get("/NilaiAKhir/alternatif", 'NilaiAKhir')->name('NilaiAKhir');
             Route::get("/NilaiAKhir/Hasil", 'hasilAlternatif')->name('hasilAlternatif');
             Route::get("/Bobot/alternatif", 'BobotAHP')->name('BobotAHP');
