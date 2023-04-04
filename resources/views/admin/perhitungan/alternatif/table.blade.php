@@ -18,12 +18,12 @@
 
             <x-th>Kode</x-th>
             @for ($head = 0; $head < $batas; $head++)
-                <x-th>{{ $table[$head]['nama'] }}</x-th>
+                <x-th>{{ $table[$head]['kode'] }}</x-th>
             @endfor
         </tr>
         @for ($baris = 0; $baris < $batas; $baris++)
             <tr>
-                <x-td>{{ $table[$baris]['nama'] }}</x-td>
+                <x-td>{{ $table[$baris]['kode'] }}</x-td>
                 @for ($kolom = 0; $kolom < $batas; $kolom++)
                     <x-td>{{ $matrix[$baris][$kolom] }}</x-td>
                 @endfor
@@ -40,19 +40,19 @@
     <table class="table table-compact w-full table-zebra">
         <tr>
             <x-th colspan='{{ $batas + 2 }}' class="text-left py-3 text-lg">Matrik bobot prioritas alternatif berdasarkan:
-                {{ $kriteria[$i]['nama'] }}
+                {{ $kriteria[$i]['kode'] }}
             </x-th>
         </tr>
         <tr>
-            <x-th>Nama</x-th>
+            <x-th>Kode</x-th>
             @for ($head = 0; $head < $batas; $head++)
-                <x-th>{{ $table[$head]['nama'] }}</x-th>
+                <x-th>{{ $table[$head]['kode'] }}</x-th>
             @endfor
             <x-th>Bobot</x-th>
         </tr>
         @for ($baris = 0; $baris < $batas; $baris++)
             <tr>
-                <x-td>{{ $table[$baris]['nama'] }}</x-td>
+                <x-td>{{ $table[$baris]['kode'] }}</x-td>
                 @for ($kolom = 0; $kolom < $batas; $kolom++)
                     <x-td>{{ $matrix_bobot[$baris][$kolom] }}</x-td>
                 @endfor
