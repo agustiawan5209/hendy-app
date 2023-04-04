@@ -4,7 +4,7 @@
         <div
             class="w-full flex flex-col justify-center overflow-auto items-start shadow-lg shadow-gray-600 max-w-4xl rounded-lg bg-white">
             <div class="flex justify-start px-4 py-2 w-full">
-                <a href="{{ route('Usaha.index') }}" class="btn btn-accent btn-md">Tutup!</a>
+                <a href="{{ url()->previous() }}" class="btn btn-accent btn-md">Tutup!</a>
             </div>
             <table class="table w-full table-bordered rounded-sm">
                 <tr>

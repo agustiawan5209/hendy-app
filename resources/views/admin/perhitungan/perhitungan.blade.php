@@ -66,7 +66,7 @@
           @include('admin.perhitungan.alternatif.nilaiAkhir')
         </div>
     </div>
-    <div class="hero min-h-max bg-base-200 border border-black">
+    {{-- <div class="hero min-h-max bg-base-200 border border-black">
         <div class="hero-content !w-full text-center">
             <div class="w-full border border-black bg-white">
                 <h1 class="text-2xl font-bold">Grafik Hasil Perankingan</h1>
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
  </div>
 </x-app-layout>

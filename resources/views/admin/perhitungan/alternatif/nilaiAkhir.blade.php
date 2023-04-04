@@ -9,6 +9,7 @@
         @endfor
         <x-th>Nilai</x-th>
         <x-th>Ranking</x-th>
+        <x-th>Detail</x-th>
     </tr>
     <tr>
         <td class="border border-gray-800">Vektor Eigen</td>
@@ -27,6 +28,11 @@
             @endfor
             <x-td>{{ $val->ranking }}</x-td>
             <x-td>{{ $item + 1 }}</x-td>
+            <x-td>
+                <a href="{{ route('Alternatif.show', ['id'=> $val->id]) }}" class=" p-1 rounded bg-blue-500 text-white">
+                   detail
+                </a>
+            </x-td>
         </tr>
     @endforeach
 </table>

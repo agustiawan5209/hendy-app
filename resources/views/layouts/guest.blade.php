@@ -7,13 +7,13 @@
     <title>SKRIPSI</title>
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/app.281fb2ed.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.85b7b9dd.css') }}">
     <link rel="stylesheet" href="{{ asset('build/assets/app.f85da3e0.css') }}">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 </head>
 
 <body class="overflow-y-auto overflow-x-hidden font-inter">
-    <div class="animation-loading bg-info opacity-90">
+    {{-- <div class="animation-loading bg-info opacity-90">
         <div class="flip-to-square ">
             <div></div>
             <div></div>
@@ -26,7 +26,7 @@
             <div></div>
             <div class="md:w-0 lg:w-0 w-0 -translate-x-64"></div>
         </div>
-    </div>
+    </div> --}}
     <div class="navbar bg-info z-[50] box-border">
         <div class="navbar-start">
             <div class="dropdown">
@@ -105,7 +105,7 @@
     <script>
         new WOW().init();
     </script>
-    <script src="{{ asset('build/assets/app.4cc26466.js') }}"></script>
+    <script src="{{ asset('build/assets/app.d73202a3.js') }}"></script>
 
 </body>
 

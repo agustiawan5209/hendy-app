@@ -21,20 +21,6 @@
                             @endfor
                         </select>
                     </div>
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label">
-                            <span class="label-text text-white text-sm md:text-xl">Pilih Kecamatan</span>
-                        </label>
-                        <select class="select select-bordered kecamatan" name="kecamatan" id="kecamatan">
-                            <option value="">---</option>
-                            @for ($z = 0; $z < count($kecamatan); $z++)
-                                <option class="text-gray-800" value="{{ $kecamatan[$z]['nama'] }}"
-                                {{ $reqkecamatan == $kecamatan[$z]['nama'] ? 'selected' : '' }}
-                                >{{ $kecamatan[$z]['nama'] }}</option>
-                            @endfor
-                        </select>
-
-                    </div>
                     <div class="form-control">
                         <label for="" class="label">A</label>
                         <button type="button" class="btn btn-accent" id="cari_alternatif">cari</button>

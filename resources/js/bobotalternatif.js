@@ -31,10 +31,9 @@ $(document).ready(function () {
 
     function MatrixAHPalternatif() {
       var kriteria_id =  $('#kriteria_id').val();
-      var kecamatan = $("#kecamatan").val();
         $.ajax({
             type: "GET",
-            url: "/NilaiBobotAlternatif/Matrix/alternatif/" + kriteria_id + '/'+kecamatan,
+            url: "/NilaiBobotAlternatif/Matrix/alternatif/" + kriteria_id,
             async: false,
             success: function (response) {
                 console.log(response);

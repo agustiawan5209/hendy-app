@@ -80,29 +80,22 @@ class NilaiBobotAlternatifController extends Controller
         // dd($alternatif);
         if ($kriteria->count() > 0) {
             foreach ($kriteria as $item) {
-                foreach ($kecamatan as $kecam) {
-                    if (count($alternatif) > 0) {
-                        $nilai_kode = $this->createKode();
-                        for ($k = 0; $k < count($alternatif); $k++) {
-                            $query_cek_kecamatan_alternatif = Alternatif::where('kecamatan', '=', $kecam->nama)->exists();
-                            if ($query_cek_kecamatan_alternatif) {
-                                for ($i = 0; $i < count($alternatif); $i++) {
-                                    $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $item->kode)
-                                        ->where('kecamatan', '=', $kecam->nama)
-                                        ->where('alternatif1', '=', $alternatif[$k]['kode'])
-                                        ->where('alternatif2', '=', $alternatif[$i]['kode'])
-                                        ->get();
-                                    if ($bobot1->count() < 1) {
-                                        NilaiBobotAlternatif::create([
-                                            'kode' => $nilai_kode,
-                                            'kriteria_id' => $item->kode,
-                                            'kecamatan' => $kecam->nama,
-                                            'nilai_banding' => '1',
-                                            'alternatif1' => $alternatif[$k]['kode'],
-                                            'alternatif2' => $alternatif[$i]['kode'],
-                                        ]);
-                                    }
-                                }
+                if (count($alternatif) > 0) {
+                    $nilai_kode = $this->createKode();
+                    for ($k = 0; $k < count($alternatif); $k++) {
+                        for ($i = 0; $i < count($alternatif); $i++) {
+                            $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $item->kode)
+                                ->where('alternatif1', '=', $alternatif[$k]['kode'])
+                                ->where('alternatif2', '=', $alternatif[$i]['kode'])
+                                ->get();
+                            if ($bobot1->count() < 1) {
+                                NilaiBobotAlternatif::create([
+                                    'kode' => $nilai_kode,
+                                    'kriteria_id' => $item->kode,
+                                    'nilai_banding' => '1',
+                                    'alternatif1' => $alternatif[$k]['kode'],
+                                    'alternatif2' => $alternatif[$i]['kode'],
+                                ]);
                             }
                         }
                     }
@@ -121,7 +114,6 @@ class NilaiBobotAlternatifController extends Controller
     public function edit(StoreNilaiBobotAlternatifRequest $request)
     {
         $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $request->kriteria_id)
-            ->where('kecamatan', '=', $request->kecamatan)
             ->where('alternatif1', '=', $request->alternatif1)
             ->where('alternatif2', '=', $request->alternatif2)
             ->first();
@@ -160,7 +152,7 @@ class NilaiBobotAlternatifController extends Controller
     public function getBobotAlternatif($kode, $alternatif1, $alternatif2, $kecamatan)
     {
         $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
-            ->where('kecamatan', '=', $kecamatan)
+
             ->where('alternatif1', '=', $alternatif1)
             ->where('alternatif2', '=', $alternatif2)
             ->first();
@@ -170,7 +162,7 @@ class NilaiBobotAlternatifController extends Controller
     public function getBobotAlternatif2($kode, $alternatif1, $alternatif2, $kecamatan)
     {
         $bobot1 = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
-            ->where('kecamatan', '=', $kecamatan)
+
             ->where('alternatif2', '=', $alternatif1)
             ->where('alternatif1', '=', $alternatif2)
             ->first();
@@ -189,10 +181,9 @@ class NilaiBobotAlternatifController extends Controller
         //
     }
 
-    public function NilaiBobotAlternatif($kode, $alternatif1, $alternatif2, $kecamatan)
+    public function NilaiBobotAlternatif($kode, $alternatif1, $alternatif2)
     {
         $alternatif = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
-            ->where('kecamatan', '=', $kecamatan)
             ->where('alternatif1', '=', $alternatif1)
             ->where('alternatif2', '=', $alternatif2)
             ->first();
@@ -206,10 +197,9 @@ class NilaiBobotAlternatifController extends Controller
      * @param  mixed $alternatif2
      * @return void
      */
-    public function NilaiBobotAlternatif2($kode, $alternatif1, $alternatif2, $kecamatan)
+    public function NilaiBobotAlternatif2($kode, $alternatif1, $alternatif2)
     {
         $alternatif = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
-            ->where('kecamatan', '=', $kecamatan)
             ->where('alternatif2', '=', $alternatif1)
             ->where('alternatif1', '=', $alternatif2)
             ->first();
@@ -241,7 +231,7 @@ class NilaiBobotAlternatifController extends Controller
      * @param  mixed $kode
      * @return void
      */
-    public function MatrixAHP($kode, $kecamatan)
+    public function MatrixAHP($kode)
     {
         // $kode_kriteria = $this->GetKriteria();
         $alternatif = Alternatif::all()->toArray();
@@ -254,9 +244,9 @@ class NilaiBobotAlternatifController extends Controller
         $batas = count($alternatif);
         $matrix = array();
         $matrix_bobot = array();
-        $cek_kecamatan_nilai_alternatif = NilaiBobotAlternatif::where('kecamatan',  $kecamatan)->get();
 
-        if (count($NilaiAlternatif) > 0 && $Cari_kd->count() > 0 && $cek_kecamatan_nilai_alternatif->count() > 0) {
+
+        if (count($NilaiAlternatif) > 0 && $Cari_kd->count() > 0 ) {
             for ($i = 0; $i < $batas; $i++) {
                 $matrix['alternatif'][$i] = [$i];
                 $matrix['Matrix_alternatif'][$i] = [$i];
@@ -265,37 +255,32 @@ class NilaiBobotAlternatifController extends Controller
             }
             // dd($kode);
             for ($baris = 0; $baris < $batas; $baris++) {
-                $query_cek_kecamatan_alternatif = Alternatif::where('kecamatan', '=', $kecamatan)->exists();
-                $cek_kecamatan_nilai_alternatif = NilaiBobotAlternatif::where('kecamatan',  $kecamatan)->get();
-
-                if ($query_cek_kecamatan_alternatif && $cek_kecamatan_nilai_alternatif->count() > 0) {
-                    for ($kolom = 0; $kolom < $batas; $kolom++) {
-                        // Hasil Perbandingan Nilai Matriks
-                        if ($baris == $kolom) {
+                for ($kolom = 0; $kolom < $batas; $kolom++) {
+                    // Hasil Perbandingan Nilai Matriks
+                    if ($baris == $kolom) {
+                        // Perbandingan
+                        $matrix['Matrix_alternatif'][$baris][$kolom] = 1;
+                        $matrix['alternatif'][$baris][$kolom] = 1;
+                        $matrix_bobot[$baris][$kolom] = 1;
+                    } else {
+                        if ($baris < $kolom) {
                             // Perbandingan
-                            $matrix['Matrix_alternatif'][$baris][$kolom] = 1;
-                            $matrix['alternatif'][$baris][$kolom] = 1;
-                            $matrix_bobot[$baris][$kolom] = 1;
-                        } else {
-                            if ($baris < $kolom) {
-                                // Perbandingan
-                                $nilai = $this->NilaiBobotAlternatif($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode'], $kecamatan);
-                                $nilai2 = $this->NilaiBobotAlternatif2($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode'], $kecamatan);
-                                // dd($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode'], $kecamatan,$kecamatan, $nilai,$nilai2);
+                            $nilai = $this->NilaiBobotAlternatif($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                            $nilai2 = $this->NilaiBobotAlternatif2($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                            // dd($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode'], $kecamatan,$kecamatan, $nilai,$nilai2);
 
-                                // Bagi Nilai Banding
-                                $hasil = ($nilai / $nilai2);
-                                // Masukkan Hasil Ke dalam Array Matrix Alternatif
-                                $matrix['alternatif'][$baris][$kolom] = $this->FormatNumber($hasil);
-                                // Masukkan Hasil Ke dalam Array Matrix Bobot Alternatif
-                                $matrix_bobot[$kolom][$baris] = $this->FormatNumber($hasil);
-                            } else {
-                                // Perbandingan
-                                $nilai = $this->NilaiBobotAlternatif($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode'], $kecamatan);
-                                $nilai2 = $this->NilaiBobotAlternatif2($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode'], $kecamatan);
-                                $matrix['alternatif'][$baris][$kolom] = $this->FormatNumber($nilai / $nilai2);
-                                $matrix_bobot[$kolom][$baris] = $this->FormatNumber($nilai / $nilai2);
-                            }
+                            // Bagi Nilai Banding
+                            $hasil = ($nilai / $nilai2);
+                            // Masukkan Hasil Ke dalam Array Matrix Alternatif
+                            $matrix['alternatif'][$baris][$kolom] = $this->FormatNumber($hasil);
+                            // Masukkan Hasil Ke dalam Array Matrix Bobot Alternatif
+                            $matrix_bobot[$kolom][$baris] = $this->FormatNumber($hasil);
+                        } else {
+                            // Perbandingan
+                            $nilai = $this->NilaiBobotAlternatif($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                            $nilai2 = $this->NilaiBobotAlternatif2($kode, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                            $matrix['alternatif'][$baris][$kolom] = $this->FormatNumber($nilai / $nilai2);
+                            $matrix_bobot[$kolom][$baris] = $this->FormatNumber($nilai / $nilai2);
                         }
                     }
                 }
@@ -306,54 +291,40 @@ class NilaiBobotAlternatifController extends Controller
             }
             // Matrix Prioritas
             for ($baris = 0; $baris < $batas; $baris++) {
-                $query_cek_kecamatan_alternatif = Alternatif::where('kecamatan', '=', $kecamatan)->exists();
-                if ($query_cek_kecamatan_alternatif) {
-                    for ($kolom = 0; $kolom < $batas; $kolom++) {
-                        // Pembagian Nilai Bobot
-                        if ($baris == $kolom) {
-                            // Perbandingan
-                            $matrix['Matrix_alternatif'][$baris][$kolom] = $this->FormatNumber($matrix['bobot'][$baris] / $matrix['bobot'][$kolom]);
+                for ($kolom = 0; $kolom < $batas; $kolom++) {
+                    // Pembagian Nilai Bobot
+                    if ($baris == $kolom) {
+                        // Perbandingan
+                        $matrix['Matrix_alternatif'][$baris][$kolom] = $this->FormatNumber($matrix['bobot'][$baris] / $matrix['bobot'][$kolom]);
+                    } else {
+                        if ($baris < $kolom) {
+                            $matrix['Matrix_alternatif'][$baris][$kolom] = $this->FormatNumber($matrix_bobot[$kolom][$baris] / $matrix['bobot'][$kolom]);
                         } else {
-                            if ($baris < $kolom) {
-                                $matrix['Matrix_alternatif'][$baris][$kolom] = $this->FormatNumber($matrix_bobot[$kolom][$baris] / $matrix['bobot'][$kolom]);
-                            } else {
-                                $matrix['Matrix_alternatif'][$baris][$kolom] = $this->FormatNumber($matrix_bobot[$kolom][$baris] / $matrix['bobot'][$kolom]);
-                            }
+                            $matrix['Matrix_alternatif'][$baris][$kolom] = $this->FormatNumber($matrix_bobot[$kolom][$baris] / $matrix['bobot'][$kolom]);
                         }
                     }
                 }
             }
             for ($baris = 0; $baris < $batas; $baris++) {
-                $query_cek_kecamatan_alternatif = Alternatif::where('kecamatan', '=', $kecamatan)->exists();
-                if ($query_cek_kecamatan_alternatif) {
-                    for ($kolom = 0; $kolom < $batas; $kolom++) {
-                        if ($baris == $kolom) {
-                            // Perbandingan
+                for ($kolom = 0; $kolom < $batas; $kolom++) {
+                    if ($baris == $kolom) {
+                        // Perbandingan
+                        $matrix['prioritas'][$baris][$kolom] = $this->FormatNumber($matrix['Matrix_alternatif'][$baris][$kolom]);
+                    } else {
+                        // Nilai Bobot Hasil Pembagian
+                        if ($baris < $kolom) {
                             $matrix['prioritas'][$baris][$kolom] = $this->FormatNumber($matrix['Matrix_alternatif'][$baris][$kolom]);
                         } else {
-                            // Nilai Bobot Hasil Pembagian
-                            if ($baris < $kolom) {
-                                $matrix['prioritas'][$baris][$kolom] = $this->FormatNumber($matrix['Matrix_alternatif'][$baris][$kolom]);
-                            } else {
-                                $matrix['prioritas'][$baris][$kolom] = $this->FormatNumber($matrix['Matrix_alternatif'][$baris][$kolom]);
-                            }
+                            $matrix['prioritas'][$baris][$kolom] = $this->FormatNumber($matrix['Matrix_alternatif'][$baris][$kolom]);
                         }
                     }
-                } else {
-                    $matrix['prioritas'][$baris] = 0;
                 }
             }
             // Nilai Bobot Prioritas
 
             for ($i = 0; $i < $batas; $i++) {
-                $query_cek_kecamatan_alternatif = Alternatif::where('kecamatan', '=', $kecamatan)->exists();
-                $cek_kecamatan_nilai_alternatif = NilaiBobotAlternatif::where('kecamatan',  $kecamatan)->get();
+                $matrix['bobot_prioritas'][$i] = $this->FormatNumber(array_sum($matrix['prioritas'][$i]) / $batas);
 
-                if ($query_cek_kecamatan_alternatif && $cek_kecamatan_nilai_alternatif->count() > 0) {
-                    $matrix['bobot_prioritas'][$i] = $this->FormatNumber(array_sum($matrix['prioritas'][$i]) / $batas);
-                } else {
-                    $matrix['bobot_prioritas'][$i] = 1;
-                }
             }
         }
         // dd($matrix);
@@ -382,15 +353,14 @@ class NilaiBobotAlternatifController extends Controller
          * bobot_prioritas
          */
         for ($k = 0; $k < count($kecamatan); $k++) {
-            $cek_kecamatan_nilai_alternatif = NilaiBobotAlternatif::where('kecamatan',  $kecamatan[$k]['nama'])->get();
-            if ($cek_kecamatan_nilai_alternatif->count() > 0) {
+
 
                 for ($i = 0; $i < $batas; $i++) {
                     $Hasil_bobot[$kode_kriteria[$i]['kode']] = $this->MatrixAHP($kode_kriteria[$i]['kode'], $kecamatan[$k]['nama']);
                     $this->NilaiAKhir($kecamatan[$k]['nama']);
                 }
                 $array_kecamatan[$kecamatan[$k]['nama']] = $Hasil_bobot;
-            }
+
         }
         // dd($array_kecamatan);
         // dd($Hasil_bobot);
