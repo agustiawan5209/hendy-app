@@ -6,11 +6,9 @@
         $matrix = $matrixalternatif[$kriteria[$i]['kode']]['alternatif'];
         $matrix_bobot = $matrixalternatif[$kriteria[$i]['kode']]['Matrix_alternatif'];
         $table = $matrixalternatif[$kriteria[$i]['kode']]['nama_table'];
-        $prioritas = $matrixalternatif[$kriteria[$i]['kode']]['prioritas'];
         $hasil_matrix = $matrixalternatif[$kriteria[$i]['kode']]['bobot'];
         $bobot_prioritas = $matrixalternatif[$kriteria[$i]['kode']]['bobot_prioritas'];
     @endphp
-
     <table class="table table-compact w-full table-zebra">
         <tr>
             <x-th colspan='{{ $batas + 1 }}' class="text-left py-3 text-lg">Matriks Perbandingan Alternatif Berdasarkan {{ $kriteria[$i]['name'] }}

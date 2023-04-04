@@ -44,7 +44,7 @@ class PerhitunganController extends Controller
         // Matrix
         $NBA = new NilaiBobotAlternatifController();
         $matrixAlternatif = $NBA->BobotAHP();
-        $hasilAkhir = $NBA->NilaiAKhir();
+        // dd($matrixAlternatif);
         // dd($hasilAkhir);
         $NilaiMatrix = NilaiMatrix::orderBy('ranking', 'desc')->get();
         return view('admin.perhitungan.perhitungan', [
@@ -57,7 +57,6 @@ class PerhitunganController extends Controller
             // Matirx ALternatif
             'matrixalternatif'=> $matrixAlternatif,
             'alternatif'=> $alternatif,
-            'hasilAkhir'=> $hasilAkhir,
             'NilaiMatrix'=> $NilaiMatrix,
         ]);
     }

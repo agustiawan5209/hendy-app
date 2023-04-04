@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AHP\MatrixAlternatif;
 use App\Models\SubKriteria;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -116,6 +117,13 @@ Route::group(['middleware' => ['auth', 'auth.session', 'role']], function () {
             Route::put("/update/{id}", 'update')->name('update');
             Route::get("/destroy/{id}", 'destroy')->name('destroy');
         });
+    });
+});
+
+Route::group(['prefix'=> 'al', 'as'=> 'alMatrix'], function(){
+    Route::controller(MatrixAlternatif::class)->group(function(){
+        Route::get('Matrix', 'coba')->name('Matrix');
+        Route::get('nilaiAkhir', 'NilaiAKhir')->name('NilaiAKhir');
     });
 });
 
