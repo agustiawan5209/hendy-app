@@ -17,7 +17,7 @@ class NilaiMatrixController extends Controller
         $exp = implode('/', $data['matrix']);
         // dd($data);
         $nilai = NilaiMatrix::where('kode', '=', $data['kode']['kode'])->where('kecamatan', '=', $data['kecamatan'])->get();
-        dd($nilai);
+
         if ($nilai->count() < 1) {
             NilaiMatrix::create([
                 'kode' => $data['kode']['kode'],

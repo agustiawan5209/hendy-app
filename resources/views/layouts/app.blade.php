@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('aset/css/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/app.c25367af.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.281fb2ed.css') }}">
     <link rel="stylesheet" href="{{ asset('build/assets/app.f85da3e0.css') }}">
     @vite(['resources/js/app.js'])
 
