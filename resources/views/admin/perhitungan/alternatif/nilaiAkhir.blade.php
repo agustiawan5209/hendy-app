@@ -3,6 +3,7 @@
         $keygen = $prioritas['prioritas'];
     @endphp
     <tr>
+        <x-th>Kecamatan</x-th>
         <x-th>Alternatif</x-th>
         @for ($i = 0; $i < count($kriteria); $i++)
             <x-th>{{ $kriteria[$i]['kode'] }}</x-th>
@@ -12,6 +13,7 @@
         <x-th>Detail</x-th>
     </tr>
     <tr>
+        <td></td>
         <td class="border border-gray-800">Vektor Eigen</td>
         @for ($i = 0; $i < count($kriteria); $i++)
             <td class="border border-gray-800">{{ $keygen[$i] }}</td>
@@ -19,6 +21,7 @@
     </tr>
     @foreach ($NilaiMatrix as $item => $val)
         <tr>
+            <x-td>{{ $val->kecamatan }}</x-td>
             <x-td>{{ $val->kode }}</x-td>
             @php
                 $im = explode('/', $val->data);

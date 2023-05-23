@@ -25,6 +25,7 @@ use App\Http\Controllers\NilaiBobotAlternatifController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('Home');
+Route::get('/kecamatan/{kecamatan}', [HomeController::class, 'getKecamatan'])->name('getKecamatan');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

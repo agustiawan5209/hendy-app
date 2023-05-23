@@ -39,48 +39,43 @@
                 <div class="text-base md:text-2xl text-gray-700 font-semibold flex w-full justify-center"> <span
                         class="text-info text-3xl wow slideInDown">4</span> <span
                         class="titlestrategis wow slideInRight">Lokasi Strategis</span>
-                    </div>
+                </div>
             </div>
             <div class="container mx-auto flex justify-center items-center z-10">
                 <div class="py-4 md:py-10 px-3 gap-10 grid overflow-hidden grid-cols-3 grid-rows-2 ">
-                    @foreach ($nilaiMatrix as $key => $item)
-                        @if ($key == 0)
-                            <div class="card card-compact  bg-base-100 shadow-sm shadow-gray-500 row-span-3" data-aos="fade-right">
-                                {{-- <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure> --}}
-                                <div class="card-body">
-                                    <h2 class="card-title">Keuntungan Lokasi Strategis!</h2>
-                                    <p>Lokasi merupakan tempat terjadinya kegiatan operasi pada suatu
-                                        perusahaan. Lokasi memiliki fungsi yang strategis karena dapat
-                                        mencapai tujuan perusahaan dan dengan letak lokasi yang strategis
-                                        akan memaksimumkan laba. Lokasi yang strategis yaitu tempat yang
-                                        mudah dijangkau oleh para konsumen dan konsumen melakukan
-                                        keputusan pembelian terhadap suatu produk.
-                                        Lokasi yang strategis merupakan bagian yang sangat penting,
-                                        dengan adanya lokasi strategis maka usaha dan bisnis akan
-                                        mengalami kemajuan karena mudah dijangkau dan tempat tersebut
-                                        sangat cocok untuk jenis usaha yang didirikan.
-                                        Memilih lokasi merupakan salah satu kegiatan awal dalam
-                                        melakukan usaha. Pemilihan lokasi bisnis biasanya berlandaskan
-                                        pada segmen pasar atau target pembeli. Yang menjadi patokan
-                                        dalam bisnis yaitu segmen pasar atau target pembeli, seperti usia,
-                                        jenis kelamin, pendapatan, dan lain-lain. Segmen ini yang akan
-                                        menjadikan konsep perencanaan usaha agar mudah mencapai tujuan.
-                                        Terdapat beberapa tempat yang dapat dijadikan tempat usaha
-                                        yaitu mal, pusat keramaian, pasar, toko, pinggir sekolahan, dan lain
-                                        sebagainya. Lokasi yang dicari biasanya di kanan kirinya menjual</p>
-                                </div>
-                            </div>
-                        @else
-                        <a href="{{ route('Usaha.show', $item->id) }}">
-                            <div class="card w-96 h-52  transition-all ease-linear bg-base-100 shadow-xl image-full" data-aos="fade-left">
-                                    <figure><img src="{{ asset('storage/lokasi/'. $item->alternatif->lokasi->gambar) }}" class="w-full bg-cover bg-fixed transition-all ease-linear" alt="Shoes" /></figure>
-                                    <div class="card-body">
-                                        <h2 class="card-title">{{ $item->alternatif->nama }}</h2>
-                                        <p>{{ $item->alternatif->lokasi->deskripsi }}</p>
-                                    </div>
+                    <div class="card card-compact  bg-base-100 shadow-sm shadow-gray-500 row-span-3"
+                    data-aos="fade-right">
+                    {{-- <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure> --}}
+                    <div class="card-body">
+                        <h2 class="card-title">Keuntungan Lokasi Strategis!</h2>
+                        <p>Lokasi merupakan tempat terjadinya kegiatan operasi pada suatu
+                            perusahaan. Lokasi memiliki fungsi yang strategis karena dapat
+                            mencapai tujuan perusahaan dan dengan letak lokasi yang strategis
+                            akan memaksimumkan laba. Lokasi yang strategis yaitu tempat yang
+                            mudah dijangkau oleh para konsumen dan konsumen melakukan
+                            keputusan pembelian terhadap suatu produk.
+                            Lokasi yang strategis merupakan bagian yang sangat penting,
+                            dengan adanya lokasi strategis maka usaha dan bisnis akan
+                            mengalami kemajuan karena mudah dijangkau dan tempat tersebut
+                            sangat cocok untuk jenis usaha yang didirikan.
+                            Memilih lokasi merupakan salah satu kegiatan awal dalam
+                            melakukan usaha. Pemilihan lokasi bisnis biasanya berlandaskan
+                            pada segmen pasar atau target pembeli. Yang menjadi patokan
+                            dalam bisnis yaitu segmen pasar atau target pembeli, seperti usia,
+                            jenis kelamin, pendapatan, dan lain-lain. Segmen ini yang akan
+                            menjadikan konsep perencanaan usaha agar mudah mencapai tujuan.
+                            Terdapat beberapa tempat yang dapat dijadikan tempat usaha
+                            yaitu mal, pusat keramaian, pasar, toko, pinggir sekolahan, dan lain
+                            sebagainya. Lokasi yang dicari biasanya di kanan kirinya menjual</p>
+                    </div>
+                </div>
+                    @foreach ($kecamatan as $key => $item)
+                            <a href="{{ route('getKecamatan', $item->nama) }}">
+                                <div class="card w-full bg-info px-4 py-5 text-xl text-white transition-all ease-linear shadow-xl image-full"
+                                    data-aos="fade-left">
+                                    {{ $item->nama }}
                                 </div>
                             </a>
-                        @endif
                     @endforeach
                 </div>
             </div>
@@ -193,7 +188,8 @@
                         </article>
                     </div>
                 </div>
-                <div class="card card-side border-b-2 w-full " data-aos-delay="500" data-aos-duration="1000" data-aos="fade-up">
+                <div class="card card-side border-b-2 w-full " data-aos-delay="500" data-aos-duration="1000"
+                    data-aos="fade-up">
                     {{-- <figure class=" w-96"><img src="https://placeimg.com/200/280/arch" class="w-full"  alt="Movie"/></figure> --}}
                     <div class="card-body max-w-full">
                         <h5 class="prose px-3 py-1 text-lg font-semibold border-b-4 border-gray-600 ">5. Gaji Karyawan
