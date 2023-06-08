@@ -206,7 +206,7 @@ class NilaiBobotAlternatifController extends Controller
             ->where('alternatif2', '=', $alternatif1)
             ->where('alternatif1', '=', $alternatif2)
             ->first();
-        // dd($kode, $alternatif1, $alternatif2, $kecamatan,$alternatif);
+        // dd($kode, $alternatif1, $alternatif2,$alternatif);
 
         return $alternatif == null ? 0 : $alternatif->nilai_banding;
     }

@@ -92,31 +92,33 @@
                     @for ($baris = 0; $baris < $batas; $baris++)
                         <tr>
                             <x-th class="bg-info text-info-content">{{ $alternatif[$baris]['kode'] }}</x-th>
-                            {{-- @inject('control', 'class') --}}
+                         @if ($kode_kriteria != null)
+                                {{-- @inject('control', 'class') --}}
                             @for ($kolom = 0; $kolom < $batas; $kolom++)
-                                @if ($baris == $baris)
+                            @if ($baris == $baris)
 
+                                @php
+                                    $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                    $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                @endphp
+                                <td>{{ ($nilai1 / $nilai2) }}</td>
+                            @else
+                                @if ($baris > $kolom)
                                     @php
                                         $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
                                         $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
                                     @endphp
-                                    <td>{{ ($nilai1 .'/'. $nilai2) }}</td>
-                                @else
-                                    @if ($baris > $kolom)
-                                        @php
-                                            $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
-                                            $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
-                                        @endphp
-                                        <td>{{ ($nilai1 .'/'. $nilai2) }}</td>
-                                    @elseif($kolom > $baris)
-                                        @php
-                                            $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
-                                            $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
-                                        @endphp
-                                        <td>{{ ($nilai1 .'/'. $nilai2) }}</td>
-                                    @endif
+                                    <td>{{ ($nilai1 / $nilai2) }}</td>
+                                @elseif($kolom > $baris)
+                                    @php
+                                        $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                        $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                    @endphp
+                                    <td>{{ ($nilai1 / $nilai2) }}</td>
                                 @endif
-                            @endfor
+                            @endif
+                        @endfor
+                         @endif
                         </tr>
                     @endfor
                 </tbody>
