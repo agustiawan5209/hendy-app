@@ -101,20 +101,20 @@
                                     $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
                                     $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
                                 @endphp
-                                <td>{{ ($nilai1 / $nilai2) }}</td>
+                                <td>{{ round($nilai1 / $nilai2,3) }}</td>
                             @else
                                 @if ($baris > $kolom)
                                     @php
                                         $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
                                         $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
                                     @endphp
-                                    <td>{{ ($nilai1 / $nilai2) }}</td>
+                                    <td>{{ round($nilai1 / $nilai2,3) }}</td>
                                 @elseif($kolom > $baris)
                                     @php
                                         $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
                                         $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
                                     @endphp
-                                    <td>{{ ($nilai1 / $nilai2) }}</td>
+                                    <td>{{ round($nilai1 / $nilai2,3) }}</td>
                                 @endif
                             @endif
                         @endfor

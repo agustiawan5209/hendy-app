@@ -7,7 +7,7 @@
     <title>SKRIPSI</title>
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styindex.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/assets/app.3b108101.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.12da7008.css') }}">
     <link rel="stylesheet" href="{{ asset('build/assets/app.f85da3e0.css') }}">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 </head>
