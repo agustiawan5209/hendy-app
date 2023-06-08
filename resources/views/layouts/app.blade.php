@@ -38,7 +38,7 @@
 </head>
 
 <body class="overflow-x-hidden overflow-y-auto h-screen bg-base-200">
-    <div class="animation-loading bg-info">
+    {{-- <div class="animation-loading bg-info">
         <div class="flip-to-square ">
             <div></div>
             <div></div>
@@ -51,7 +51,7 @@
             <div></div>
             <div class="md:w-0 lg:w-0 w-0 -translate-x-64"></div>
         </div>
-    </div>
+    </div> --}}
     @include('sweetalert::alert')
     <div id="Sidebar"
         class="wow slideIn hidden md:flex  md:w-1/4 lg:w-[15%] h-full items-start bg-info flex-wrap absolute left-0 shadow-sm shadow-white z-20 transition-all ease-in-out">

@@ -111,8 +111,11 @@ class NilaiBobotKriteriaController extends Controller
             $bobot = $nilaiBobotKriteria->where('kriteria1', '=', $request->kriteria1)
                 ->where('kriteria2', '=', $request->kriteria2)
                 ->first();
+            $bobot2 = $nilaiBobotKriteria->where('kriteria2', '=', $request->kriteria1)
+                ->where('kriteria1', '=', $request->kriteria2)
+                ->first();
             // dd($bobot);
-            if ($bobot == null) {
+            if ($bobot == null && $bobot2) {
                 $nilaiBobotKriteria->create([
                     'kode' => $this->createKode(),
                     'nilai_banding' => $request->nilai_banding,
@@ -125,6 +128,11 @@ class NilaiBobotKriteriaController extends Controller
                     'nilai_banding' => $request->nilai_banding,
                     'kriteria1' => $request->kriteria1,
                     'kriteria2' => $request->kriteria2,
+                ]);
+                $nilaiBobotKriteria->find($bobot2->id)->update([
+                    'nilai_banding' => $request->nilai_banding,
+                    'kriteria2' => $request->kriteria1,
+                    'kriteria1' => $request->kriteria2,
                 ]);
                 Alert::success('Info', 'Berhasil Di Update');
             }
