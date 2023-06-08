@@ -120,7 +120,11 @@ class NilaiBobotAlternatifController extends Controller
             ->where('alternatif1', '=', $request->alternatif1)
             ->where('alternatif2', '=', $request->alternatif2)
             ->first();
-        if ($bobot1 == null) {
+        $bobot2 = NilaiBobotAlternatif::where('kriteria_id', '=', $request->kriteria_id)
+            ->where('alternatif2', '=', $request->alternatif1)
+            ->where('alternatif1', '=', $request->alternatif2)
+            ->first();
+        if ($bobot1 == null && $bobot2 == null) {
             NilaiBobotAlternatif::create([
                 'kode' => $this->createKode(),
                 'kriteria_id' => $request->kode,
@@ -131,6 +135,11 @@ class NilaiBobotAlternatifController extends Controller
         } else {
             $bobot1->update([
                 'nilai_banding' => $request->nilai_banding,
+                'alternatif1' => $request->alternatif1,
+                'alternatif2' => $request->alternatif2,
+            ]);
+            $bobot2->update([
+                'nilai_banding' => 1,
                 'alternatif1' => $request->alternatif1,
                 'alternatif2' => $request->alternatif2,
             ]);
