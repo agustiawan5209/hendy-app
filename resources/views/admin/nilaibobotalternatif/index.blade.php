@@ -1,17 +1,15 @@
 <x-app-layout>
-
+    @include('sweetalert::alert')
     <x-slot name="page">Table Perbandingan alternatif</x-slot>
     <div class="card w-full bg-info text-gray-800">
         <div class="card-body">
             <x-validation-errors />
-            <form action="{{ route('NilaiBobotAlternatif.edit') }}" method="POST" class="grid grid-cols-1 grid-rows-2">
-                @csrf
-                @method('PUT')
+            <form action="{{ route('NilaiBobotAlternatif.index') }}" method="get">
                 <div class="col-span-1 flex flex-1 items-center">
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label">
-                            <span class="label-text text-white text-sm md:text-xl">Pilih Kriteria</span>
-                        </label>
+                    <label class="label">
+                        <span class="label-text text-white text-sm md:text-xl">Pilih Kriteria</span>
+                    </label>
+                    <div class="flex flex-row w-full max-w-xs">
                         <select class="select select-bordered kriteria_id" name="kriteria_id" id="kriteria_id">
                             <option value="">---</option>
                             @for ($z = 0; $z < count($kriteria); $z++)
@@ -20,12 +18,15 @@
                                     {{ $kriteria[$z]['kode'] }} - {{ $kriteria[$z]['name'] }}</option>
                             @endfor
                         </select>
+                        <button type="submit" class="btn btn-accent" id="cari_alternatif">cari</button>
                     </div>
-                    <div class="form-control">
-                        <label for="" class="label">A</label>
-                        <button type="button" class="btn btn-accent" id="cari_alternatif">cari</button>
-                    </div>
+
                 </div>
+            </form>
+            <form action="{{ route('NilaiBobotAlternatif.edit') }}" method="POST" class="grid grid-cols-1 grid-rows-2">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="kriteria_id" value="{{ $kriteria_id }}">
                 <div class=" col-span-1 flex  justify-around">
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
@@ -87,13 +88,40 @@
                     @endfor
                 </tr>
 
-                <tbody id="table_banding_alternatif">
+                <tbody id="">
+                    @for ($baris = 0; $baris < $batas; $baris++)
+                        <tr>
+                            <x-th class="bg-info text-info-content">{{ $alternatif[$baris]['kode'] }}</x-th>
+                            {{-- @inject('control', 'class') --}}
+                            @for ($kolom = 0; $kolom < $batas; $kolom++)
+                                @if ($baris == $baris)
 
+                                    @php
+                                        $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                        $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                    @endphp
+                                    <td>{{ round($nilai1 / $nilai2, 3) }}</td>
+                                @else
+                                    @if ($baris > $kolom)
+                                        @php
+                                            $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                            $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                        @endphp
+                                        <td>{{ round($nilai1 / $nilai2, 3) }}</td>
+                                    @elseif($kolom > $baris)
+                                        @php
+                                            $nilai1 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                            $nilai2 = \App\Http\Controllers\NilaiBobotAlternatifController::NilaiBobotAlternatif2($kode_kriteria, $alternatif[$baris]['kode'], $alternatif[$kolom]['kode']);
+                                        @endphp
+                                        <td>{{ round($nilai1 / $nilai2, 3) }}</td>
+                                    @endif
+                                @endif
+                            @endfor
+                        </tr>
+                    @endfor
                 </tbody>
             </table>
         </div>
     </div>
-    <script>
-
-    </script>
+    <script></script>
 </x-app-layout>

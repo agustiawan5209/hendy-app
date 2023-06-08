@@ -20,7 +20,7 @@ class NilaiBobotAlternatifController extends Controller
     public function __construct()
     {
 
-        $this->store();
+        // $this->store();
     }
 
     /**
@@ -34,14 +34,17 @@ class NilaiBobotAlternatifController extends Controller
         $prefensi = NilaiPrefensi::orderBy('kode', 'asc')->get();
         $kriteria = Kriteria::orderBy('kode', 'asc')->get()->toArray();
         $kecamatan = Kecamatan::all()->toArray();
-        // dd($request->kode);
+        $matrix= NilaiBobotAlternatif::all()->toArray();
+        // dd($matrix);
         return view('admin.nilaibobotalternatif.index', [
             'alternatif' => $alternatif,
             'prefensi' => $prefensi,
             'kriteria' => $kriteria,
-            'kode_kriteria' => $request->kode,
+            'kode_kriteria' => $request->kriteria_id,
             'reqkecamatan' => $request->kecamatan,
             'kecamatan' => $kecamatan,
+            'matrix' => $matrix,
+            'kriteria_id' => $request->kriteria_id,
         ]);
     }
 
@@ -133,7 +136,7 @@ class NilaiBobotAlternatifController extends Controller
             ]);
         }
         // dd($bobot1);
-        return redirect()->route('NilaiBobotAlternatif.index', ['kode' => $request->kriteria_id, 'kecamatan' => $request->kecamatan]);
+        return redirect()->route('NilaiBobotAlternatif.index', ['kriteria_id' => $request->kriteria_id, 'kecamatan' => $request->kecamatan]);
     }
 
     /**
@@ -181,7 +184,7 @@ class NilaiBobotAlternatifController extends Controller
         //
     }
 
-    public function NilaiBobotAlternatif($kode, $alternatif1, $alternatif2)
+    public static function NilaiBobotAlternatif($kode, $alternatif1, $alternatif2)
     {
         $alternatif = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
             ->where('alternatif1', '=', $alternatif1)
@@ -197,7 +200,7 @@ class NilaiBobotAlternatifController extends Controller
      * @param  mixed $alternatif2
      * @return void
      */
-    public function NilaiBobotAlternatif2($kode, $alternatif1, $alternatif2)
+    public static function NilaiBobotAlternatif2($kode, $alternatif1, $alternatif2)
     {
         $alternatif = NilaiBobotAlternatif::where('kriteria_id', '=', $kode)
             ->where('alternatif2', '=', $alternatif1)

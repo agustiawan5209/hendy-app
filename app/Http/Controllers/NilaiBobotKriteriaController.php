@@ -17,6 +17,11 @@ class NilaiBobotKriteriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+
+    }
     public function index()
     {
         $bobot = NilaiBobotKriteria::with(['datakriteria1', 'datakriteria2'])->get();
@@ -266,8 +271,8 @@ class NilaiBobotKriteriaController extends Controller
         }
         for ($baris = 0; $baris < $batas; $baris++) {
             for ($kolom = 0; $kolom < $batas; $kolom++) {
-                $Matrix['Matrix_CM'][$kolom][$baris] = $this->FormatNumber( $Prioritas[$kolom] * $Hasil_Matrix['kriteria'][$baris][$kolom]  );
-                $Matrix['Jumlah_CM'][$baris][$kolom] = $this->FormatNumber( $Prioritas[$kolom] * $Hasil_Matrix['kriteria'][$baris][$kolom]  );
+                $Matrix['Matrix_CM'][$kolom][$baris] = $this->FormatNumber($Prioritas[$kolom] * $Hasil_Matrix['kriteria'][$baris][$kolom]);
+                $Matrix['Jumlah_CM'][$baris][$kolom] = $this->FormatNumber($Prioritas[$kolom] * $Hasil_Matrix['kriteria'][$baris][$kolom]);
             }
         }
         for ($baris = 0; $baris < $batas; $baris++) {
