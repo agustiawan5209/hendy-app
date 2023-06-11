@@ -199,7 +199,7 @@ class NilaiBobotAlternatifController extends Controller
             ->where('alternatif1', '=', $alternatif1)
             ->where('alternatif2', '=', $alternatif2)
             ->first();
-        return $alternatif == null ? 0 : $alternatif->nilai_banding;
+        return $alternatif == null ? 1 : $alternatif->nilai_banding;
     }
     /**
      * NilaiBobotAlternatif2
@@ -207,7 +207,7 @@ class NilaiBobotAlternatifController extends Controller
      * @param  mixed $kode
      * @param  mixed $alternatif1
      * @param  mixed $alternatif2
-     * @return void
+     * @return Int
      */
     public static function NilaiBobotAlternatif2($kode, $alternatif1, $alternatif2)
     {
@@ -217,7 +217,7 @@ class NilaiBobotAlternatifController extends Controller
             ->first();
         // dd($kode, $alternatif1, $alternatif2,$alternatif);
 
-        return $alternatif == null ? 0 : $alternatif->nilai_banding;
+        return $alternatif == null ? 1 : $alternatif->nilai_banding;
     }
 
     /**
